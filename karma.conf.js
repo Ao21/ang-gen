@@ -2,7 +2,7 @@
 // Generated on Thu Aug 13 2015 15:36:08 GMT+0100 (GMT Daylight Time)
 
 module.exports = function(config) {
-    var gulpConfig = require('./gulp.config')();
+    var gulpConfig = require('./karma.config')();
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)

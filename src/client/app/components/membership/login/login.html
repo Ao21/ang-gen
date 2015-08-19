@@ -1,0 +1,22 @@
+<div class="login">
+  <h1>Sign In, Save Time</h1>
+  <form [ng-form-model]="myForm" (submit)="onSubmit(myForm.value)">
+    <div class="form-group">
+      <input  type="email" 
+              class="form-control"
+              id="emailInput"
+              placeholder="email"
+              [ng-form-control]="myForm.controls['email']"> 
+    </div>
+    <div class="form-group">
+      <input  *ng-if="email.valid"
+              type="password" 
+              class="form-control"
+              id="passwordInput"
+              placeholder="password"
+              [ng-form-control]="myForm.controls['password']"> 
+    </div>
+    <button [router-link]="['/membership-addons']" class="btn btn-default">Skip</button>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>

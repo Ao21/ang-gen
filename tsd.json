@@ -5,17 +5,26 @@
   "path": "typings",
   "bundle": "typings/tsd.d.ts",
   "installed": {
-    "angularjs/angular.d.ts": {
-      "commit": "338f9db37074d197764e95a487ddb865c5f2d73c"
-    },
     "jquery/jquery.d.ts": {
       "commit": "338f9db37074d197764e95a487ddb865c5f2d73c"
     },
-    "angularjs-toaster/angularjs-toaster.d.ts": {
-      "commit": "e95958ac847d9a343bdc8d7cbc796a5f6da29f71"
+    "es6-promise/es6-promise.d.ts": {
+      "commit": "832c51db815c766fa42a2e995a7b3136ec6d15c2"
     },
-    "toastr/toastr.d.ts": {
-      "commit": "e95958ac847d9a343bdc8d7cbc796a5f6da29f71"
+    "angular2/angular2.d.ts": {
+      "commit": "832c51db815c766fa42a2e995a7b3136ec6d15c2"
+    },
+    "rx/rx.d.ts": {
+      "commit": "832c51db815c766fa42a2e995a7b3136ec6d15c2"
+    },
+    "rx/rx-lite.d.ts": {
+      "commit": "832c51db815c766fa42a2e995a7b3136ec6d15c2"
+    },
+    "flux/flux.d.ts": {
+      "commit": "38fb591c6eba840e0b53d1110302b8e4fb04651c"
+    },
+    "postal/postal.d.ts": {
+      "commit": "38fb591c6eba840e0b53d1110302b8e4fb04651c"
     }
   }
 }
