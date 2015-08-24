@@ -2,9 +2,12 @@
 System.config({
 	defaultJSExtensions: true,
 	paths: {
-		'angular2/*': 'libs/*',
 		'flux'	: '/libs/flux',
 		'postal': '/libs/postal.min'
+	},
+	map: {
+		'angular2': '/libs/angular2',
+		rx: 'libs/rx.js',
 	}
 });
 

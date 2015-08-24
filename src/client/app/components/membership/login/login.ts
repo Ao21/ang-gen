@@ -15,7 +15,7 @@ import {Validators} from 'angular2/angular2';
  * appDirectives: Our collection of directives from /directives
  */
  
-import {appDirectives, angularDirectives} from 'app/core/directives';
+import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 // Simple external file component example
 @Component({

@@ -9,7 +9,7 @@ import {RouterOutlet, RouteConfig, RouterLink} from 'angular2/router';
 import {Logger} from '../helpers/logger';
 import {TopNav } from 'app/layout/topNav';
 
-import {Membership, MembershipLogin, MembershipAddons} from 'app/components/membership/modules'
+import {Membership, MembershipLogin, MembershipAddons, MembershipUserDetails} from 'app/components/membership/modules'
 
 import {Dispatcher} from 'app/services/Dispatcher';
 
@@ -26,7 +26,8 @@ import {Dispatcher} from 'app/services/Dispatcher';
     {path:'/',  redirectTo: '/membership'},
     {path:'/membership',  component: Membership},
     {path:'/membership/login', as: 'membership-login', component: MembershipLogin},
-    {path:'/membership/addons', as: 'membership-addons', component: MembershipAddons}
+    {path:'/membership/addons', as: 'membership-addons', component: MembershipAddons},
+    {path:'/membership/user-details', as: 'membership-user-details', component: MembershipUserDetails}
   ])
 
 

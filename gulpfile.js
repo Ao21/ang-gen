@@ -24,13 +24,17 @@ gulp.task('serve', function() {
     )
 });
 
-
-
-
-
-
-
-
-
-
-
+gulp.task('build', function() {
+    runSequence(
+        'clean',
+        'deps/angular2',
+        'copy:deps',
+        'typescript',
+        'copy:libs',
+        'inject:all',
+        'styles',
+        'images',
+        'copy:build'
+      
+    )
+});
