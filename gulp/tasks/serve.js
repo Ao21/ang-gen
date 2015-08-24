@@ -18,12 +18,6 @@ gulp.task('browserSync',function(){
               fn: function (match) {
                   return '';
               }
-          },
-          {
-            match: /node_modules/g,
-              fn: function (match) {
-                  return 'scripts/vendors';
-              }
           }
 
       ]

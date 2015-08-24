@@ -5,19 +5,19 @@ import { Inject, Component, View, ViewEncapsulation, NgFor, ElementRef, CSSClass
 import {Dispatcher} from 'app/services/Dispatcher';
 
 @Component({
-	selector: 'addon__grid__item',
+  selector: 'grid__addon__item',
 	properties: ['addon']
 
 })
 
 @View({
-	templateUrl: 'app/directives/addonGrid/AddonGridItem.html',
-	styleUrls: ['app/directives/addonGrid/AddonGridItem.css'],
+        templateUrl: 'app/directives/grid__addon/grid__addon__item.html',
+        styleUrls: ['app/directives/grid__addon/grid__addon__item.css'],
 	directives: [CSSClass]
 
 })
 
-export class AddonGridItem {
+export class GridAddonItem {
 	constructor() {
 	}
 	open(value) {

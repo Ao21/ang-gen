@@ -42,12 +42,22 @@ var config = {
 function getKarmaOptions() {
         var options = {
             files: [].concat(
-                bowerFiles,
-                path.test.specHelpers,
-                '/src/client/**/*.module.js',
-                '/src/client/**/*.js',
-                '/build/**/*.js',
-                path.test.serverIntegrationSpecs
+                'node_modules/zone.js/dist/zone-microtask.js',
+                'node_modules/zone.js/dist/long-stack-trace-zone.js',
+                'node_modules/zone.js/dist/jasmine-patch.js',
+                'node_modules/traceur/bin/traceur-runtime.js',
+                // Including systemjs because it defines `__eval`, which produces correct stack traces
+                'node_modules/systemjs/dist/system.js',
+                'node_modules/reflect-metadata/Reflect.js',
+                {
+                    pattern: 'node_modules/angular2/src/**/*.js',
+                    included: false
+                },
+                {
+                    pattern: 'build/**',
+                    included: false
+                },
+                'tests/test-runner.js'
             ),
             exclude: [],
             coverage: {

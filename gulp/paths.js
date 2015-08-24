@@ -43,7 +43,6 @@ var paths = {
 							'./build/libs/zone.js',
 							'./build/libs/long-stack-trace-zone.js',
 							'./build/libs/rx.js',
-							'./build/libs/angular2.js',
 							'./build/libs/Flux.js',
 							'./build/libs/lodash.min.js',
 							'./build/libs/postal.min.js'

@@ -3,8 +3,6 @@ var gulp          	= require('gulp'),
 	path 			= require('../paths'),
 	browserSync   	= require('browser-sync').create(),
 	$             	= require('gulp-load-plugins')({lazy: true});
-	
-
 
 var tsProject = $.typescript.createProject({
     "target": "es5",

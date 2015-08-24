@@ -2,7 +2,7 @@
 // Generated on Thu Aug 13 2015 15:36:08 GMT+0100 (GMT Daylight Time)
 
 module.exports = function(config) {
-    var gulpConfig = require('./karma.config')();
+    var gulpConfig = require('./gulp/config');
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -10,7 +10,7 @@ module.exports = function(config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jasmine', 'mocha', 'chai', 'sinon', 'chai-sinon'],
+        frameworks: ['jasmine'],
 
         // list of files / patterns to load in the browser
         files: gulpConfig.karma.files,
@@ -44,10 +44,12 @@ module.exports = function(config) {
 
         // enable / disable watching file and executing tests whenever any file changes
         autoWatch: true,
+        
+        captureTimeout: 60000,
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['PhantomJS'],
+        browsers: [],
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits

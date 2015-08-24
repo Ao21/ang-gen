@@ -15,13 +15,15 @@ import {helperInjectables} from './helpers/helpers';
  * our collection of injectables services
  */
 import {appServicesInjectables} from './services/services';
-import {appDirectives} from './directives/directives';
+import {appDirectives, angularDirectives} from './directives/directives';
 
 
 var universalInjectables = [
   httpInjectables,
   formInjectables,
   locationInjectables,
+  
+  angularDirectives,
   
   helperInjectables,
   appServicesInjectables,

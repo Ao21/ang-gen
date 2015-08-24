@@ -1,22 +1,22 @@
 /// <reference path="../../../../../typings/tsd.d.ts" />
 
 import { Inject, Component, View, ViewEncapsulation, NgFor, ElementRef } from 'angular2/angular2';
-import {AddonGridItem} from './AddonGridItem';
-import {AddonGridPopup} from './AddonGridPopup';
+import {GridAddonItem} from './grid__addon__item';
+import {GridAddonPopup} from './grid__addon__popup';
 import {Modal} from 'app/directives/modal/modal'
 import {AddonService} from 'app/services/AddonService';
 import {Dispatcher} from 'app/services/Dispatcher';
 
 
 @Component({
-	selector: 'addon__grid',
+  selector: 'grid__addon',
 	properties: ['title']
 
 })
 
 @View({
-	templateUrl: 'app/directives/addonGrid/AddonGrid.html',
-	
+  templateUrl: 'app/directives/grid__addon/grid__addon.html',
+
 	directives: [
 		NgFor,
 		AddonGridItem,
@@ -31,7 +31,7 @@ export class AddonGrid {
 	addons: any;
 	dispatcher: any;
 	selectedAddon: any;
-	
+
 	constructor(public addonService: AddonService, public elRef:ElementRef) {
 		this.dispatcher = Dispatcher.getInstance();
 		this.addons = addonService.get('addons')
