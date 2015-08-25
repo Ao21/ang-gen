@@ -11,7 +11,6 @@ import {Modal} from './modal/modal';
 import {GridAddon, GridAddonItem, GridAddonPopup} from './grid__addon/grid__addon.module';
 import {ButtonRadioDiv} from './forms/forms.module';
 
-
 // global App only directives
 export var appDirectives: Array<any> = [
   Modal,
