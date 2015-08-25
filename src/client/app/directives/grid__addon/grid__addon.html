@@ -1,4 +1,10 @@
 <div class="grid">
-	<grid__addon__item *ng-for="#addon of addons" [addon]="addon"></grid__addon__item>
+	<grid-addon-item *ng-for="#addon of addons | filter: {'pkg':'default'} " [addon]="addon"></grid-addon-item>
 </div>
+<div class="grid" *ng-if="(addons | filter: {'pkg':'rescuePlus'}).length != 0">
+	<h1>Rescue PLUS Not Included</h1>
+	<grid-addon-item *ng-for="#rescueAddons of addons | filter: {'pkg':'rescuePlus'} " [addon]="rescueAddons"></grid-addon-item>
+	<button class="btn" (click)="addRescuePlus()">Include for just $5.99 p/m</button>
+</div>
+
 <modal channel="addons"></modal>

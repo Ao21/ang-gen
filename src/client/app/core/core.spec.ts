@@ -1,6 +1,3 @@
-/// <reference path="../../../../typings/tsd.d.ts" />
-
-
 import {describe, it, expect } from 'angular2/test_lib';
 import { DOM } from 'angular2/src/dom/dom_adapter';
 import { ObservableWrapper } from 'angular2/src/facade/async';
@@ -18,5 +15,9 @@ import {
 } from 'angular2/angular2';
 
 export function main () {
-	
+	describe('Core', () => {
+		it('should exist', () => {
+			expect(true).toBe(true);
+		})
+	})
 }

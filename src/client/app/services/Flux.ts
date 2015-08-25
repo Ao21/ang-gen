@@ -5,8 +5,7 @@ import { Component } from 'angular2/angular2';
 import { Inject, Injectable, bind } from 'angular2/angular2';
 import * as flux from 'flux';
 
-export class FluxService
-{
+export class FluxService {
     // message:String;
     // static instance:FluxService;
     // static isCreating:Boolean = false;

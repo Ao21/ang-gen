@@ -14,6 +14,7 @@ gulp.task('serve', function() {
     runSequence(
         'clean',
         'copy:deps',
+		'build:tsconf',
         'typescript',
         'copy:libs',
         'inject:all',

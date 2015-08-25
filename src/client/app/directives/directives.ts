@@ -8,7 +8,7 @@ import {coreDirectives, formDirectives} from 'angular2/angular2';
 import {routerDirectives} from 'angular2/router';
 
 import {Modal} from './modal/modal';
-import {GridAddon, GridAddonItem, GridAddonPopup} from './grid__addon/grid__addon.module';
+import {GridAddon, GridAddonItem} from './grid__addon/grid__addon.module';
 import {ButtonRadioDiv} from './forms/forms.module';
 
 // global App only directives
@@ -16,7 +16,6 @@ export var appDirectives: Array<any> = [
   Modal,
   GridAddon,
   GridAddonItem,
-  GridAddonPopup,
   ButtonRadioDiv
 ];
 

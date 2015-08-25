@@ -1,5 +1,3 @@
-/// <reference path="../../../../../typings/tsd.d.ts" />
-
 import { Inject, Attribute, Component, View, ViewEncapsulation, NgFor, ElementRef, CSSClass } from 'angular2/angular2';
 import {Dispatcher} from 'app/services/Dispatcher';
 
@@ -19,7 +17,7 @@ export class Modal {
 	data: any;
 	classMap: any;
 	dispatcher: any;
-	constructor(@Attribute('channel') channel: string ,public el: ElementRef) {
+	constructor(@Attribute('channel') channel: string) {
 		this.dispatcher = Dispatcher.getInstance();
     	this.dispatcher.subscribe(channel,'open.modal', this.openModal);
     	this.dispatcher.subscribe(channel,'close.modal', this.closeModal);

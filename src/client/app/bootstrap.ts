@@ -17,7 +17,6 @@ import {helperInjectables} from './helpers/helpers';
 import {appServicesInjectables} from './services/services';
 import {appDirectives, angularDirectives} from './directives/directives';
 
-
 var universalInjectables = [
   httpInjectables,
   formInjectables,
@@ -42,5 +41,6 @@ bootstrap(
   // Top Level Component
   App,
   [universalInjectables]
+  
 );
 

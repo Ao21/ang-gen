@@ -1,44 +1,39 @@
-/// <reference path="../../../../typings/tsd.d.ts" />
-
-/*
- * Angular 2
- */
 import {Component, View} from 'angular2/angular2';
 import {RouterOutlet, RouteConfig, RouterLink} from 'angular2/router';
-
 import {Logger} from '../helpers/logger';
 import {TopNav } from 'app/layout/topNav';
+import {Membership, MembershipLogin, MembershipAddons, MembershipUserDetails} from 'app/components/membership/modules';
+import {appPipes} from 'app/pipes/pipes';
 
-import {Membership, MembershipLogin, MembershipAddons, MembershipUserDetails} from 'app/components/membership/modules'
-
-import {Dispatcher} from 'app/services/Dispatcher';
 
 @Component({
-  selector: 'app', // without [ ] means we are selecting the tag directly
+	selector: 'app' // without [ ] means we are selecting the tag directly
 })
+
 @View({
-  directives: [RouterOutlet, RouterLink, TopNav],
-  templateUrl : './app/layout/shell.html'
+	directives: [RouterOutlet, RouterLink, TopNav],
+	templateUrl : './app/layout/shell.html',
+	viewBindings: [ appPipes ]
 })
 
 @RouteConfig(
-  [
-    {path:'/',  redirectTo: '/membership'},
-    {path:'/membership',  component: Membership},
-    {path:'/membership/login', as: 'membership-login', component: MembershipLogin},
-    {path:'/membership/addons', as: 'membership-addons', component: MembershipAddons},
-    {path:'/membership/user-details', as: 'membership-user-details', component: MembershipUserDetails}
-  ])
+	[
+		{path: '/',  redirectTo: '/membership'},
+		{path: '/membership',  component: Membership},
+		{path: '/membership/login', as: 'membership-login', component: MembershipLogin},
+		{path: '/membership/addons', as: 'membership-addons', component: MembershipAddons},
+		{path: '/membership/user-details', as: 'membership-user-details', component: MembershipUserDetails}
+	])
 
 
 export class App {
-  votes: number;
 
-  constructor(public logger: Logger) {
-    this.votes = 10;
+	votes: number;
 
-  }
-  voteUp(){
-    console.log('hi');
-  }
+	constructor(public logger: Logger) {
+		this.votes = 10;
+	}
+	voteUp(): void {
+		console.log('hi');
+	}
 }

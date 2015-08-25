@@ -9,16 +9,15 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 
 @Component({
-  selector: 'addons'
+	selector: 'addons'
 })
 @View({
-  directives: [ angularDirectives, appDirectives ],
-  templateUrl : './app/components/membership/addons/addons.html'
+	directives: [ angularDirectives, appDirectives ],
+	templateUrl : './app/components/membership/addons/addons.html'
 })
 
 export class MembershipAddons {
-  constructor() {
-    console.log(appDirectives);
-
-  }
+	constructor() {
+		console.log(appDirectives);
+	}
 }

@@ -57,6 +57,7 @@ var paths = {
 	
 	build: {
 		basePath:		'./build/',
+		client:			'./build/app/',
 		html:			'./build/**/*.html',
 		libs:			'./build/libs/',
 		js:				'./build/**/*.js',
@@ -78,7 +79,17 @@ var paths = {
 		specHelpers:	'/src/client/test-helpers/*.js',
 		specs:			'/src/client/**/*.spec.js',
 		serverIntegrationSpecs:	'/src/client/tests/server-integration/**/*.spec.js',
-		report:			'/report/'
+		report:			'./report/',
+		libs:			[
+							'node_modules/zone.js/dist/zone-microtask.js',
+                			'node_modules/zone.js/dist/long-stack-trace-zone.js',
+                			'node_modules/zone.js/dist/jasmine-patch.js',
+                			'node_modules/traceur/bin/traceur-runtime.js',
+                			'node_modules/systemjs/dist/system.js',
+                			'node_modules/systemjs/dist/system-polyfills.js',
+                			'node_modules/reflect-metadata/Reflect.js','node_modules/rx/dist/rx.js',
+        					'node_modules/lodash/dist/lodash.min.js',
+						]
 	}
 	
 }

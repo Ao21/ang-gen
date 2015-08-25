@@ -9,13 +9,13 @@ import {RouterOutlet, RouteConfig, RouterLink} from 'angular2/router';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @Component({
-  selector: 'membership'
+	selector: 'membership'
 })
+
 @View({
-  directives: [ angularDirectives, appDirectives ],
-  templateUrl : './app/components/membership/membership.html'
+	directives: [ angularDirectives, appDirectives ],
+	templateUrl : './app/components/membership/membership.html'
 })
+
 export class Membership {
-  constructor() {
-  }
 }

@@ -8,6 +8,7 @@ System.config({
 	map: {
 		'angular2': '/libs/angular2',
 		rx: 'libs/rx.js',
+		'_': 'libs/lodash.min.js'
 	}
 });
 

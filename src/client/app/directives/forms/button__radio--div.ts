@@ -1,8 +1,7 @@
-/// <reference path="../../../../../typings/tsd.d.ts" />
-
 import { Inject, Attribute, Component, View, NgFor, ElementRef, CSSClass, formDirectives } from 'angular2/angular2';
 import {Dispatcher} from 'app/services/Dispatcher';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
+
 
 @Component({
     selector: 'button-radio-div',
@@ -16,31 +15,26 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 })
 
 export class ButtonRadioDiv {
-
 	dispatcher: any;
 	classMap : {};
-	input: any;
+	checked: string;
+	group: string;
 
-
-	constructor(public el: ElementRef, @Attribute('checked') checked: Boolean,  @Attribute('group') public group: String) {
+	constructor(@Attribute('checked') checked: Boolean, @Attribute('group') group: string) {
+		this.group = group;
 		this.dispatcher = Dispatcher.getInstance();
 		this.dispatcher.subscribe('form.radio', this.group + '.update', this.remove);
-
-		this.input = this.el.nativeElement.getElementsByTagName('input')[0];
-
 		if (checked) {
-			this.check()
+			this.check();
 		}
 	}
-
 	check = () => {
-		this.dispatcher.publish('form.radio',this.group + '.update', null);
+		this.dispatcher.publish('form.radio', this.group + '.update', null);
 		this.classMap = { 'active': true };
-		this.input.checked = true;
-	}
-
+		this.checked = 'checked';
+	};
 	remove = () => {
-		this.input.checked = false;
+		this.checked = '';
 		this.classMap = { 'active': false };
-	}
+	};
 }

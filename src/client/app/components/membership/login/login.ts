@@ -5,42 +5,41 @@
  */
 
 import {Component, View} from 'angular2/angular2';
-import {formDirectives, FormBuilder, ControlGroup, Control} from "angular2/angular2";
-import {OnActivate} from 'angular2/router';
+import {FormBuilder, ControlGroup, Control} from "angular2/angular2";
 import {Validators} from 'angular2/angular2';
 
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @Component({
-  selector: 'login',
-  viewInjector: [FormBuilder]
+	selector: 'login',
+	viewInjector: [FormBuilder]
 })
 
 @View({
-  directives: [ angularDirectives, appDirectives ],
-  templateUrl : './app/components/membership/login/login.html'
+	directives: [angularDirectives, appDirectives],
+	templateUrl: './app/components/membership/login/login.html'
 })
 
 export class MembershipLogin {
-  myForm: ControlGroup;
-  email: Control;
-  visible: Boolean;
+	myForm: ControlGroup;
+	email: Control;
+	visible: Boolean;
 
-  constructor(fb: FormBuilder){
-    this.visible = false;
-    this.myForm = fb.group({
-      "email" : ["", Validators.required],
-      "password": [""]
-      });
+	constructor(fb: FormBuilder) {
+		this.visible = false;
+		this.myForm = fb.group({
+			"email": ["", Validators.required],
+			"password": [""]
+		});
 
-    this.email = this.myForm.controls['email'];
-  }
+		this.email = this.myForm.controls['email'];
+	}
 
-  onSubmit(value) {
-    this.visible = true;
-  }
-  OnActivate() {
-    console.log('loaded');
-  }
+	onSubmit(value: any): void {
+		this.visible = true;
+	}
+	OnActivate(): void {
+		console.log('loaded');
+	}
 
 }

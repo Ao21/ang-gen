@@ -2,7 +2,73 @@ interface ObjectConstructor {
 	assign(target: any, ...sources: any[]): any
 }
 
+declare var zone: any;
+declare var Zone: any;
+
 declare module ng {}
+
+interface Type extends Function {
+  new (...args: any[]): any;
+}
+
+
+declare module "angular2/change_detection" {
+  interface PipeFactory {}
+  interface Pipe {
+    supports(obj: any): boolean;
+    onDestroy(): void;
+    transform(value: any, args: List<any>): any;
+  }
+  class Pipes {
+    static extend(pipes: any)
+  }
+  class NullPipeFactory {}
+  class PipeRegistry {
+    constructor(pipes: any);
+  }
+  class WrappedValue {
+    static wrap(...args): any
+  }
+  class ChangeDetectorRef {
+    requestCheck(): void;
+  }
+  class ObservablePipe implements Pipe {
+    constructor(ref: any);
+    _subscription: any;
+    _observable: any;
+    _updateLatestValue(value: any): any;
+    _subscribe(obs: any): void;
+
+    _latestValue: any;
+    _latestReturnedValue: any;
+
+    _dispose(): void;
+
+    supports(obj: any): boolean;
+    onDestroy(): void;
+    transform(value: any, args: List<any>): any;
+  }
+  var defaultPipeRegistry: any;
+  var defaultPipes: any;
+  class Parser {
+
+  }
+  class Lexer {
+
+  }
+  class ChangeDetection {
+
+  }
+  class DynamicChangeDetection {
+
+  }
+  class PreGeneratedChangeDetection {
+    static isSupported(): boolean;
+  }
+  class JitChangeDetection {
+    static isSupported(): boolean;
+  }
+}
 
 declare module 'angular2/src/facade/async' {
 	import { EventEmitter, Observable } from 'angular2/angular2';
@@ -22,6 +88,18 @@ declare module 'angular2/src/facade/browser' {
 }
 
 declare module 'angular2/src/facade/lang' {
+	class BaseException {
+		message: string;
+		private _originalException;
+		private _originalStack;
+		private _context;
+		stack: any;
+		constructor(message?: string, _originalException?: any, _originalStack?: any, _context?: any);
+		originalException: any;
+		originalStack: any;
+		context: any;
+		toString(): string;
+	}
 	class FunctionWrapper {
 		static apply(fn: Function, posArgs?: Array<any>): any
 	}
@@ -32,6 +110,8 @@ declare module 'angular2/src/facade/lang' {
 		static parseInt(text: string, radix: number): number;
 		static isNaN(value: any): boolean;
 	}
+	function CONST(): ClassDecorator;
+	function isArray (obj: any): boolean;
 	function isBlank (obj: any): boolean;
 	function isJsObject(obj: any): boolean;
 	function isPresent(obj: any): boolean;
@@ -142,7 +222,7 @@ declare module 'angular2/test_lib' {
 	class TestComponentBuilder {
 		constructor(injector: Injector);
 		overrideTemplate(componentType: Type, template: string): TestComponentBuilder;
-		overrideView(componentType: Type, view: View): TestComponentBuilder;
+		//overrideView(componentType: Type, view: View): TestComponentBuilder;
 		overrideDirective(componentType: Type, from: Type, to: Type): TestComponentBuilder;
 		createAsync(rootComponentType: Type): Promise<RootTestComponent>;
 	}
