@@ -10,7 +10,7 @@ import {routerDirectives} from 'angular2/router';
 import {Modal} from './modal/modal__fullscreen';
 import {GridAddon} from './addons_list/grid/addon_grid'
 import {GridAddonItem, GridAddonPopup} from './addons_list/addons.module';
-import {ButtonRadioDiv} from './forms/forms.module';
+import {FormCustomRadio} from './forms/forms.module';
 
 // global App only directives
 export var appDirectives: Array<any> = [
@@ -18,7 +18,7 @@ export var appDirectives: Array<any> = [
   GridAddon,
   GridAddonItem,
   GridAddonPopup,
-  ButtonRadioDiv
+  FormCustomRadio
 ];
 
 // global Angular core and other Angular module directives (form/router)

@@ -32,17 +32,17 @@
     "src/client/app/components/membership/membership.ts",
     "src/client/app/components/membership/modules.ts",
     "src/client/app/directives/addons_list/addons.module.ts",
+    "src/client/app/directives/forms/forms.module.ts",
     "src/client/app/directives/modal/modal__create.ts",
     "src/client/app/directives/modal/modal__fullscreen.ts",
     "src/client/app/directives/modal/modal__fullscreen__slide.ts",
     "src/client/app/directives/modal/modals.module.ts",
-    "src/client/app/directives/forms/forms.module.ts",
     "src/client/app/components/membership/addons/addons.ts",
     "src/client/app/components/membership/login/login.ts",
     "src/client/app/components/membership/user_details/user_details.ts",
     "src/client/app/directives/addons_list/grid/addon_grid.ts",
     "src/client/app/directives/addons_list/grid_item/addon_grid_item.ts",
     "src/client/app/directives/addons_list/modals/addon_grid_popup.ts",
-    "src/client/app/directives/forms/buttons/form_image_radio.ts"
+    "src/client/app/directives/forms/buttons/form_custom_radio.ts"
   ]
 }

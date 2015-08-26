@@ -2,4 +2,4 @@
  * Forms Module
  */
 
-export {ButtonRadioDiv} from './buttons/form_image_radio';
+export {FormCustomRadio} from './buttons/form_custom_radio';

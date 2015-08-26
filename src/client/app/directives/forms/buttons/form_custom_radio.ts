@@ -4,7 +4,7 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 
 @Component({
-    selector: 'button-radio-div',
+    selector: 'form-custom-radio',
 	properties: ['group','value','icon', 'checked', 'classMap'],
 	bindings: [
 		Dispatcher
@@ -12,14 +12,13 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 })
 
 @View({
-  templateUrl: 'app/directives/forms/buttons/form_image_radio.html',
-  styleUrls: ['app/directives/forms/buttons/form_image_radio.css'],
+  templateUrl: 'app/directives/forms/buttons/form_custom_radio.html',
+  styleUrls: ['app/directives/forms/buttons/form_custom_radio.css'],
 	directives: [FORM_DIRECTIVES, NgClass]
 })
 
 
-
-export class ButtonRadioDiv {
+export class FormCustomRadio {
 	checked: string;
 	group: string;
 
@@ -35,7 +34,8 @@ export class ButtonRadioDiv {
 			this.check();
 		}
 	}
-	check = () => {
+	check = ($event) => {
+		console.log($event);
 		this.dispatcher.publish('form.radio', this.group + '.update', null);
 		this.initialClasses = {'active': true};
 		this.checked = 'checked';
