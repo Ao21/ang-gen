@@ -12,8 +12,8 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 })
 
 @View({
-  templateUrl: 'app/directives/forms/button__radio--div.html',
-  styleUrls: ['app/directives/forms/button__radio--div.css'],
+  templateUrl: 'app/directives/forms/buttons/form_image_radio.html',
+  styleUrls: ['app/directives/forms/buttons/form_image_radio.css'],
 	directives: [FORM_DIRECTIVES, NgClass]
 })
 

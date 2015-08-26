@@ -51,7 +51,7 @@ var paths = {
 	},
 	
 	tmp: {
-		basePath:			'/.tmp/'
+		basePath:			'/tmp/'
 	},
 	
 	server:				'./src/server/app.js',

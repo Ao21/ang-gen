@@ -1,6 +1,6 @@
 import {Inject, Component, View, ViewEncapsulation, NgFor, NgIf, ElementRef } from 'angular2/angular2';
-import {GridAddonItem, GridAddonPopup} from 'app/directives/grid__addon/modules';
-import {ModalSlide, ModalCreate} from '../modal/modals.module';
+import {GridAddonItem, GridAddonPopup} from 'app/directives/addons_list/addons.module';
+
 import {Dispatcher} from 'app/services/services';
 import {AddonService} from 'app/services/addon.service';
 
@@ -11,16 +11,15 @@ import {FilterPipe} from 'app/pipes/filter.pipe';
 	properties: ['title'],
 	bindings: [
 		Dispatcher,
-		ModalCreate,
 		AddonService
 	]
 
 })
 
 @View({
-	templateUrl: 'app/directives/grid__addon/grid__addon.html',
-	styleUrls: ['app/directives/grid__addon/grid__addon.css'],
-	directives: [NgFor, NgIf, GridAddonItem, ModalSlide, GridAddonPopup],
+	templateUrl: 'app/directives/addons_list/grid/addon_grid.html',
+	styleUrls: ['app/directives/addons_list/grid/addon_grid.css'],
+	directives: [NgFor, NgIf, GridAddonItem, GridAddonPopup],
 	pipes: [FilterPipe]
 })
 
@@ -32,8 +31,7 @@ export class GridAddon {
 	constructor(
 		public addonService: AddonService, 
 		public elRef:ElementRef,
-		public dispatcher: Dispatcher,
-		public mCreate: ModalCreate
+		public dispatcher: Dispatcher
 		) {
 			console.log(AddonService)
 		this.addons = addonService.get('addons')

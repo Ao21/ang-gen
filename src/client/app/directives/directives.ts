@@ -8,8 +8,8 @@ import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
 import {routerDirectives} from 'angular2/router';
 
 import {Modal} from './modal/modal__fullscreen';
-import {GridAddon} from './grid__addon/grid__addon'
-import {GridAddonItem, GridAddonPopup} from './grid__addon/modules';
+import {GridAddon} from './addons_list/grid/addon_grid'
+import {GridAddonItem, GridAddonPopup} from './addons_list/addons.module';
 import {ButtonRadioDiv} from './forms/forms.module';
 
 // global App only directives

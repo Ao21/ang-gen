@@ -11,8 +11,8 @@ import {Dispatcher} from 'app/services/services';
 })
 
 @View({
-	templateUrl: 'app/directives/grid__addon/modals/grid__addon__popup.html',
-	styleUrls: ['app/directives/grid__addon/modals/grid__addon__popup.css'],
+	templateUrl: 'app/directives/addons_list/modals/addon_grid_popup.html',
+	styleUrls: ['app/directives/addons_list/modals/addon_grid_popup.css'],
 
 })
 

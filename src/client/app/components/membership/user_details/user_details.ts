@@ -11,8 +11,8 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @View({
 	directives: [ angularDirectives, appDirectives ],
-	templateUrl : './app/components/membership/userDetails/userDetails.html',
-	styleUrls: ['./app/components/membership/userDetails/userDetails.css']
+	templateUrl : './app/components/membership/user_details/user_details.html',
+	styleUrls: ['./app/components/membership/user_details/user_details.css']
 
 })
 

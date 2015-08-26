@@ -5,33 +5,33 @@
  */
 
 import {Component, View} from 'angular2/angular2';
-import {FormBuilder, ControlGroup, Control} from "angular2/angular2";
+import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control} from "angular2/angular2";
 import {Validators} from 'angular2/angular2';
 
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @Component({
 	selector: 'login',
-	viewInjector: [FormBuilder]
+	viewBindings: [FormBuilder]
 })
 
 @View({
-	directives: [angularDirectives, appDirectives],
+	directives: [angularDirectives, appDirectives, FORM_DIRECTIVES],
 	templateUrl: './app/components/membership/login/login.html'
 })
 export class MembershipLogin {
-	myForm: ControlGroup;
+	form: ControlGroup;
 	email: Control;
 	visible: Boolean;
 
 	constructor(fb: FormBuilder) {
 		this.visible = false;
-		this.myForm = fb.group({
-			"email": [""],
+		this.form = fb.group({
+			"email": ["", Validators.required],
 			"password": [""]
 		});
 
-		this.email = this.myForm.controls['email'];
+		this.email = this.form.controls['email'];
 	}
 
 	onSubmit(value: any): void {

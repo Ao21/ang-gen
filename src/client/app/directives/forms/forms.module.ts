@@ -2,5 +2,4 @@
  * Forms Module
  */
 
-export {ButtonRadioDiv} from './button__radio--div';
-
+export {ButtonRadioDiv} from './buttons/form_image_radio';

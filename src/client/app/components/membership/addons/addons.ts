@@ -4,7 +4,7 @@
  *   Imports
  */
 import {Component, View} from 'angular2/angular2';
-
+import {Modal, ModalSlide, ModalCreate} from 'app/directives/modal/modals.module';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 
@@ -12,9 +12,10 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 	selector: 'addons'
 })
 @View({
-	directives: [ angularDirectives, appDirectives ],
+	directives: [ angularDirectives, appDirectives, Modal ],
 	templateUrl : './app/components/membership/addons/addons.html'
 })
 
 export class MembershipAddons {
+	
 }

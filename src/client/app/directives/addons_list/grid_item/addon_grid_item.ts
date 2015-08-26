@@ -9,8 +9,8 @@ import {Dispatcher} from 'app/services/services';
 })
 
 @View({
-	templateUrl: 'app/directives/grid__addon/grid__addon__item.html',
-	styleUrls: ['app/directives/grid__addon/grid__addon__item.css'],
+	templateUrl: 'app/directives/addons_list/grid_item/addon_grid_item.html',
+	styleUrls: ['app/directives/addons_list/grid_item/addon_grid_item.css'],
 	directives: [NgClass]
 })
 
