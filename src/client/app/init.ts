@@ -6,12 +6,11 @@ System.config({
 		'postal': '/libs/postal.min'
 	},
 	map: {
-		'angular2': '/libs/angular2',
+		'angular2': 'libs/angular2/',
 		rx: 'libs/rx.js',
 		'_': 'libs/lodash.min.js'
 	}
 });
-
 System.import('./app/bootstrap')
   .catch(e => console.error(e,
     'Report this error at https://github.com/mgechev/angular2-seed/issues'));

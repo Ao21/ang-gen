@@ -4,21 +4,21 @@ import {Modal} from 'app/directives/modal/modal'
 import {AddonService} from 'app/services/AddonService';
 import {Dispatcher} from 'app/services/Dispatcher';
 
-import {appPipes} from 'app/pipes/pipes';
+import {FilterPipe} from 'app/pipes/filter.pipe';
 
 @Component({
 	selector: 'grid-addon',
 	properties: ['title'],
-	viewBindings: [
-		appPipes
-	]
+
 })
 
 @View({
 	templateUrl: 'app/directives/grid__addon/grid__addon.html',
 	styleUrls: ['app/directives/grid__addon/grid__addon.css'],
-	directives: [NgFor, NgIf, GridAddonItem, Modal]
+	directives: [NgFor, NgIf, GridAddonItem, Modal],
+	pipes: [FilterPipe]
 })
+
 
 export class GridAddon {
 	state: any;

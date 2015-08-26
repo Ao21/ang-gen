@@ -1,4 +1,4 @@
-import { Inject, Attribute, Component, View, ViewEncapsulation, NgFor, ElementRef, CSSClass } from 'angular2/angular2';
+import { Inject, Attribute, Component, View, ViewEncapsulation, NgFor, ElementRef, NgClass } from 'angular2/angular2';
 import {Dispatcher} from 'app/services/Dispatcher';
 
 
@@ -9,8 +9,9 @@ import {Dispatcher} from 'app/services/Dispatcher';
 
 @View({
 	templateUrl: 'app/directives/modal/modal.html',
-	directives: [CSSClass],
-	styleUrls: ['app/directives/modal/modal.css']
+	directives: [NgClass],
+	styleUrls: ['app/directives/modal/modal.css'],
+
 })
 
 export class Modal {

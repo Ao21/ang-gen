@@ -28,7 +28,7 @@ export class MembershipLogin {
 	constructor(fb: FormBuilder) {
 		this.visible = false;
 		this.myForm = fb.group({
-			"email": ["", Validators.required],
+			"email": [""],
 			"password": [""]
 		});
 

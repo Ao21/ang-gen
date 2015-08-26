@@ -25,6 +25,7 @@ var paths = {
 	
 	scripts: {
 		vendors:		'./scripts/vendors/',
+		bundles:		'node_modules/angular2/bundles/',
 		libs:			[	'node_modules/traceur/bin/traceur-runtime.js',
         					'node_modules/systemjs/dist/system.*',
         					'node_modules/reflect-metadata/Reflect.js',

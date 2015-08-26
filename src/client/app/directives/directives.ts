@@ -4,7 +4,7 @@
  * Angular 2
  */
 
-import {coreDirectives, formDirectives} from 'angular2/angular2';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
 import {routerDirectives} from 'angular2/router';
 
 import {Modal} from './modal/modal';
@@ -22,10 +22,10 @@ export var appDirectives: Array<any> = [
 // global Angular core and other Angular module directives (form/router)
 export var angularDirectives: Array<any> = [
   // Angular's core directives
-  coreDirectives,
+  CORE_DIRECTIVES,
 
   // Angular's form directives
-  formDirectives,
+  FORM_DIRECTIVES,
 
   // Angular's router
   routerDirectives

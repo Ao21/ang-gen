@@ -5,7 +5,7 @@ import {bootstrap} from 'angular2/angular2';
 /*
  * Angular Modules
  */
-import {httpInjectables, formInjectables} from 'angular2/angular2';
+import { FORM_DIRECTIVES} from 'angular2/angular2';
 
 import { locationInjectables } from './core/location';
 import {helperInjectables} from './helpers/helpers';
@@ -18,8 +18,7 @@ import {appServicesInjectables} from './services/services';
 import {appDirectives, angularDirectives} from './directives/directives';
 
 var universalInjectables = [
-  httpInjectables,
-  formInjectables,
+  FORM_DIRECTIVES,
   locationInjectables,
   
   angularDirectives,
