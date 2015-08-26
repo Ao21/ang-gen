@@ -9,7 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "angular2": "^2.0.0-alpha.34",
+    "angular2": "^2.0.0-alpha.35",
     "body-parser": "~1.5.0",
     "composable-middleware": "^0.3.0",
     "compression": "~1.0.1",

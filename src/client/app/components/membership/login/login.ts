@@ -19,7 +19,6 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 	directives: [angularDirectives, appDirectives],
 	templateUrl: './app/components/membership/login/login.html'
 })
-
 export class MembershipLogin {
 	myForm: ControlGroup;
 	email: Control;

@@ -17,7 +17,4 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 })
 
 export class MembershipAddons {
-	constructor() {
-		console.log(appDirectives);
-	}
 }

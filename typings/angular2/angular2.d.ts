@@ -1,4 +1,4 @@
-// Type definitions for Angular v2.0.0-alpha.35
+// Type definitions for Angular v2.0.0-local_sha.a3de706
 // Project: http://angular.io/
 // Definitions by: angular team <https://github.com/angular/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -5771,4 +5771,5 @@ declare module ng {
 declare module "angular2/angular2" {
   export = ng;
 }
+
 

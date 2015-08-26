@@ -1,5 +1,5 @@
 import { Inject, Component, View, ViewEncapsulation, NgFor, ElementRef, NgClass } from 'angular2/angular2';
-import {Dispatcher} from 'app/services/Dispatcher';
+import {Dispatcher} from 'app/services/services';
 
 
 @Component({
@@ -14,11 +14,14 @@ import {Dispatcher} from 'app/services/Dispatcher';
 	directives: [NgClass]
 })
 
+@Inject(Dispatcher)
 export class GridAddonItem {
+	constructor(public dispatcher: Dispatcher){
+		
+	}
 	// Object Events
 	open(value) {
 		console.log('hi');
-		const dispatcher = Dispatcher.getInstance();
-		dispatcher.publish('addons', 'open.modal', value);
+		this.dispatcher.publish('addons', 'open.modal', value);
 	}
 }

@@ -14,7 +14,7 @@ import {helperInjectables} from './helpers/helpers';
  * App Services
  * our collection of injectables services
  */
-import {appServicesInjectables} from './services/services';
+import {appServices} from './services/services';
 import {appDirectives, angularDirectives} from './directives/directives';
 
 var universalInjectables = [
@@ -24,7 +24,7 @@ var universalInjectables = [
   angularDirectives,
   
   helperInjectables,
-  appServicesInjectables,
+  appServices,
   appDirectives
 ]
 

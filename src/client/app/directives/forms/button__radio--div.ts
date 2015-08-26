@@ -1,11 +1,14 @@
-import { Inject, Attribute, Component, View, NgFor, ElementRef, NgClass, FORM_DIRECTIVES } from 'angular2/angular2';
-import {Dispatcher} from 'app/services/Dispatcher';
+import { Inject, Attribute, Component, View, NgFor, ElementRef, NgClass, FORM_DIRECTIVES, EventEmitter } from 'angular2/angular2';
+import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 
 @Component({
     selector: 'button-radio-div',
-	properties: ['group','value','icon', 'checked', 'classMap']
+	properties: ['group','value','icon', 'checked', 'classMap'],
+	bindings: [
+		Dispatcher
+	]
 })
 
 @View({
@@ -14,16 +17,19 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 	directives: [FORM_DIRECTIVES, NgClass]
 })
 
+
+
 export class ButtonRadioDiv {
-	dispatcher: any;
 	checked: string;
 	group: string;
 
-	constructor(@Attribute('checked') checked: Boolean, 
+	constructor(
+		@Attribute('checked') checked: Boolean, 
 		@Attribute('group') group: string,
-		@Attribute('class') public initialClasses: any) {
+		@Attribute('class') public initialClasses: any,
+		public dispatcher: Dispatcher ) {
+		
 		this.group = group;
-		this.dispatcher = Dispatcher.getInstance();
 		this.dispatcher.subscribe('form.radio', this.group + '.update', this.remove);
 		if (checked) {
 			this.check();

@@ -5,23 +5,10 @@ import { Component } from 'angular2/angular2';
 import { Inject, Injectable, bind } from 'angular2/angular2';
 import * as Postal from 'postal';
 
+@Injectable()
 export class Dispatcher {
-	static instance: Dispatcher;
-	static isCreating: Boolean = false;
 
 	constructor() {
-		if (!Dispatcher.isCreating) {
-			throw new Error("You can't call new in Singleton instances! Call Dispatcher.getInstance() instead.");
-		}
-	}
-
-	static getInstance() {
-		if (Dispatcher.instance == null) {
-			Dispatcher.isCreating = true;
-			Dispatcher.instance = new Dispatcher();
-			Dispatcher.isCreating = false;
-		}
-		return Dispatcher.instance;
 	}
 
 	subscribe(
@@ -33,7 +20,6 @@ export class Dispatcher {
 				topic: topic,
 				callback: callback
 			});
-
 	}
 
 	publish(

@@ -6,13 +6,17 @@ import {
 	bind,
 	Component,
 	View,
+	
+} from 'angular2/angular2';
+
+import {
 	MockBackend,
 	MockConnection,
 	ConnectionBackend,
 	BaseRequestOptions,
 	Response,
 	Http
-} from 'angular2/angular2';
+} from 'http/http';
 
 export function main () {
 	describe('Core', () => {

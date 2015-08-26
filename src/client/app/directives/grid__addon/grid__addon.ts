@@ -1,33 +1,41 @@
-import {Inject, Component, View, ViewEncapsulation, NgFor, NgIf, ElementRef, Pipes } from 'angular2/angular2';
-import {GridAddonItem} from './grid__addon__item';
-import {Modal} from 'app/directives/modal/modal'
-import {AddonService} from 'app/services/AddonService';
-import {Dispatcher} from 'app/services/Dispatcher';
+import {Inject, Component, View, ViewEncapsulation, NgFor, NgIf, ElementRef } from 'angular2/angular2';
+import {GridAddonItem, GridAddonPopup} from 'app/directives/grid__addon/modules';
+import {ModalSlide, ModalCreate} from '../modal/modals.module';
+import {Dispatcher} from 'app/services/services';
+import {AddonService} from 'app/services/addon.service';
 
 import {FilterPipe} from 'app/pipes/filter.pipe';
 
 @Component({
 	selector: 'grid-addon',
 	properties: ['title'],
+	bindings: [
+		Dispatcher,
+		ModalCreate,
+		AddonService
+	]
 
 })
 
 @View({
 	templateUrl: 'app/directives/grid__addon/grid__addon.html',
 	styleUrls: ['app/directives/grid__addon/grid__addon.css'],
-	directives: [NgFor, NgIf, GridAddonItem, Modal],
+	directives: [NgFor, NgIf, GridAddonItem, ModalSlide, GridAddonPopup],
 	pipes: [FilterPipe]
 })
-
 
 export class GridAddon {
 	state: any;
 	addons: any;
-	dispatcher: any;
 	selectedAddon: any;
 
-	constructor(public addonService: AddonService, public elRef:ElementRef) {
-		this.dispatcher = Dispatcher.getInstance();
+	constructor(
+		public addonService: AddonService, 
+		public elRef:ElementRef,
+		public dispatcher: Dispatcher,
+		public mCreate: ModalCreate
+		) {
+			console.log(AddonService)
 		this.addons = addonService.get('addons')
 		this.dispatcher.subscribe('addons','group.all', this.onAddRescuePlus);
 	}

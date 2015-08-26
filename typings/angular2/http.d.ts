@@ -10,29 +10,7 @@
 // ***********************************************************
 
 
-
-
-  /**
-   * Use Rx.Observable but provides an adapter to make it work as specified here:
-   * https://github.com/jhusain/observable-spec
-   * 
-   * Once a reference implementation of the spec is available, switch to it.
-   */
-  class EventEmitter extends Observable {
-    
-     observer(generator: any): Rx.IDisposable;
-    
-     toRx(): Rx.Observable<any>;
-    
-     next(value: any): void;
-    
-     throw(error: any): void;
-    
-     return(value?: any): void;
-  }
-  
-  
-
+///<reference path="./angular2.d.ts"/>
 
 /**
  * @module
@@ -41,14 +19,19 @@
  * class.
  */
 declare module ngHttp {
-  
-  
+	
+	
+	type RequestOptionsArgs = {};
   
 
   /**
    * Mock Connection to represent a {@link Connection} for tests.
    */
   class MockConnection {
+	  
+	  
+	
+	
     
 
     /**
@@ -68,7 +51,7 @@ declare module ngHttp {
      * {@link EventEmitter} of {@link Response}. Can be subscribed to in order to be notified when a
      * response is available.
      */
-     response: EventEmitter;
+     response: ng.EventEmitter;
     
 
     /**
@@ -177,7 +160,7 @@ declare module ngHttp {
      * 
      * This property only exists in the mock implementation, not in real Backends.
      */
-     connections: EventEmitter;
+     connections: ng.EventEmitter;
     
 
     /**
@@ -197,7 +180,7 @@ declare module ngHttp {
      * 
      * This property only exists in the mock implementation, not in real Backends.
      */
-     pendingConnections: EventEmitter;
+     pendingConnections: ng.EventEmitter;
     
 
     /**
@@ -394,7 +377,7 @@ declare module ngHttp {
     
      request: Request;
     
-     response: EventEmitter;
+     response: ng.EventEmitter;
     
      dispose(): void;
   }
@@ -532,7 +515,7 @@ declare module ngHttp {
     
      url: string;
     
-     merge(options?: ResponseOptionsArgs): ResponseOptions;
+     merge(options?: {   body?: string | Object | FormData;   status?: number;   statusText?: string;   headers?: Headers;   type?: ResponseTypes;   url?: string; }): ResponseOptions;
   }
   
 
@@ -584,7 +567,7 @@ declare module ngHttp {
      * Response {@link EventEmitter} which emits a single {@link Response} value on load event of
      * `XMLHttpRequest`.
      */
-     response: EventEmitter;
+     response: ng.EventEmitter;
     
      readyState: ReadyStates;
     
@@ -606,7 +589,7 @@ declare module ngHttp {
     
      request: Request;
     
-     response: EventEmitter;
+     response: ng.EventEmitter;
     
      baseResponseOptions: ResponseOptions;
     
@@ -693,43 +676,43 @@ declare module ngHttp {
      * object can be provided as the 2nd argument. The options object will be merged with the values
      * of {@link BaseRequestOptions} before performing the request.
      */
-     request(url: string | Request, options?: RequestOptionsArgs): EventEmitter;
+     request(url: string | Request, options?: RequestOptionsArgs): ng.EventEmitter;
     
 
     /**
      * Performs a request with `get` http method.
      */
-     get(url: string, options?: RequestOptionsArgs): EventEmitter;
+     get(url: string, options?: RequestOptionsArgs): ng.EventEmitter;
     
 
     /**
      * Performs a request with `post` http method.
      */
-     post(url: string, body: string, options?: RequestOptionsArgs): EventEmitter;
+     post(url: string, body: string, options?: RequestOptionsArgs): ng.EventEmitter;
     
 
     /**
      * Performs a request with `put` http method.
      */
-     put(url: string, body: string, options?: RequestOptionsArgs): EventEmitter;
+     put(url: string, body: string, options?: RequestOptionsArgs): ng.EventEmitter;
     
 
     /**
      * Performs a request with `delete` http method.
      */
-     delete(url: string, options?: RequestOptionsArgs): EventEmitter;
+     delete(url: string, options?: RequestOptionsArgs): ng.EventEmitter;
     
 
     /**
      * Performs a request with `patch` http method.
      */
-     patch(url: string, body: string, options?: RequestOptionsArgs): EventEmitter;
+     patch(url: string, body: string, options?: RequestOptionsArgs): ng.EventEmitter;
     
 
     /**
      * Performs a request with `head` http method.
      */
-     head(url: string, options?: RequestOptionsArgs): EventEmitter;
+     head(url: string, options?: RequestOptionsArgs): ng.EventEmitter;
   }
   
   class Jsonp extends Http {
@@ -741,7 +724,7 @@ declare module ngHttp {
      * object can be provided as the 2nd argument. The options object will be merged with the values
      * of {@link BaseRequestOptions} before performing the request.
      */
-     request(url: string | Request, options?: RequestOptionsArgs): EventEmitter;
+     request(url: string | Request, options?: RequestOptionsArgs): ng.EventEmitter;
   }
   
 
