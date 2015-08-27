@@ -28,7 +28,7 @@ gulp.task('copy:libs',function(){
 })
 
 gulp.task('copy:deps',function(){
-  var libsStream = gulp.src(path.scripts.vendors + '/**.js');
+  var libsStream = gulp.src(path.scripts.vendors + '/**');
   return libsStream.pipe(gulp.dest(path.build.libs))
 })
 

@@ -1,12 +1,16 @@
 /// <reference path="../../../../typings/tsd.d.ts" />
 
 import {bind} from 'angular2/angular2';
+import {addonInjectables} from './addon.service';
 
-import {addonInjectables} from './AddonService';
+export {Dispatcher} from './dispatcher.service';
+
 
 
 // Include injectables that you want to have globally throughout our app
-export var appServicesInjectables: Array<any> = [
+export var appServices: Array<any> = [
   addonInjectables
 
 ];
+
+

@@ -17,16 +17,15 @@ interface IAddonState {
 }
 
 let initAddonState:IAddonState = {
-  addons: [
-    {name:'Roadside Rescue',icon:'',pkg:'default',free:false,desc:''},
-	{name:'Roadside Rescue',icon:'',pkg:'default',free:false,desc:''},
-	{name:'Roadside Rescue',icon:'',pkg:'default',free:false,desc:''},
-	{name:'Roadside Rescue',icon:'',pkg:'rescuePlus',free:false,desc:''},
-	{name:'Roadside Rescue',icon:'',pkg:'rescuePlus',free:false,desc:''}
-
-
-  ]
+	addons: [
+		{name: 'Roadside Rescue1', icon: '', pkg: 'default', free: false, desc: ''},
+		{name: 'Roadside Rescue2', icon: '', pkg: 'default', free: false, desc: ''},
+		{name: 'Roadside Rescue3', icon: '', pkg: 'default', free: false, desc: ''},
+		{name: 'Roadside Rescue4', icon: '', pkg: 'rescuePlus', free: false, desc: ''},
+		{name: 'Roadside Rescue5', icon: '', pkg: 'rescuePlus', free: false, desc: ''}
+	]
 };
+
 
 class Addon implements IAddon {
 	name: string;

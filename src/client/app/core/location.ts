@@ -5,3 +5,5 @@ export const locationInjectables: Array<any> = [
 	routerInjectables,
 	bind(LocationStrategy).toClass(HashLocationStrategy)
 ];
+
+

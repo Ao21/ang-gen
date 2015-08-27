@@ -20,7 +20,7 @@ var config = {
 		}
 	},
 	plato: {
-		js: './build/**/*.js'
+		js: 'build/app/**/*.js'
 	},
 	karma: getKarmaOptions(),
 	
@@ -41,13 +41,21 @@ var config = {
 
 function getKarmaOptions() {
         var options = {
+            browsers: ['PhantomJS'],
+            frameworks: ['jasmine'],
             files: [].concat(
-                bowerFiles,
-                path.test.specHelpers,
-                '/src/client/**/*.module.js',
-                '/src/client/**/*.js',
-                '/build/**/*.js',
-                path.test.serverIntegrationSpecs
+                path.test.libs,
+                {
+                    pattern: 'node_modules/angular2/src/**/*.js',
+                    included: false
+                    
+                },
+                {
+                    pattern: 'build/**',
+                    included: false,
+                    watched: false
+                },
+                'tests/test-runner.js'
             ),
             exclude: [],
             coverage: {
@@ -66,20 +74,11 @@ function getKarmaOptions() {
                 ]
             },
             preprocessors: {
-                '**/*.ts': ['typescript']
-            },
-            typescriptPreprocessor: {
-                options: {
-                    sourceMap: true,
-                    target: 'ES5',
-                    noResolve: false
-                },
-                transformPath: function(path) {
-                    return path.replace(/\.ts$/, '.js');
-                }
-            },
+
+            }
+ 
         };
-        options.preprocessors[path.build.basePath + '**/!(*.spec)+(.js)'] = ['coverage'];
+        options.preprocessors[path.build.client + '**/!(*.spec)+(.js)'] = ['coverage'];
         return options;
     }
 
