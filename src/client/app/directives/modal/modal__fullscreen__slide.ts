@@ -5,7 +5,7 @@ import {Dispatcher} from 'app/services/services';
 
 @Component({
 	selector: 'modal-slide',
-	properties: ['channel'],
+	properties: ['channel', 'classMap'],
 	bindings: [
 		Dispatcher
 	]
@@ -20,27 +20,38 @@ import {Dispatcher} from 'app/services/services';
 
 export class ModalSlide {
 	data: any;
+	channel: string;
 	classMap: any;
 	title: string;
 	contents: any;
-	
+
 	constructor(
 		@Attribute('channel') channel: string,
+		@Attribute('open') open: string,
+		public el: ElementRef,
 		public dispatcher: Dispatcher
 		) {
-    	this.dispatcher.subscribe(channel,'open.modal', this.openModal);
-    	this.dispatcher.subscribe(channel,'close.modal', this.closeModal);
-		this.classMap = { 'md-show': false };
-	};
-	openModal = (data:any, msg: any): void => {
-		this.title = data.name;
+			this.channel = channel;
+			this.subscribeEvents();
+    		this.classMap = { 'md-show': false };
+			if (open) {
+				setTimeout(this.openModal,0);
+			}
+	}
+
+	subscribeEvents = () => {
+		this.dispatcher.subscribe(this.channel,'open.modal', this.openModal);
+    	this.dispatcher.subscribe(this.channel,'close.modal', this.closeModal);
+	}
+	openModal = (): void => {
 		this.classMap['md-show'] = true;
-	};
+	}
 	closeModal = (): void => {
 		this.classMap['md-show'] = false;
-	};
+	}
 	close = (): void =>  {
-		this.dispatcher.publish('addons','close.modal', null)
+		console.log(this.el.renderView);
+		this.dispatcher.publish(this.channel,'close.modal', null)
 
 	}
 }

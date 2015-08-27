@@ -656,7 +656,7 @@ declare module ngRouter {
     
      path: string;
     
-     component?: Type | ComponentDefinition;
+     component?: Type | ComponentDefinition | any;
     
      loader?: Function;
     

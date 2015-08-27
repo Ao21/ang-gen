@@ -4,7 +4,7 @@ import {Dispatcher} from 'app/services/services';
 
 
 @Component({
-	selector: 'modal',
+	selector: 'modal-popup',
 	properties: ['channel'],
 	bindings: [
 		Dispatcher
@@ -17,12 +17,13 @@ import {Dispatcher} from 'app/services/services';
 	styleUrls: ['app/directives/modal/modal__fullscreen.css'],
 })
 
-export class Modal {
+
+export class ModalPopup {
 	data: any;
 	classMap: any;
 	title: string;
 	contents: any;
-	
+
 	constructor(
 		@Attribute('channel') channel: string,
 		public dispatcher: Dispatcher
