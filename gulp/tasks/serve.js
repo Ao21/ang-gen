@@ -45,6 +45,12 @@ gulp.task('browserSync', function () {
 			browserSync.reload
 			);
 	});
+	$.watch(path.app.images, function () {
+		runSequence(
+			'images',
+			browserSync.reload
+			);
+	});
 });
 
 

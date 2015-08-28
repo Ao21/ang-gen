@@ -12,7 +12,7 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 	selector: 'addons'
 })
 @View({
-	directives: [ angularDirectives, appDirectives, ModalSlide ],
+	directives: [ angularDirectives, appDirectives, ModalPopup ],
 	templateUrl : './app/components/membership/addons/addons.html'
 })
 

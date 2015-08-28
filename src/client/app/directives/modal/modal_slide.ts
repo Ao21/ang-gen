@@ -12,9 +12,9 @@ import {Dispatcher} from 'app/services/services';
 })
 
 @View({
-	templateUrl: 'app/directives/modal/modal__fullscreen__slide.html',
+	templateUrl: 'app/directives/modal/modal_slide.html',
 	directives: [NgClass],
-	styleUrls: ['app/directives/modal/modal__fullscreen__slide.css'],
+	styleUrls: ['app/directives/modal/modal_slide.css'],
 
 })
 

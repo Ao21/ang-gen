@@ -6,7 +6,7 @@
 
 import {Component, View} from 'angular2/angular2';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control} from "angular2/angular2";
-import {Validators} from 'angular2/angular2';
+import {Validators} from 'angular2/forms';
 
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 

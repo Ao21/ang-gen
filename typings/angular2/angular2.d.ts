@@ -5771,5 +5771,3 @@ declare module ng {
 declare module "angular2/angular2" {
   export = ng;
 }
-
-

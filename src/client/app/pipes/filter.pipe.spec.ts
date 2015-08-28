@@ -20,14 +20,6 @@ export function main() {
 			filter = [{age:12}];
 		});
 		
-		describe('supports', () => {
-			it('should support arrays', () => { expect(pipe.supports(arr)).toBe(true); });
-			it('should not support other types', () => {
-				expect(pipe.supports(new Object())).toBe(false);
-				expect(pipe.supports(null)).toBe(false);
-			})
-		});
-		
 		describe('transform', () => {
 			it('should have an argument', () => {
 				expect(function() {pipe.transform(null)
@@ -40,3 +32,4 @@ export function main() {
 		});
 	});
 }
+

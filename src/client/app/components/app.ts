@@ -3,7 +3,7 @@ import {RouterOutlet, RouteConfig, RouterLink} from 'angular2/router';
 import {Logger} from '../helpers/logger';
 import {TopNav } from 'app/layout/topNav';
 import {Membership, MembershipLogin, MembershipAddons, MembershipUserDetails} from 'app/components/membership/modules';
-import {HorizontalScroll} from 'app/components/test/horizontalScroll';
+import {CheckboxTest} from 'app/components/test/checkbox';
 import {appPipes} from 'app/pipes/pipes';
 
 
@@ -21,7 +21,7 @@ import {appPipes} from 'app/pipes/pipes';
 @RouteConfig(
 	[
 		{path: '/',  redirectTo: '/membership'},
-		{path: '/test',  component: HorizontalScroll},
+		{path: '/test',  component: CheckboxTest},
 		{path: '/membership',  component: Membership},
 		{path: '/membership/login', as: 'membership-login', component: MembershipLogin},
 		{path: '/membership/addons', as: 'membership-addons', component: MembershipAddons},

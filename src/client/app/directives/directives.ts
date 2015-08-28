@@ -6,23 +6,20 @@
 
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
 import {routerDirectives} from 'angular2/router';
-
-import {ModalPopup} from './modal/modal__fullscreen';
-
 import {GridAddon} from './addons_list/grid/addon_grid'
 import {GridAddonItem, GridAddonPopup} from './addons_list/addons.module';
-import {FormCustomRadio, FormAdditionalUser} from './forms/forms.module';
+import {FormCustomRadio, FormAdditionalUser} from './forms/forms.modules';
 
 
 // global App only directives
 export var appDirectives: Array<any> = [
 
-	ModalPopup,
 	GridAddon,
 	GridAddonItem,
 	GridAddonPopup,
 	FormCustomRadio,
-	FormAdditionalUser
+	FormAdditionalUser,
+
 	
 ];
 

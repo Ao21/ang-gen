@@ -19,59 +19,70 @@ import {DOM} from 'angular2/src/dom/dom_adapter';
 import {MouseEvent, KeyboardEvent} from 'angular2/src/facade/browser';
 
 @Injectable()
-export class MdHorizontal {
+export class HorizontalScroller {
 	componentLoader: DynamicComponentLoader;
 	domRenderer: DomRenderer;
 	containerElement: any;
-    horizontalRef: MdHorizontalRef;
-	array : MdHorizontalArray;
+    horizontalRef: HorizontalScrollerRef;
+	array : HorizontalScrollerArray;
     bindings: any;
 	containerRef: any;
 
 	constructor(loader: DynamicComponentLoader, domRenderer: DomRenderer) {
 		this.componentLoader = loader;
 		this.domRenderer = domRenderer;
-		this.array = new MdHorizontalArray()
+		this.array = new HorizontalScrollerArray()
 
         
 	}
 
 
-	loadContainer = (elementRef: ElementRef): any => {
-		return this.componentLoader.loadNextToLocation(MdHorizontalContainer, elementRef)
+	loadModal = (elementRef: ElementRef): any => {
+		return this.componentLoader.loadNextToLocation(HorizontalScrollerContainer, elementRef)
 			.then(containerRef => {
 				var containerElement = containerRef.location.nativeElement;
-                console.log(DOM.query('body'), containerElement)
+				console.log(DOM.query('.md-horizontal'))
 				DOM.appendChild(DOM.query('body'), containerElement);
 				this.containerRef = containerRef;
 
 			})
 	}
-    loadComponent = (type: Type): any => {
+    loadComponent = (type: Type, name?: string): any => {
 		
-		this.horizontalRef = this.array.add(new MdHorizontalRef);
+		this.horizontalRef = this.array.add(new HorizontalScrollerRef, name);
 		this.horizontalRef.containerRef = this.containerRef;
 		this.bindings = Injector.resolve([bind(this.horizontalRef).toValue(this.horizontalRef)])
-		
 		return this.componentLoader.loadIntoLocation(type, this.horizontalRef.containerRef.location,'children',this.bindings)
 		.then(contentRef => {
 			var contentEl = contentRef.location.nativeElement
-			var amount = this.horizontalRef.id * 100;
+			var containerEl = this.horizontalRef.containerRef.location.nativeElement;
+			
+			DOM.setStyle(DOM.parentElement(contentEl), 'width', containerEl.offsetWidth);
+			DOM.setStyle(DOM.parentElement(contentEl), 'height', containerEl.offsetHeight);
+			var amount = this.horizontalRef.index * 100;
 			DOM.setStyle(contentEl, 'transform', `translateX(${amount}%)`);
+			
 			this.horizontalRef.contentRef = contentRef;
 			return this.horizontalRef;
 		})
     }
+	
+	goToEl(name:string) {
+		var el: any = _.find(this.array.contents,{name:name})
+		this.horizontalRef.containerRef.instance.move(el.index);
+	}
+	
+	
 
 
 }
 
 
-export class MdHorizontalConfig {
+export class HorizontalScrollerConfig {
 
 }
 
-export class MdHorizontalArray {
+export class HorizontalScrollerArray {
 	contents: any;
 	count: number;
 	
@@ -84,24 +95,30 @@ export class MdHorizontalArray {
 		return this.contents[id]
 	}
 	
-	add = (value) => {
+	add = (value, name?) => {
 		this.contents[this.count] = value;
-		this.contents[this.count].id = this.count;
+		if (name){
+			this.contents[this.count].name = name;
+		}
+		this.contents[this.count].contents = this;
+		
+		this.contents[this.count].index = this.count;
 		this.count++;
+		console.log(this.contents)
 		return this.contents[this.count - 1];
 
 	}
 	
 }
 
-export class MdHorizontalRef {
+export class HorizontalScrollerRef {
 
 	containerRef: ComponentRef;
 	isClosed: boolean;
 	_contentRef: ComponentRef;
 	whenClosedDeferred: any;
 	contentRefDeferred: any;
-	id: number;
+	index: number;
 	contents: any;
 
 	constructor() {
@@ -110,7 +127,7 @@ export class MdHorizontalRef {
 		this._contentRef = null;
 		this.containerRef = null;
 		this.isClosed = false;
-		this.id = null;
+		this.index = null;
 		this.contentRefDeferred = PromiseWrapper.completer();
 		this.whenClosedDeferred = PromiseWrapper.completer();
 	}
@@ -139,7 +156,11 @@ export class MdHorizontalRef {
 	
 	goTo(amount:number){
 		this.containerRef.instance.move(1);
-		console.log();
+	}
+	
+	goToEl(name:string) {
+		var el: any = _.find(this.contents.contents,{name:name})
+		this.containerRef.instance.move(el.index);
 	}
 	
 	/** Closes the dialog. This operation is asynchronous. */
@@ -160,32 +181,32 @@ export class MdHorizontalRef {
  * Container for user-provided dialog content.
  */
 @Component({
-	selector: 'md-horizontal-container',
+	selector: 'horizontal-scroller-container',
 	host: {
-		'class': 'md-horizontal',
+		'class': 'horizontal-scroller',
 		'tabindex': '0'
 	},
 })
 @View({
-	styleUrls: ['app/directives/modal/modal.css'],
-	templateUrl: 'app/directives/modal/modal.html',
-	directives: [forwardRef(() => MdHorizontalContent)]
+	styleUrls: ['app/directives/scroller/horizontal_scroller.css'],
+	templateUrl: 'app/directives/scroller/horizontal_scroller.html',
+	directives: [forwardRef(() => HorizontalScrollerContent)]
 })
-class MdHorizontalContainer {
+class HorizontalScrollerContainer {
 	// Ref to the dialog content. Used by the DynamicComponentLoader to load the dialog content.
 	contentRef: ElementRef;
 
 	// Ref to the open dialog. Used to close the dialog based on certain events.
-	horizontalRef: MdHorizontalRef;
+	horizontalRef: HorizontalScrollerRef;
 
 	constructor() {
 		this.contentRef = null;
 		this.horizontalRef = null;
 	}
 	
-	move(id:any){
-		id = 1 * 100;
-		DOM.setStyle(this.contentRef.nativeElement, 'transform', `translateX(${id}%)`);
+	move(index:any){
+		index = index * 100;
+		DOM.setStyle(this.contentRef.nativeElement, 'transform', `translateX(-${index}%)`);
 	}
 	
 	wrapFocus() {
@@ -200,10 +221,10 @@ class MdHorizontalContainer {
  * for where the dialog content will be loaded.
  */
 @Directive({
-	selector: 'md-horizontal-content',
+	selector: 'horizontal-scroller-content'
 })
-class MdHorizontalContent {
-	constructor( @Host() @SkipSelf() horizontalContainer: MdHorizontalContainer, elementRef: ElementRef) {
+class HorizontalScrollerContent {
+	constructor( @Host() @SkipSelf() horizontalContainer: HorizontalScrollerContainer, elementRef: ElementRef) {
 		horizontalContainer.contentRef = elementRef;
 	}
 }

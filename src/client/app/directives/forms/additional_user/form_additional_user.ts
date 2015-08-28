@@ -1,6 +1,6 @@
 import {View, Component, ViewEncapsulation} from 'angular2/angular2';
 import {Dispatcher} from 'app/services/services'
-import {MdHorizontal, MdHorizontalRef, MdHorizontalConfig} from 'app/directives/modal/modal.me'
+import {HorizontalScroller, HorizontalScrollerRef, HorizontalScrollerConfig} from 'app/directives/scroller/horizontal_scroller'
 
 @Component({
 	selector:'form-additional-user',
@@ -14,14 +14,13 @@ import {MdHorizontal, MdHorizontalRef, MdHorizontalConfig} from 'app/directives/
 
 export class FormAdditionalUser {
 	numCoconuts: number;
-	horizontalRef: MdHorizontalRef;
+	horizontalRef: HorizontalScrollerRef;
 	constructor() {
 		this.numCoconuts = 0;
 		
 	}
 	goTo(){
-		console.log(this);
-		this.horizontalRef.goTo(1);
+		this.horizontalRef.goToEl('Form-1');
 	}
 }
 
@@ -41,7 +40,7 @@ export class FormAdditionalUser {
 })
 export class SimpleDialogComponent {
 	numCoconuts: number;
-	horizontalRef: MdHorizontalRef;
+	horizontalRef: HorizontalScrollerRef;
 	toReturn: string;
 	
 	constructor() {

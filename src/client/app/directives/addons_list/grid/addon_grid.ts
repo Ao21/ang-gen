@@ -3,7 +3,6 @@ import {GridAddonItem, GridAddonPopup} from 'app/directives/addons_list/addons.m
 
 import {Dispatcher} from 'app/services/services';
 import {AddonService} from 'app/services/addon.service';
-
 import {FilterPipe} from 'app/pipes/filter.pipe';
 
 @Component({
@@ -39,7 +38,7 @@ export class GridAddon {
 	}
 	
 	onAddRescuePlus = () => {
-		_.map(this.addons, function(e){
+		_.map(this.addons, function(e: any){
 			return e.pkg = 'default';
 		})
 	}

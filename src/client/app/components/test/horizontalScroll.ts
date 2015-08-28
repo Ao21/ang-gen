@@ -10,14 +10,14 @@ Directive
 import {RouterOutlet, RouteConfig, RouterLink} from 'angular2/router';
 
 import {appDirectives, angularDirectives} from 'app/directives/directives';
-
-import {MdHorizontal, MdHorizontalRef, MdHorizontalConfig} from 'app/directives/modal/modal.me'
+import {HorizontalScroller, HorizontalScrollerRef, HorizontalScrollerConfig} from 'app/directives/scroller/horizontal_scroller';
 import {FormAdditionalUser, SimpleDialogComponent} from 'app/directives/forms/additional_user/form_additional_user';
+
 
 
 @Component({
 	selector: 'horizontal-scroll',
-	viewBindings: [MdHorizontal]
+	viewBindings: [HorizontalScroller]
 })
 
 @View({
@@ -26,67 +26,31 @@ import {FormAdditionalUser, SimpleDialogComponent} from 'app/directives/forms/ad
 })
 
 export class HorizontalScroll {
-	horizontalScroller: MdHorizontal;
-	elementRef: ElementRef;
+	horizontalScroller: HorizontalScroller;
+	horizontalRefs:  any[] = [];
 	horizontalRef: any;
-	horizontalScrollerConfig: MdHorizontalConfig;
+	horizontalScrollerConfig: HorizontalScrollerConfig;
+	count: number;
 
-	constructor(mdHorizontal: MdHorizontal, elementRef: ElementRef) {
-		this.horizontalScroller = mdHorizontal;
-		this.elementRef = elementRef;
-		this.horizontalScrollerConfig = new MdHorizontalConfig();
-		this.horizontalScroller.loadContainer(this.elementRef);
-
+	constructor(hs: HorizontalScroller, public elementRef: ElementRef) {
+		this.horizontalScroller = hs;
+		this.horizontalScrollerConfig = new HorizontalScrollerConfig();
+		this.horizontalScroller.loadModal(this.elementRef);
+		this.count = 0;
 	}
-
 	open() {
-		this.horizontalScroller.loadComponent(FormAdditionalUser)
+		this.horizontalScroller.loadComponent(FormAdditionalUser,'Form-'+this.count)
 			.then(ref => {
-				this.horizontalRef = ref;
+				this.horizontalRefs.push(ref);
 				ref.instance.horizontalRef = ref;
 				ref.instance.numCoconuts = 21;
-				console.log(ref);
-
 
 			});
+		this.count++;
 	}
-
 	close() {
-		//this.horizontalScrollerRef.close();
+		this.horizontalScroller.goToEl('Form-2');
 	}
 
 }
 
-
-@Component({
-	selector: 'simple-dialog',
-	properties: ['numCoconuts'],
-})
-@View({
-	encapsulation: ViewEncapsulation.NONE,
-	template: `
-    <h2>This is the dialog content</h2>
-    <p>There are {{numCoconuts}} coconuts.</p>
-    <p>Return: <input (input)="updateValue($event)"></p>
-    <button type="button" (click)="done()">Done</button>
-  `
-})
-class SimpleDialogComponent {
-	numCoconuts: number;
-	horizontalRef: MdHorizontalRef;
-	toReturn: string;
-	
-	constructor() {
-		this.numCoconuts = 0;
-		this.toReturn = '';
-
-	}
-
-	updateValue(event) {
-		
-	}
-
-	done() {
-		this.horizontalRef.close(this.toReturn);
-	}
-}

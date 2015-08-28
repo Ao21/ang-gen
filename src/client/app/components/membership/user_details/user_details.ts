@@ -20,7 +20,6 @@ import {ModalSlide} from 'app/directives/modal/modals.module';
 
 })
 
-
 export class MembershipUserDetails {
 	additionalUsers: any;
 	form: ControlGroup;

@@ -12,9 +12,9 @@ import {Dispatcher} from 'app/services/services';
 })
 
 @View({
-	templateUrl: 'app/directives/modal/modal__fullscreen.html',
+	templateUrl: 'app/directives/modal/modal_popup.html',
 	directives: [NgClass],
-	styleUrls: ['app/directives/modal/modal__fullscreen.css'],
+	styleUrls: ['app/directives/modal/modal_popup.css'],
 })
 
 export class ModalPopup {
