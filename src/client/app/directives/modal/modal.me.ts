@@ -51,12 +51,6 @@ export class MdHorizontal {
 		
 		this.horizontalRef = this.array.add(new MdHorizontalRef);
 		this.horizontalRef.containerRef = this.containerRef;
-		
-		console.log(this.horizontalRef)
-		
-		
-
-		
 		this.bindings = Injector.resolve([bind(this.horizontalRef).toValue(this.horizontalRef)])
 		
 		return this.componentLoader.loadIntoLocation(type, this.horizontalRef.containerRef.location,'children',this.bindings)
@@ -95,6 +89,7 @@ export class MdHorizontalArray {
 		this.contents[this.count].id = this.count;
 		this.count++;
 		return this.contents[this.count - 1];
+
 	}
 	
 }
@@ -116,7 +111,6 @@ export class MdHorizontalRef {
 		this.containerRef = null;
 		this.isClosed = false;
 		this.id = null;
-
 		this.contentRefDeferred = PromiseWrapper.completer();
 		this.whenClosedDeferred = PromiseWrapper.completer();
 	}

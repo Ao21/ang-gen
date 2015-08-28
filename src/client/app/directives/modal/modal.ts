@@ -186,6 +186,7 @@ export class MdDialogRef {
 	
 	move() {
 		console.log(this.containerRef);
+
 	}
 
 	/** Closes the dialog. This operation is asynchronous. */

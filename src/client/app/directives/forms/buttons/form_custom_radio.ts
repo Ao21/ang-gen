@@ -34,7 +34,8 @@ export class FormCustomRadio {
 			this.check();
 		}
 	}
-	check = ($event?) => {
+
+	check = ($event) => {
 		console.log($event);
 		this.dispatcher.publish('form.radio', this.group + '.update', null);
 		this.initialClasses = {'active': true};
