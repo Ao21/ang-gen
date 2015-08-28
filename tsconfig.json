@@ -43,9 +43,10 @@
     "src\\client\\app\\components\\membership\\addons\\addons.ts",
     "src\\client\\app\\components\\membership\\login\\login.ts",
     "src\\client\\app\\components\\membership\\user_details\\user_details.ts",
-    "src\\client\\app\\directives\\addons_list\\grid_item\\addon_grid_item.ts",
     "src\\client\\app\\directives\\addons_list\\grid\\addon_grid.ts",
+    "src\\client\\app\\directives\\addons_list\\grid_item\\addon_grid_item.ts",
     "src\\client\\app\\directives\\addons_list\\modals\\addon_grid_popup.ts",
+    "src\\client\\app\\directives\\forms\\additional_user\\form_additional_user.ts",
     "src\\client\\app\\directives\\forms\\buttons\\form_custom_radio.ts"
   ]
 }

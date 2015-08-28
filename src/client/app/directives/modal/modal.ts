@@ -183,6 +183,10 @@ export class MdDialogRef {
 	get whenClosed(): any {
 		return this.whenClosedDeferred.promise;
 	}
+	
+	move() {
+		console.log(this.containerRef);
+	}
 
 	/** Closes the dialog. This operation is asynchronous. */
 	close(result: any = null) {

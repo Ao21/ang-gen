@@ -54,10 +54,16 @@ export class MdHorizontal {
 		
 		console.log(this.horizontalRef)
 		
+		
+
+		
 		this.bindings = Injector.resolve([bind(this.horizontalRef).toValue(this.horizontalRef)])
 		
 		return this.componentLoader.loadIntoLocation(type, this.horizontalRef.containerRef.location,'children',this.bindings)
 		.then(contentRef => {
+			var contentEl = contentRef.location.nativeElement
+			var amount = this.horizontalRef.id * 100;
+			DOM.setStyle(contentEl, 'transform', `translateX(${amount}%)`);
 			this.horizontalRef.contentRef = contentRef;
 			return this.horizontalRef;
 		})
@@ -84,10 +90,11 @@ export class MdHorizontalArray {
 		return this.contents[id]
 	}
 	
-	add(value) {
+	add = (value) => {
 		this.contents[this.count] = value;
-		this.count = this.count++
-		return this.contents[this.count];
+		this.contents[this.count].id = this.count;
+		this.count++;
+		return this.contents[this.count - 1];
 	}
 	
 }
@@ -99,7 +106,7 @@ export class MdHorizontalRef {
 	_contentRef: ComponentRef;
 	whenClosedDeferred: any;
 	contentRefDeferred: any;
-	
+	id: number;
 	contents: any;
 
 	constructor() {
@@ -108,6 +115,7 @@ export class MdHorizontalRef {
 		this._contentRef = null;
 		this.containerRef = null;
 		this.isClosed = false;
+		this.id = null;
 
 		this.contentRefDeferred = PromiseWrapper.completer();
 		this.whenClosedDeferred = PromiseWrapper.completer();
@@ -133,6 +141,11 @@ export class MdHorizontalRef {
 		// the constructor of the very instance they are trying to get (which is much more easily
 		// accessed as `this`).
 		throw "Cannot access dialog component instance *from* that component's constructor.";
+	}
+	
+	goTo(amount:number){
+		this.containerRef.instance.move(1);
+		console.log();
 	}
 	
 	/** Closes the dialog. This operation is asynchronous. */
@@ -174,6 +187,11 @@ class MdHorizontalContainer {
 	constructor() {
 		this.contentRef = null;
 		this.horizontalRef = null;
+	}
+	
+	move(id:any){
+		id = 1 * 100;
+		DOM.setStyle(this.contentRef.nativeElement, 'transform', `translateX(${id}%)`);
 	}
 	
 	wrapFocus() {

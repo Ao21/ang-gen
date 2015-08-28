@@ -11,7 +11,7 @@ import {ModalPopup} from './modal/modal__fullscreen';
 
 import {GridAddon} from './addons_list/grid/addon_grid'
 import {GridAddonItem, GridAddonPopup} from './addons_list/addons.module';
-import {FormCustomRadio} from './forms/forms.module';
+import {FormCustomRadio, FormAdditionalUser} from './forms/forms.module';
 
 
 // global App only directives
@@ -21,7 +21,9 @@ export var appDirectives: Array<any> = [
 	GridAddon,
 	GridAddonItem,
 	GridAddonPopup,
-	FormCustomRadio
+	FormCustomRadio,
+	FormAdditionalUser
+	
 ];
 
 // global Angular core and other Angular module directives (form/router)

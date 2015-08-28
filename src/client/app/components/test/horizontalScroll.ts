@@ -10,8 +10,8 @@ Directive
 import {RouterOutlet, RouteConfig, RouterLink} from 'angular2/router';
 
 import {appDirectives, angularDirectives} from 'app/directives/directives';
-
 import {MdHorizontal, MdHorizontalRef, MdHorizontalConfig} from 'app/directives/modal/modal.me'
+import {FormAdditionalUser, SimpleDialogComponent} from 'app/directives/forms/additional_user/form_additional_user';
 
 @Component({
 	selector: 'horizontal-scroll',
@@ -38,11 +38,12 @@ export class HorizontalScroll {
 	}
 
 	open() {
-		this.horizontalScroller.loadComponent(SimpleDialogComponent)
+		this.horizontalScroller.loadComponent(FormAdditionalUser)
 			.then(ref => {
 				this.horizontalRef = ref;
 				ref.instance.horizontalRef = ref;
-				ref.instance.numCoconuts = 777;
+				ref.instance.numCoconuts = 21;
+				console.log(ref);
 
 			});
 	}
@@ -53,35 +54,3 @@ export class HorizontalScroll {
 
 }
 
-@Component({
-	selector: 'simple-dialog',
-	properties: ['numCoconuts'],
-})
-@View({
-	encapsulation: ViewEncapsulation.NONE,
-	template: `
-    <h2>This is the dialog content</h2>
-    <p>There are {{numCoconuts}} coconuts.</p>
-    <p>Return: <input (input)="updateValue($event)"></p>
-    <button type="button" (click)="done()">Done</button>
-  `
-})
-class SimpleDialogComponent {
-	numCoconuts: number;
-	horizontalRef: MdHorizontalRef;
-	toReturn: string;
-	
-	constructor() {
-		this.numCoconuts = 0;
-		this.toReturn = '';
-
-	}
-
-	updateValue(event) {
-		
-	}
-
-	done() {
-		this.horizontalRef.close(this.toReturn);
-	}
-}
