@@ -5,7 +5,7 @@ import {bootstrap} from 'angular2/angular2';
 /*
  * Angular Modules
  */
-import {httpInjectables, formInjectables} from 'angular2/angular2';
+import { FORM_DIRECTIVES} from 'angular2/angular2';
 
 import { locationInjectables } from './core/location';
 import {helperInjectables} from './helpers/helpers';
@@ -14,19 +14,17 @@ import {helperInjectables} from './helpers/helpers';
  * App Services
  * our collection of injectables services
  */
-import {appServicesInjectables} from './services/services';
+import {appServices} from './services/services';
 import {appDirectives, angularDirectives} from './directives/directives';
 
-
 var universalInjectables = [
-  httpInjectables,
-  formInjectables,
+  FORM_DIRECTIVES,
   locationInjectables,
   
   angularDirectives,
   
   helperInjectables,
-  appServicesInjectables,
+  appServices,
   appDirectives
 ]
 
@@ -42,5 +40,6 @@ bootstrap(
   // Top Level Component
   App,
   [universalInjectables]
+  
 );
 

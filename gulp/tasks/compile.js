@@ -14,7 +14,7 @@ gulp.task('build:deps', function () {
 
 
 gulp.task('deps/angular2', function () {
-	var angular2Path = path.scripts.vendors + '/angular2';
+	var angular2Path = 'build/libs/angular2';
 	return gulp
 		.src([
 			'!node_modules/angular2/es6/**',
@@ -23,6 +23,23 @@ gulp.task('deps/angular2', function () {
 			'!node_modules/angular2/angular2_sfx.js.map',
 			'node_modules/angular2/**/*.js',
 			'node_modules/angular2/**/*.map'
+		])
+		.pipe($.changed(angular2Path))
+		.pipe($.size({
+			showFiles: true,
+			gzip: true
+		}))
+		.pipe(gulp.dest(angular2Path));
+});
+
+
+
+gulp.task('bundle/angular2', function () {
+	var angular2Path = path.build.libs;
+	return gulp
+		.src([
+			path.scripts.bundles + '*.js',
+      '!' + path.scripts.bundles +'**.min.js'
 		])
 		.pipe($.changed(angular2Path))
 		.pipe($.size({

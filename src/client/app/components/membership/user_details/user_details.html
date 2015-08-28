@@ -1,0 +1,48 @@
+<form control-group="userDetailsForm" >
+	<div class="row">
+		<div class="col-xs-12 col-md-6">
+			<div class="form-group">
+				<input type="email" class="form-control" placeholder="Email" control="email">
+			</div>
+			
+			<div class="form-group gender__selector">
+				<form-custom-radio group="gender" value="Male" checked=true > </form-custom-radio>
+				<form-custom-radio group="gender" value="Female"></form-custom-radio>
+			</div>
+			<div class="form-group">
+				<input type="text"  class="form-control" placeholder="First Name">
+			</div>
+			<div class="form-group">
+				<input type="text"  class="form-control" placeholder="Last Name">
+			</div>
+			<div class="form-group">
+				<input type="text"  class="form-control" placeholder="Date of Birth">
+			</div>
+			<div class="form-group">
+				<input type="text"  class="form-control" placeholder="Phone Number">
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6">
+			<div class="form-group">
+				<input type="text"  class="form-control" placeholder="Address Line 1">
+			</div>
+			<div class="form-group">
+				<input type="text"  class="form-control" placeholder="Address Line 2">
+			</div>
+			<div class="form-group">
+				<input type="text"  class="form-control" placeholder="Address Line 3">
+			</div>
+			<div class="form-group">
+				<input type="text"  class="form-control" placeholder="Postcode / Eircode">
+			</div>
+		</div>
+	</div>
+</form>
+
+<button class="btn" (click)="addAdditionalUser()">Add Additional Use</button>
+
+<modal-slide open=true channel="additionalUsers" *ng-for="#user of additionalUsers">
+	<additional_user></additional_user>
+</modal-slide>
+
+<modal></modal>
