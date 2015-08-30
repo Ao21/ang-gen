@@ -28,7 +28,7 @@ exports.index = function(req, res) {
 	    });
 	})
 	.on('end', function() {
-	    console.log(scss)
+
 	});
 	
 }

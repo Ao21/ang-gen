@@ -1,4 +1,4 @@
-import { Inject, Attribute, Component, View, ViewEncapsulation, NgFor, ElementRef, NgClass } from 'angular2/angular2';
+import { Inject, Attribute, Component, View, ViewEncapsulation, NgFor, ElementRef, NgClass, LifecycleEvent} from 'angular2/angular2';
 import {Dispatcher} from 'app/services/services';
 
 
@@ -7,27 +7,31 @@ import {Dispatcher} from 'app/services/services';
 	selector: 'modal-popup',
 	properties: ['channel'],
 	bindings: [
-		Dispatcher
-	]
+
+	],
+	lifecycle: [LifecycleEvent.onDestroy]
 })
 
 @View({
-	templateUrl: 'app/directives/modal/modal__fullscreen.html',
+	templateUrl: 'app/directives/modal/modal_popup.html',
 	directives: [NgClass],
-	styleUrls: ['app/directives/modal/modal__fullscreen.css'],
+	styleUrls: ['app/directives/modal/modal_popup.css'],
 })
-
 
 export class ModalPopup {
 	data: any;
+	dispatcher: any;
+	channel: string;
 	classMap: any;
 	title: string;
 	contents: any;
 
 	constructor(
 		@Attribute('channel') channel: string,
-		public dispatcher: Dispatcher
+		dispatcher: Dispatcher
 		) {
+		this.dispatcher = dispatcher;
+		this.channel = channel;
     	this.dispatcher.subscribe(channel,'open.modal', this.openModal);
     	this.dispatcher.subscribe(channel,'close.modal', this.closeModal);
 		this.classMap = { 'md-show': false };
@@ -41,6 +45,10 @@ export class ModalPopup {
 	};
 	close = (): void =>  {
 		this.dispatcher.publish('addons','close.modal', null)
-
+	}
+	onDestroy() {
+		this.dispatcher.unsubscribe(this.channel,'open.modal');
+		this.dispatcher.unsubscribe(this.channel,'close.modal');
+		this.dispatcher = null;
 	}
 }

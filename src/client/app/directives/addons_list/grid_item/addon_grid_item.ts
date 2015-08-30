@@ -14,14 +14,15 @@ import {Dispatcher} from 'app/services/services';
 	directives: [NgClass]
 })
 
-@Inject(Dispatcher)
 export class GridAddonItem {
-	constructor(public dispatcher: Dispatcher){
+	dispatcher: any;
+	constructor(dispatcher: Dispatcher){
+		this.dispatcher = dispatcher;
 		
 	}
 	// Object Events
 	open(value) {
-		console.log('hi');
 		this.dispatcher.publish('addons', 'open.modal', value);
 	}
+	
 }

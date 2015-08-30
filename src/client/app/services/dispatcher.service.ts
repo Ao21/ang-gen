@@ -35,7 +35,6 @@ export class Dispatcher {
 
 	subscriptions(): void {
 		let results: any = postal.getSubscribersFor();
-		console.log(results);
 	}
 
 	unsubscribeAll(): void {
@@ -47,6 +46,7 @@ export class Dispatcher {
 			channel: channel,
 			topic: topic
 		});
+		
 	}
 
 

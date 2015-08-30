@@ -4,13 +4,13 @@
 /* endinject */
 /* inject:scss */
 
+@import "styles/base/_base.scss";
+
 @import "styles/helpers/_responsiveSquare.scss";
 
 @import "styles/layout/_menu.scss";
 
 @import "styles/layout/_navbar.scss";
-
-@import "styles/base/_base.scss";
 
 @import "styles/modules/natural-language-form/_natural-language-input.scss";
 

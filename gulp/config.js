@@ -42,7 +42,7 @@ var config = {
 function getKarmaOptions() {
         var options = {
             browsers: ['PhantomJS'],
-            frameworks: ['jasmine'],
+            frameworks: ['jasmine','phantomjs-shim'],
             files: [].concat(
                 path.test.libs,
                 {
@@ -53,7 +53,7 @@ function getKarmaOptions() {
                 {
                     pattern: 'build/**',
                     included: false,
-                    watched: false
+                    watched: true
                 },
                 'tests/test-runner.js'
             ),

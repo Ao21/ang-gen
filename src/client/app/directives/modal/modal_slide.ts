@@ -1,4 +1,4 @@
-import { Inject, Attribute, Component, View, ViewEncapsulation, NgFor, ElementRef, NgClass } from 'angular2/angular2';
+import { Inject, Attribute, Component, View, ViewEncapsulation, NgFor, ElementRef, NgClass, LifecycleEvent } from 'angular2/angular2';
 import {Dispatcher} from 'app/services/services';
 
 
@@ -7,19 +7,21 @@ import {Dispatcher} from 'app/services/services';
 	selector: 'modal-slide',
 	properties: ['channel', 'classMap'],
 	bindings: [
-		Dispatcher
-	]
+		
+	],
+	lifecycle: [LifecycleEvent.onDestroy]
 })
 
 @View({
-	templateUrl: 'app/directives/modal/modal__fullscreen__slide.html',
+	templateUrl: 'app/directives/modal/modal_slide.html',
 	directives: [NgClass],
-	styleUrls: ['app/directives/modal/modal__fullscreen__slide.css'],
+	styleUrls: ['app/directives/modal/modal_slide.css'],
 
 })
 
 export class ModalSlide {
 	data: any;
+	dispatcher: any;
 	channel: string;
 	classMap: any;
 	title: string;
@@ -29,8 +31,9 @@ export class ModalSlide {
 		@Attribute('channel') channel: string,
 		@Attribute('open') open: string,
 		public el: ElementRef,
-		public dispatcher: Dispatcher
+		dispatcher: Dispatcher
 		) {
+			this.dispatcher = dispatcher;
 			this.channel = channel;
 			this.subscribeEvents();
     		this.classMap = { 'md-show': false };
@@ -42,16 +45,20 @@ export class ModalSlide {
 	subscribeEvents = () => {
 		this.dispatcher.subscribe(this.channel,'open.modal', this.openModal);
     	this.dispatcher.subscribe(this.channel,'close.modal', this.closeModal);
-	}
+	};
 	openModal = (): void => {
 		this.classMap['md-show'] = true;
-	}
+	};
 	closeModal = (): void => {
 		this.classMap['md-show'] = false;
-	}
+	};
 	close = (): void =>  {
-		console.log(this.el.renderView);
 		this.dispatcher.publish(this.channel,'close.modal', null)
-
+	};
+	onDestroy() {
+		this.dispatcher.unsubscribe(this.channel,'open.modal');
+		this.dispatcher.unsubscribe(this.channel,'close.modal');
+		this.dispatcher = null;
 	}
+	
 }
