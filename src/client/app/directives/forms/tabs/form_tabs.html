@@ -1,0 +1,6 @@
+<ul class="tabs">
+	<li *ng-for="#tab of tabs;#i = index" (^click)="selectTab(tab, i)" [ng-class]="{selected: selected == i}">
+		<p>{{tab.tabTitle}}</p>
+	</li>
+</ul>
+<ng-content></ng-content>

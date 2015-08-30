@@ -1,13 +1,12 @@
-import {Attribute, Component, View, Host} from 'angular2/angular2';
+import {Attribute, Component, View, Host, LifecycleEvent} from 'angular2/angular2';
 import {Dispatcher} from 'app/services/services';
 
 @Component({
 	selector: 'addon-popup',
 	properties: ['channel'],
 	bindings: [
-		Dispatcher
-	
-	]
+	],
+	lifecycle: [LifecycleEvent.onDestroy]
 })
 
 @View({
@@ -18,11 +17,14 @@ import {Dispatcher} from 'app/services/services';
 
 export class GridAddonPopup{
 	name: string;
+	channel: string;
+	dispatcher: any;
 
 	constructor(
-		public dispatcher: Dispatcher,
+		dispatcher: Dispatcher,
 		@Attribute('channel') channel: string) {
-		console.log('popup', this);
+			this.dispatcher = dispatcher;
+		this.channel = channel
 		this.dispatcher.subscribe(channel, 'open.modal', this.setModal);
 
 	};
@@ -30,4 +32,9 @@ export class GridAddonPopup{
 		this.name = data.name;
 
 	};
+	
+	onDestroy() {
+		this.dispatcher.unsubscribe(this.channel, 'open.modal');
+		this.dispatcher = null;
+	}
 }

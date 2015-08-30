@@ -1,4 +1,4 @@
-import { Inject, Attribute, Component, View, NgFor, ElementRef, NgClass, FORM_DIRECTIVES, EventEmitter } from 'angular2/angular2';
+import { Inject, Attribute, Component, View, NgFor, ElementRef, NgClass, FORM_DIRECTIVES, EventEmitter, LifecycleEvent } from 'angular2/angular2';
 import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
@@ -7,8 +7,9 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
     selector: 'form-custom-radio',
 	properties: ['group','value','icon', 'checked', 'classMap'],
 	bindings: [
-		Dispatcher
-	]
+
+	],
+	lifecycle: [LifecycleEvent.onDestroy]
 })
 
 @View({
@@ -21,21 +22,22 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 export class FormCustomRadio {
 	checked: string;
 	group: string;
+	dispatcher: any;
 
 	constructor(
 		@Attribute('checked') checked: Boolean, 
 		@Attribute('group') group: string,
 		@Attribute('class') public initialClasses: any,
-		public dispatcher: Dispatcher ) {
-		
+		dispatcher: Dispatcher ) {
+		this.dispatcher = dispatcher;
 		this.group = group;
 		this.dispatcher.subscribe('form.radio', this.group + '.update', this.remove);
 		if (checked) {
 			this.check();
 		}
 	}
-	check = ($event) => {
-		console.log($event);
+
+	check = ($event?) => {
 		this.dispatcher.publish('form.radio', this.group + '.update', null);
 		this.initialClasses = {'active': true};
 		this.checked = 'checked';
@@ -44,4 +46,8 @@ export class FormCustomRadio {
 		this.checked = '';
 		this.initialClasses = { 'active': false };
 	};
+	onDestroy() {
+		this.dispatcher.unsubscribe('form.radio', this.group + '.update');
+		this.dispatcher = null;
+	}
 }

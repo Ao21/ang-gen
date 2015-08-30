@@ -8,7 +8,7 @@ var paths = {
 	
 	app: {
 		src:			'/src/',
-		images:         '/src/client/images/**/*.{png,gif,jpg,jpeg}',
+		images:         './src/client/images/**/*.{png,gif,jpg,jpeg,svg}',
 		ts:				'./src/client/**/*.ts',
 		js:				'./src/client/**/*.js',
 		templates:		'./src/client/**/*.html',

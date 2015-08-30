@@ -1,0 +1,12 @@
+:host, .horizontal-scroller{
+	width:1200px;
+	height:800px;
+	position:relative;
+	float:left;
+	overflow: hidden;
+	
+	.horizontal-scroller-content {
+		float: left;
+		transition: all 300ms;
+	}
+}

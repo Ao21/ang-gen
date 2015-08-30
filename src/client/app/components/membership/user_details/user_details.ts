@@ -1,16 +1,16 @@
 /// <reference path="../../../../../../typings/tsd.d.ts" />
 
-import {Component, View} from 'angular2/angular2';
+import {Component, View, LifecycleEvent} from 'angular2/angular2';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control} from "angular2/angular2";
 import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 import {ModalSlide} from 'app/directives/modal/modals.module';
 
-
 @Component({
 	selector: 'userDetails',
 	viewBindings: [FormBuilder],
-	bindings: [Dispatcher]
+	bindings: [],
+	lifecycle: [LifecycleEvent.onDestroy]
 })
 
 @View({
@@ -20,12 +20,13 @@ import {ModalSlide} from 'app/directives/modal/modals.module';
 
 })
 
-
 export class MembershipUserDetails {
 	additionalUsers: any;
 	form: ControlGroup;
+	dispatcher: any;
 
-	constructor(public dispatcher: Dispatcher,fb: FormBuilder){
+	constructor(dispatcher: Dispatcher,fb: FormBuilder){
+		this.dispatcher = dispatcher;
 		this.additionalUsers = [];
 		this.form = fb.group({
 			"email": [""]
@@ -33,12 +34,14 @@ export class MembershipUserDetails {
 		this.dispatcher.subscribe('form.radio', 'gender' + '.update', this.checkControls);
 	}
 
-
 	addAdditionalUser = () => {
 		this.additionalUsers.push({'user':'user'})
 	}
 	checkControls = () => {
-		console.log('check controls')
+	}
+	
+	onDestroy() {
+		this.dispatcher.unsubscribe('form.radio', 'gender' + '.update');
 	}
 
 }

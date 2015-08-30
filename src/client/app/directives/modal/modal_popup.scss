@@ -1,4 +1,4 @@
-.modal__fullscreen {
+.modal--popup {
 	position: fixed;
 	top: 0%;
 	left: 0%;
@@ -24,7 +24,6 @@
 	-webkit-transition: all 0.15s;
 	-moz-transition: all 0.15s;
 	transition: all 0.15s;
-
 }
 .md-show {
 	visibility: visible;

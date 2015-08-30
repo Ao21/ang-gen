@@ -80,6 +80,7 @@
     "karma-jasmine": "^0.3.6",
     "karma-mocha": "^0.2.0",
     "karma-phantomjs-launcher": "^0.2.1",
+    "karma-phantomjs-shim": "git+https://github.com/tschaub/karma-phantomjs-shim.git",
     "karma-sinon": "^1.0.4",
     "karma-typescript-preprocessor": "0.0.19",
     "main-bower-files": "^2.9.0",

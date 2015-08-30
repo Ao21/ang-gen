@@ -34,7 +34,6 @@ export class ModalCreate {
 		options: MdDialogConfig = null
 		): any {
 			var config = isPresent(options) ? options : new MdDialogConfig();
-			console.log(type);
 	}
 }
 
