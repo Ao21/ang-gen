@@ -4,7 +4,7 @@ import {Dispatcher} from 'app/services/services';
 import {Logger} from '../helpers/logger';
 import {TopNav } from 'app/layout/topNav';
 import {Membership, MembershipLogin, MembershipAddons, MembershipUserDetails} from 'app/components/membership/modules';
-import {CheckboxTest} from 'app/components/test/checkbox';
+import {TabsTest} from 'app/components/test/tabs';
 import {appPipes} from 'app/pipes/pipes';
 
 
@@ -23,7 +23,7 @@ import {appPipes} from 'app/pipes/pipes';
 @RouteConfig(
 	[
 		{path: '/',  redirectTo: '/membership'},
-		{path: '/test',  component: CheckboxTest},
+		{path: '/test',  component: TabsTest},
 		{path: '/membership',  component: Membership},
 		{path: '/membership/login', as: 'membership-login', component: MembershipLogin},
 		{path: '/membership/addons', as: 'membership-addons', component: MembershipAddons},

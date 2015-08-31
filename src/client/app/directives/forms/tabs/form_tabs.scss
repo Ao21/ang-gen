@@ -1,0 +1,45 @@
+:host{
+	color: white;
+	margin: 50px;
+	width: 400px;
+	float:left;
+	.tabs {
+		display:flex;
+		margin: 0;
+		padding:0;
+		justify-content: space-between;
+		li {
+			display: flex;
+  			justify-content: center;
+  			align-items: center;
+  			flex: 1;
+			width:100%;
+			min-height: 60px;  
+			p {
+				width: 100%;
+				text-align: center;
+				margin: 0;
+				padding: 10px;
+			}
+		}
+	}
+	
+	.no-flexbox tabs {
+		text-align:center;
+		}
+		.no-flexbox tabs li {
+			display:inline-block;
+		}
+	
+	
+	&.blue {
+		.tabs {
+			li {
+				border: 1px solid #1B9AF7;
+			}
+			li.selected {
+				background-color: #1B9AF7;
+			}
+		}	
+	}
+}

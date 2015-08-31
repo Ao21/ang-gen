@@ -14,7 +14,8 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @View({
 	directives: [ angularDirectives, appDirectives ],
-	templateUrl : './app/components/membership/membership.html'
+	templateUrl : './app/components/membership/membership.html',
+	styleUrls:['./app/components/membership/membership.css']
 })
 
 export class Membership {

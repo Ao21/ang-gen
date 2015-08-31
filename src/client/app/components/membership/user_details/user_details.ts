@@ -6,7 +6,6 @@ import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 import {ModalSlide} from 'app/directives/modal/modals.module';
 
-
 @Component({
 	selector: 'userDetails',
 	viewBindings: [FormBuilder],
@@ -27,7 +26,7 @@ export class MembershipUserDetails {
 	dispatcher: any;
 
 	constructor(dispatcher: Dispatcher,fb: FormBuilder){
-		this.dispatcher = Dispatcher;
+		this.dispatcher = dispatcher;
 		this.additionalUsers = [];
 		this.form = fb.group({
 			"email": [""]
@@ -35,13 +34,12 @@ export class MembershipUserDetails {
 		this.dispatcher.subscribe('form.radio', 'gender' + '.update', this.checkControls);
 	}
 
-
 	addAdditionalUser = () => {
 		this.additionalUsers.push({'user':'user'})
 	}
 	checkControls = () => {
 	}
-	
+
 	onDestroy() {
 		this.dispatcher.unsubscribe('form.radio', 'gender' + '.update');
 	}
