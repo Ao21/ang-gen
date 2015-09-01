@@ -1,0 +1,43 @@
+.custom-navbar {
+    background-color: #F8D347;
+    border: 0px solid #555555;
+    
+    @media (max-width:767px) {
+      .navbar-toggle .icon-bar {
+          background-color:#555555;
+      }
+      // .navbar-right {
+        // float: right;
+        // padding-right: 15px;
+      // }
+      // .nav.navbar-nav.navbar-right li {
+        // float: right;
+      // }
+      // .nav.navbar-nav.navbar-right li > a {
+        // padding:8px 5px;
+      // }
+      // .navbar-toggle {
+        // float: left
+      // }
+      // .navbar-header {
+        // float: left;
+        // width: auto!important;
+      // }
+      // .navbar-collapse {
+        // clear: both;
+        // float: none;
+      // }
+     // .navbar-brand {
+        // position: absolute;
+        // text-align: center;
+        // margin: auto;
+        // z-index: -2;
+        // padding:0;
+        // left: 50%;
+        // transform: translateX(-50%);
+      //}
+      .navbar-brand>img {
+        height: 32px;
+      }
+    }
+}

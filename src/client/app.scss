@@ -8,9 +8,15 @@
 
 @import "styles/helpers/_responsiveSquare.scss";
 
+@import "styles/layout/_flex.scss";
+
+@import "styles/layout/_layout.scss";
+
 @import "styles/layout/_menu.scss";
 
-@import "styles/layout/_navbar.scss";
+@import "styles/modules/_masthead.scss";
+
+@import "styles/modules/_navbar.scss";
 
 @import "styles/modules/natural-language-form/_natural-language-input.scss";
 

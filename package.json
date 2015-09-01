@@ -88,6 +88,7 @@
     "node-notifier": "^4.2.3",
     "phantomjs": "https://github.com/just-boris/phantomjs.git",
     "plato": "^1.5.0",
+    "reflect-metadata": "^0.1.0",
     "run-sequence": "^1.1.2",
     "should": "^7.0.3",
     "sinon": "^1.15.4",
