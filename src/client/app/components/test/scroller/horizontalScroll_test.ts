@@ -22,10 +22,10 @@ import {FormAdditionalUser, SimpleDialogComponent} from 'app/directives/forms/ad
 
 @View({
 	directives: [angularDirectives, appDirectives],
-	templateUrl: './app/components/test/horizontalScroll.html'
+	templateUrl: './app/components/test/scroller/horizontalScroll_test.html'
 })
 
-export class HorizontalScroll {
+export class HorizontalScrollTest {
 	horizontalScroller: HorizontalScroller;
 	horizontalRef: any;
 	horizontalRefs:  any[] = [];

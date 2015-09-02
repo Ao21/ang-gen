@@ -10,20 +10,6 @@ gulp.task('default', ['clean'], function(cb) {
     );
 });
 
-gulp.task('serve', function() {
-    runSequence(
-        'clean',
-		'bundle/angular2',
-		'build:tsconf',
-        'typescript',
-        'copy:libs',
-        'inject:all',
-        'styles',
-        'images',
-        'copy:build',
-        'browserSync'
-    )
-});
 
 gulp.task('build', function() {
     runSequence(

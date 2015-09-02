@@ -2,18 +2,21 @@ import {Component, View, Inject} from 'angular2/angular2';
 import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
+import {FormIncrementor} from 'app/directives/forms/incrementor/form_incrementor';
+
 @Component({
-	selector: 'checkbox-test',
+	selector: 'incrementorTest',
 	viewBindings: [Dispatcher]
 })
 
 @View({
-	templateUrl: 'app/components/test/checkbox.html',
-	directives: []
+	templateUrl: 'app/components/test/incrementor/incrementor_test.html',
+	directives: [FormIncrementor]
 })
 
 @Inject(Dispatcher)
-export class CheckboxTest {
+export class IncrementorTest {
+
 	constructor(public dispatcher: Dispatcher)
 		{
 			

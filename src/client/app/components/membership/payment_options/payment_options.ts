@@ -3,24 +3,21 @@ import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @Component({
-	selector: 'price-breakdown'
+	selector: 'payment-options',
+	lifecycle: [LifecycleEvent.onDestroy]
 })
 
 @View({
-	templateUrl: 'app/components/membership/price_breakdown/price_breakdown.html',
-	styleUrls: ['app/components/membership/price_breakdown/price_breakdown.css'],
+	templateUrl: 'app/components/membership/payment_options/payment_options.html',
+	styleUrls: ['app/components/membership/payment_options/payment_options.css'],
 	directives: [appDirectives, angularDirectives]
 })
 
-export class MembershipPriceBreakdown {
+export class MembershipPaymentOptions {
 
 	constructor(public dispatcher: Dispatcher) {
 		this.dispatcher = dispatcher;
-			
-	}
-	
-	onUpdatedPaymentFrequency() {
-		console.log('updated frequency!')
+		
 	}
 
 	onDestroy(){

@@ -1,6 +1,7 @@
 import {Component, View, LifecycleEvent, ElementRef} from 'angular2/angular2';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control} from "angular2/angular2";
 import {Dispatcher} from 'app/services/services';
+import {OnActivate} from 'angular2/router';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 import {HorizontalScroller, HorizontalScrollerRef, HorizontalScrollerConfig} from 'app/directives/scroller/horizontal_scroller';
@@ -22,7 +23,7 @@ import {ModalSlide} from 'app/directives/modal/modals.module';
 	styleUrls: ['./app/components/membership/user_details/user_details.css']
 })
 
-export class MembershipUserDetails {
+export class MembershipUserDetails  implements OnActivate{
 	horizontalScroller: HorizontalScroller;
 	horizontalRef: any;
 	horizontalRefs:  any[] = [];
@@ -47,10 +48,9 @@ export class MembershipUserDetails {
 			{name:'defaultUser',component:DefaultUserPanel},
 			{name:'defaultUser2',component:DefaultUserPanel},
 		]
-		this.activate();
 	}
-
-	activate = () => {
+	
+	onActivate(next) {
 		this.horizontalScroller.loadModal(this.elementRef).
 		then(cRef => {
 			this.initialState.forEach(element => {
@@ -63,6 +63,7 @@ export class MembershipUserDetails {
 			
 		})
 	}
+
 
 	addAdditionalUser = () => {
 		this.horizontalScroller.loadComponent(DefaultUserPanel,'Form-'+this.count)

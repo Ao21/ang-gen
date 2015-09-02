@@ -1,8 +1,8 @@
-:host {
-	.paymentFrequency{
+:host, payment-options {
+	.payments{
 		width: 100%;
 		float: left;
-		margin: 20px 0;	
+		margin: 20px 0 0;	
 	}
 	form {
 		clear: both;
@@ -10,6 +10,10 @@
 	
 	.form--nolabel {
 		margin: 20px 0;
+	}
+	
+	.btn {
+		float: left;
 	}
 	
 	.credit-details {

@@ -12,16 +12,25 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('clean:images', function(cb) {
-  return del([path.build.images,'!build/.git'], {
+  del([path.build.images,'!build/.git'], {
       dot: true
   }, cb)
 });
 
 gulp.task('clean:html', function(cb) {
-  return del(['build/**/*.html','!build/.git'], {
+  del(['build/**/*.html','!build/.git'], {
       dot: true
   }, cb)
 });
+
+gulp.task('clean:css', function(cb) {
+  del(['build/**/*.css','!build/.git'], {
+      dot: true
+  }, cb)
+});
+
+
+
 gulp.task('copy:libs',function(){
   var libsStream = gulp.src(path.scripts.libs);
   return libsStream.pipe(gulp.dest(path.build.libs))

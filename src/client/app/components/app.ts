@@ -1,10 +1,11 @@
 import {Component, View} from 'angular2/angular2';
-import {RouterOutlet, RouteConfig, RouterLink} from 'angular2/router';
+import {RouterOutlet, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+
 import {Dispatcher} from 'app/services/services';
 import {Logger} from '../helpers/logger';
 import {TopNav } from 'app/layout/topNav';
-import {Membership, MembershipLogin, MembershipAddons, MembershipPriceBreakdown, MembershipUserDetails} from 'app/components/membership/modules';
-import {TabsTest} from 'app/components/test/tabs';
+import {Membership} from 'app/components/membership/membership';
+import {Tests} from 'app/components/test/tests';
 import {appPipes} from 'app/pipes/pipes';
 
 
@@ -14,21 +15,16 @@ import {appPipes} from 'app/pipes/pipes';
 })
 
 @View({
-	directives: [RouterOutlet, RouterLink, TopNav],
+	directives: [RouterOutlet, TopNav],
 	templateUrl : './app/layout/shell.html',
 	viewBindings: [ appPipes ]
 })
 
-
 @RouteConfig(
 	[
-		{path: '/',  redirectTo: '/membership'},
-		{path: '/test',  component: TabsTest},
-		{path: '/membership',  component: Membership},
-		{path: '/membership/login', as: 'membership-login', component: MembershipLogin},
-		{path: '/membership/addons', as: 'membership-addons', component: MembershipAddons},
-		{path: '/membership/price-breakdown', as: 'membership-price-breakdown', component: MembershipPriceBreakdown},
-		{path: '/membership/user-details', as: 'membership-user-details', component: MembershipUserDetails}
+		{path: '/',  redirectTo: '/membership/home'},
+		{path: '/tests/...',  component: Tests, as: 'tests'},
+		{path: '/membership/...',  component: Membership, as: 'membership'},
 	])
 
 

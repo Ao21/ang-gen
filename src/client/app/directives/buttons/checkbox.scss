@@ -1,29 +1,28 @@
-:host{
+:host, checkbox{
 	display: flex;
   	align-items: flex-start;
-	min-height: 50px;
-	
-	border: 2px solid white;
-	border-radius: 5px;
-	
+	  
 	.content {
 		flex: 1;
 		padding: 0 5%;
-		color:white;
 	}
 	.checkbox {
-		margin:4%;
-		width: 14%;
-		padding-bottom: 14%;
-		border: 1px solid white;
-		border-radius:10%;
+		
 		&.checked {
 			background-image: url('/images/icons/tick.svg');
-			background-color:#ffcc00;
-			border: 1px solid #ffcc00;
 			background-size: 80% 80%;
 			background-repeat: no-repeat;
 			background-position: center center;
 		}
 	}
+	
+	&.reverse{
+		.checkbox {
+			order: 0;
+		}
+		.content {
+			order: 1;
+		}
+	}
+	
 }

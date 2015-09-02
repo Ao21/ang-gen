@@ -6,6 +6,22 @@ var gulp = require('gulp'),
     $ = require('gulp-load-plugins')({ lazy: true });
 
 
+gulp.task('serve', function() {
+    runSequence(
+        'clean',
+		'bundle/angular2',
+		'build:tsconf',
+        'typescript',
+        'copy:libs',
+        'inject:all',
+        'styles',
+        'images',
+        'copy:build',
+        'browserSync'
+    )
+});
+
+
 
 gulp.task('browserSync', function () {
 	browserSync.init({
@@ -34,6 +50,7 @@ gulp.task('browserSync', function () {
 	$.watch(path.app.scss, function () {
 		runSequence(
 			'styles',
+			'copy:build',
 			browserSync.reload
 			);
 	});

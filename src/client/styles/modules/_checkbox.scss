@@ -1,3 +1,42 @@
+checkbox {
+	min-height: 50px;
+	
+	border: 2px solid white;
+	border-radius: 5px;
+	
+	.content {
+		color:white;
+	}
+	
+	.checkbox {
+		margin:4%;
+		width: 14%;
+		padding-bottom: 14%;
+		border: 1px solid white;
+		border-radius:10%;
+		
+		&.checked {
+			background-color:#ffcc00;
+			border: 1px solid #ffcc00;
+		}
+	}
+	
+	&.small {
+		.checkbox {
+			margin: 0;
+			width: 10%;
+			padding-bottom: 10%;
+		}
+	}
+	
+	&.no-border {
+		border: none;
+		.checkbox {
+			border-radius: 0;
+		}
+	}
+}
+
 checkbox.checkbox--header {
 	h3 {
 		margin: 17px 0;

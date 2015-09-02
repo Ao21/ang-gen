@@ -20,7 +20,7 @@ export class FormAdditionalUser {
 		
 	}
 	goTo(){
-		this.horizontalRef.goToEl('Form-1');
+		this.horizontalRef.goToName('Form-1');
 	}
 }
 
