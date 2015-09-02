@@ -33,7 +33,6 @@ gulp.task('browserSync', function () {
 
 	$.watch(path.app.scss, function () {
 		runSequence(
-			'inject:scss',
 			'styles',
 			browserSync.reload
 			);

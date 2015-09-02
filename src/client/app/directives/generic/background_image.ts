@@ -30,7 +30,7 @@ export class BackgroundImage {
 			if (isPresent(changes)) {
 				this._applyChanges(changes);
 			}
-		})
+		}
 	}
 	
 	private _applyChanges(changes: any): void {

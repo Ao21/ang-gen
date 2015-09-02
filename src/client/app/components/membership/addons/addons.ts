@@ -14,7 +14,8 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 @View({
 
 	directives: [ angularDirectives, appDirectives, ModalPopup ],
-	templateUrl : './app/components/membership/addons/addons.html'
+	templateUrl : './app/components/membership/addons/addons.html',
+	styleUrls: ['./app/components/membership/addons/addons.css']
 })
 
 export class MembershipAddons {

@@ -18,11 +18,17 @@ interface IAddonState {
 
 let initAddonState:IAddonState = {
 	addons: [
-		{name: 'Roadside Rescue1', icon: '', pkg: 'default', free: false, desc: ''},
-		{name: 'Roadside Rescue2', icon: '', pkg: 'default', free: false, desc: ''},
-		{name: 'Roadside Rescue3', icon: '', pkg: 'default', free: false, desc: ''},
-		{name: 'Roadside Rescue4', icon: '', pkg: 'rescuePlus', free: false, desc: ''},
-		{name: 'Roadside Rescue5', icon: '', pkg: 'rescuePlus', free: false, desc: ''}
+		{name: 'Roadside Rescue', icon: 'images/icons/roadsideRescue.svg', pkg: 'default', free: false, desc: ''},
+		{name: '24/7 Emergency Cover', icon: 'images/icons/emergenyCover.svg', pkg: 'default', free: false, desc: ''},
+		{name: 'Cover on your doorstep', icon: 'images/icons/doorstep.svg', pkg: 'default', free: false, desc: ''},
+		{name: 'Any vehicle cover', icon: 'images/icons/vehicleCover.svg', pkg: 'default', free: false, desc: ''},
+		{name: 'UK Cover', icon: 'images/icons/ukCover.svg', pkg: 'default', free: false, desc: ''},
+		{name: 'Home Start', icon: 'images/icons/homeStart.svg', pkg: 'default', free: true, desc: ''},
+		{name: 'AA Rewards', icon: 'images/icons/rewards.svg', pkg: 'default', free: false, desc: ''},
+		{name: 'Onward Travel', icon: 'images/icons/onwardTravel.svg', pkg: 'rescuePlus', free: false, desc: ''},
+		{name: 'National Recovery', icon: 'images/icons/nationalRecover.svg', pkg: 'rescuePlus', free: false, desc: ''},
+		{name: 'Accom or Travel Expenses', icon: 'images/icons/accomodation.svg', pkg: 'rescuePlus', free: false, desc: ''},
+		
 	]
 };
 

@@ -1,8 +1,16 @@
-.gender__selector {
-	form-custom-radio {
-		display: inline-block;
-		width: 49%;
-		height: 50px;
+:host, userdetails{
+	horizontal-scroller {
+		width: 100%;
+		float: left;
+		clear: both;
+		position: relative;
+	}
+	
+	.btn{
+		float: left;
+	}
+	
+	userdetails-defaultuser {
+		// position: absolute;
 	}
 }
-

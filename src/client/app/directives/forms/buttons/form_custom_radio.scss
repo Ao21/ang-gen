@@ -5,6 +5,14 @@
 		visibility: hidden;
 	}
 	&.active {
-		background-color: black;
+		background-color: rgb(39, 40, 33);
+		img {
+			opacity: 1;
+		}
 	}
+	img {
+		height: 100%;
+		opacity: 0.7;
+	}
+	
 }

@@ -1,10 +1,11 @@
-import {Component, View, NgFor, NgClass} from 'angular2/angular2';
+import {Component, View, NgFor, NgClass, EventEmitter} from 'angular2/angular2';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 import {Tab} from './form_tab';
 
 @Component({
-	selector: 'tabs'
+	selector: 'tabs',
+	events: ['selectedTab:selectedtab']
 })
 
 @View({
@@ -16,10 +17,13 @@ import {Tab} from './form_tab';
 export class Tabs {
 	tabs: any;
 	selected: Number;
+	selectedTab: EventEmitter;
 
 	constructor() {
 		this.tabs = [];
 		this.selected = 0;
+		this.selectedTab = new EventEmitter;
+		
 	}
 	
 	addTab(tab:Tab) {
@@ -33,8 +37,10 @@ export class Tabs {
 		this.tabs.forEach((tab) => {
 		tab.active = false;
 		});
+		console.log(i)
 		this.selected = i;
 		tab.active = true;
+		this.selectedTab.next(tab);
 	}
 
 }

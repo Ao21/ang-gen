@@ -1,0 +1,94 @@
+<div class="container default_container">
+	<tabs class="blue paymentFrequency" (selectedTab)="onUpdatedPaymentFrequency($event)">
+		<tab tab-title="Pay Monthly">
+			<table class="simple">
+				<tr>
+					<td>AA Family Membership</td>
+					<td>$22.50</td>
+				</tr>
+				<tr>
+					<td>Whats Included</td>
+					<td>Price Breakdown</td>
+				</tr>
+
+			</table>
+		</tab>
+		<tab tab-title="One Payment">
+			<table class="simple">
+				<tr>
+					<td>AA Family Membership</td>
+					<td>$180.00</td>
+				</tr>
+				<tr>
+					<td>Whats Included</td>
+					<td>Price Breakdown</td>
+				</tr>
+
+			</table>
+		</tab>
+	</tabs>
+
+	<form>
+		<div class="form-group block-input">
+			<label for="email">Do you have a discount code?</label>
+			<input type="email" class="form-control" control="email">
+		</div>
+	</form>
+
+	<tabs class="border payments">
+		<tab tab-title="Pay by Direct Debit">
+			<h1>Direct Debit Tab</h1>
+			<tabs class="border">
+				<tab tab-title="Sort Code and Account Number">
+					<form class="form--nolabel" action="">
+						<div class="form-group">
+							<input type="text" class="form-control" control="email" placeholder="Account Number *">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" control="email" placeholder="Sort Code Number *">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" control="email" placeholder="Name">
+						</div>
+
+					</form>
+				</tab>
+				<tab tab-title="BIC and IBAN">
+					<form action="" class="form--nolabel">
+						<div class="form-group">
+							<input type="text" class="form-control" control="email" placeholder="Laura Byrne">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" control="email" placeholder="BIC">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" control="email" placeholder="IBAN">
+						</div>
+
+					</form>
+				</tab>
+			</tabs>
+			<div class="btn btn-default btn-block">
+				<h4>Pay Now $22.50</h4>
+			</div>
+		</tab>
+		<tab tab-title="Pay By Credit / Debit Card">
+			<form action="" class="form--nolabel">
+				<div class="form-group">
+					<input type="text" class="form-control" control="email" placeholder="Card Number">
+				</div>
+				<div class="form-group credit-details">
+					<input type="text" class="form-control" control="email" placeholder="MM">
+					<input type="text" class="form-control" control="email" placeholder="YY">
+					<input type="text" class="form-control" control="email" placeholder="CVV">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" control="email" placeholder="IBAN">
+				</div>
+
+			</form>
+		</tab>
+	</tabs>
+
+
+	<div>

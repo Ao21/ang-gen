@@ -27,7 +27,7 @@ gulp.task('inject:ts',function() {
  */
 
 gulp.task('inject:scss',function() {
-  var scssStream = gulp.src([path.app.defaultStyles,'!src/client/app.scss'], {
+  var scssStream = gulp.src([path.app.defaultStyles,'!src/client/app.scss','!src/client/styles/_variables.scss'], {
       read: false
   });
   var cssTarget = gulp.src(path.app.styles);

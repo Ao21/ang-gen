@@ -1,0 +1,27 @@
+:host{
+	.paymentFrequency, .payments{
+		width: 100%;
+		float: left;
+		margin: 20px 0;
+		
+	}
+	form {
+			clear: both;
+		}
+	
+	.form--nolabel {
+		margin: 20px 0;
+	}
+	
+	.credit-details {
+		display: flex;
+		input {
+			flex: 1;
+			margin-right: 5px;
+		}
+		input:last-child {
+			flex: 3;
+			margin-right: 0;
+		}
+	}	
+}

@@ -1,4 +1,7 @@
-<grid-addon-item *ng-for="#addon of addons | filter: {'pkg':'default'} " [addon]="addon"></grid-addon-item>
-<h1 *ng-if="(addons | filter: {'pkg':'rescuePlus'}).length != 0">Rescue PLUS Not Included</h1>
-<grid-addon-item *ng-for="#rescueAddons of addons | filter: {'pkg':'rescuePlus'} " [addon]="rescueAddons"></grid-addon-item>
-<button class="btn" (click)="addRescuePlus()">Include for just $5.99 p/m</button>
+<div class="row">
+	<grid-addon-item *ng-for="#addon of state | filter: initialFilter.default " [addon]="addon" class="col-xs-6 col-md-3 res-square default"></grid-addon-item>
+	<grid-addon-item *ng-for="#rescueAddons of state | filter: initialFilter.rescueMe  " [addon]="rescueAddons" class="col-xs-6 col-md-3 res-square rescuePlus"</grid-addon-item>
+</div>
+<checkbox class="checkbox--header" (updatecheckbox)="onUpdateCheckbox($event)"">
+	<h3>Add Rescue Plus</h3>
+</checkbox>

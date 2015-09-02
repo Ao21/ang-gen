@@ -8,7 +8,8 @@ SkipSelf,
 ElementRef,
 DynamicComponentLoader,
 ComponentRef,
-DomRenderer
+DomRenderer,
+LifecycleEvent
 } from 'angular2/angular2';
 
 
@@ -27,12 +28,12 @@ export class HorizontalScroller {
 	array : HorizontalScrollerArray;
     bindings: any;
 	containerRef: any;
+	containerWidth: number;
 
 	constructor(loader: DynamicComponentLoader, domRenderer: DomRenderer) {
 		this.componentLoader = loader;
 		this.domRenderer = domRenderer;
 		this.array = new HorizontalScrollerArray()
-
         
 	}
 
@@ -41,8 +42,13 @@ export class HorizontalScroller {
 		return this.componentLoader.loadNextToLocation(HorizontalScrollerContainer, elementRef)
 			.then(containerRef => {
 				var containerElement = containerRef.location.nativeElement;
-				DOM.appendChild(DOM.query('body'), containerElement);
+				DOM.appendChild(DOM.query('horizontal-scroller'), containerElement);
 				this.containerRef = containerRef;
+				
+				this.containerWidth = containerRef.location.nativeElement.offsetWidth;
+				
+				// Reset Position if already loaded
+				DOM.setStyle(DOM.query('horizontal-scroller-content'), 'transform', `translateX(0px)`);
 
 			})
 	}
@@ -56,19 +62,35 @@ export class HorizontalScroller {
 			var contentEl = contentRef.location.nativeElement
 			var containerEl = this.horizontalRef.containerRef.location.nativeElement;
 			
-			DOM.setStyle(DOM.parentElement(contentEl), 'width', containerEl.offsetWidth);
-			DOM.setStyle(DOM.parentElement(contentEl), 'height', containerEl.offsetHeight);
-			var amount = this.horizontalRef.index * 100;
-			DOM.setStyle(contentEl, 'transform', `translateX(${amount}%)`);
+			
+			// Relative Positioning Styling - Float the Elements Next to each other
+			console.log(containerEl.offsetWidth)
+			console.log(this.array.length)
+			var containerWidth = containerEl.offsetWidth * this.array.length + 1;
+			DOM.setStyle(DOM.parentElement(contentEl), 'width', containerWidth + 'px');
+			DOM.setStyle(contentEl, 'width', this.containerWidth + 'px');
+			// Make the Element Visible after the Container's been widened
+			DOM.setStyle(contentEl, 'display', 'block');
+			
 			
 			this.horizontalRef.contentRef = contentRef;
 			return this.horizontalRef;
 		})
     }
 	
-	goToEl(name:string) {
+	
+	goToIndex(index:number){
+		var el: any = _.find(this.array.contents,{index:index})
+		this.horizontalRef.containerRef.instance.move(el, this.containerWidth);
+	}
+	
+	goToName(name:string) {
 		var el: any = _.find(this.array.contents,{name:name})
-		this.horizontalRef.containerRef.instance.move(el.index);
+		this.horizontalRef.containerRef.instance.move(el, this.containerWidth);
+	}
+	
+	dispose(){
+		this.array.destroy();
 	}
 	
 	
@@ -94,6 +116,11 @@ export class HorizontalScrollerArray {
 		return this.contents[id]
 	}
 	
+	get length():number {
+		return Object.keys(this.contents).length
+
+	}
+	
 	add = (value, name?) => {
 		this.contents[this.count] = value;
 		if (name){
@@ -104,7 +131,6 @@ export class HorizontalScrollerArray {
 		this.contents[this.count].index = this.count;
 		this.count++;
 		return this.contents[this.count - 1];
-
 	}
 	
 }
@@ -152,13 +178,14 @@ export class HorizontalScrollerRef {
 		throw "Cannot access dialog component instance *from* that component's constructor.";
 	}
 	
-	goTo(amount:number){
-		this.containerRef.instance.move(1);
+	goToIndex(index:number){
+		var el: any = _.find(this.contents.contents,{index:index})
+		this.containerRef.instance.move(el);
 	}
 	
-	goToEl(name:string) {
+	goToName(name:string) {
 		var el: any = _.find(this.contents.contents,{name:name})
-		this.containerRef.instance.move(el.index);
+		this.containerRef.instance.move(el);
 	}
 	
 	/** Closes the dialog. This operation is asynchronous. */
@@ -166,7 +193,7 @@ export class HorizontalScrollerRef {
 		this.contentRefDeferred.promise.then((_) => {
 			if (!this.isClosed) {
 				this.isClosed = true;
-				//this.containerRef.dispose();
+				this.containerRef.dispose();
 				this.whenClosedDeferred.resolve(result);
 			}
 		});
@@ -182,7 +209,7 @@ export class HorizontalScrollerRef {
 	host: {
 		'class': 'horizontal-scroller',
 		'tabindex': '0'
-	},
+	}
 })
 @View({
 	styleUrls: ['app/directives/scroller/horizontal_scroller.css'],
@@ -201,14 +228,15 @@ class HorizontalScrollerContainer {
 		this.horizontalRef = null;
 	}
 	
-	move(index:any){
-		index = index * 100;
-		DOM.setStyle(this.contentRef.nativeElement, 'transform', `translateX(-${index}%)`);
+	move(el:any, containerWidth:number){
+		let index = el.index * containerWidth;
+		DOM.setStyle(this.contentRef.nativeElement, 'transform', `translateX(-${index}px)`);
 	}
 	
 	wrapFocus() {
 		// Return the focus to the host element. Blocked on #1251.
 	}
+	
 
 }
 

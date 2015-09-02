@@ -27,8 +27,8 @@ import {FormAdditionalUser, SimpleDialogComponent} from 'app/directives/forms/ad
 
 export class HorizontalScroll {
 	horizontalScroller: HorizontalScroller;
-	horizontalRefs:  any[] = [];
 	horizontalRef: any;
+	horizontalRefs:  any[] = [];
 	horizontalScrollerConfig: HorizontalScrollerConfig;
 	count: number;
 
@@ -49,7 +49,7 @@ export class HorizontalScroll {
 		this.count++;
 	}
 	close() {
-		this.horizontalScroller.goToEl('Form-2');
+		this.horizontalScroller.goToName('Form-2');
 	}
 
 }

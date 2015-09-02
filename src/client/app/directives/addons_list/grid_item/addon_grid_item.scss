@@ -1,11 +1,36 @@
-.default .content {
-	background-color: black;
-}
-
-.rescuePlus .content {
-	background-color: orange;
-}
-
 :host {
-	display: block;
+	// display: block;
+	
+	&.default {
+		.content {
+			background-color: #272821;
+		}
+	}
+	
+	&.rescuePlus {
+		.content {
+			border: 2px solid #8D8D8D;
+		}	
+	}
+
+	.content {
+		position: absolute;
+		width: 90%;
+		height: 90%;
+		
+	}
+	
+	
+	
+	.grid__addon__item__icon {
+		width: 40%;
+		margin: 15% auto 10px;
+		img {
+			width: 100%;
+		}
+	}
+	.grid__addon__item__text {
+		text-align: center;
+		margin: 0 10px;
+	}
 }
