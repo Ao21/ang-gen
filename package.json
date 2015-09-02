@@ -9,7 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "angular2": "^2.0.0-alpha.35",
+    "angular2": "^2.0.0-alpha.36",
     "body-parser": "~1.5.0",
     "composable-middleware": "^0.3.0",
     "compression": "~1.0.1",
@@ -17,7 +17,7 @@
     "cookie-parser": "~1.0.1",
     "ejs": "~0.8.4",
     "errorhandler": "~1.0.0",
-    "es6-module-loader": "^0.17.6",
+    "es6-module-loader": "^0.15.0",
     "express": "^4.13.3",
     "express-session": "~1.0.2",
     "flux": "^2.1.1",
@@ -29,7 +29,7 @@
     "require-dir": "^0.3.0",
     "rx": "^3.0.1",
     "serve-favicon": "~2.0.1",
-    "systemjs": "^0.18.10",
+    "systemjs": "^0.18.11",
     "traceur": "0.0.91",
     "yeoman-generator": "^0.20.2",
     "zone.js": "^0.5.2"

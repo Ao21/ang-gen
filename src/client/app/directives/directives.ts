@@ -5,7 +5,7 @@
  */
 
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
-import {routerDirectives} from 'angular2/router';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {GridAddon} from './addons_list/grid/addon_grid'
 import {GridAddonItem, GridAddonPopup} from './addons_list/addons.module'
@@ -38,5 +38,5 @@ export var angularDirectives: Array<any> = [
 	FORM_DIRECTIVES,
 
 // Angular's router
-	routerDirectives
+	ROUTER_DIRECTIVES
 ];

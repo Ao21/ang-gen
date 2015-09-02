@@ -89,9 +89,6 @@ export class HorizontalScroller {
 		this.horizontalRef.containerRef.instance.move(el, this.containerWidth);
 	}
 	
-	dispose(){
-		this.array.destroy();
-	}
 	
 	
 

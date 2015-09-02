@@ -1,5 +1,3 @@
-/// <reference path="../../../../../../typings/tsd.d.ts" />
-
 import {Component, View, LifecycleEvent, ElementRef} from 'angular2/angular2';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control} from "angular2/angular2";
 import {Dispatcher} from 'app/services/services';
@@ -12,7 +10,7 @@ import {DefaultUserPanel} from './panels/panels.modules'
 import {ModalSlide} from 'app/directives/modal/modals.module';
 
 @Component({
-	selector: 'userDetails',
+	selector: 'user-details',
 	viewBindings: [FormBuilder, HorizontalScroller],
 	bindings: [],
 	lifecycle: [LifecycleEvent.onDestroy]
@@ -22,7 +20,6 @@ import {ModalSlide} from 'app/directives/modal/modals.module';
 	directives: [ angularDirectives, appDirectives, FORM_DIRECTIVES, ModalSlide ],
 	templateUrl : './app/components/membership/user_details/user_details.html',
 	styleUrls: ['./app/components/membership/user_details/user_details.css']
-
 })
 
 export class MembershipUserDetails {
@@ -88,5 +85,4 @@ export class MembershipUserDetails {
 	onDestroy() {
 		this.horizontalScroller.array.length = 0;
 	}
-
 }

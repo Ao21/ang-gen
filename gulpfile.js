@@ -13,7 +13,7 @@ gulp.task('default', ['clean'], function(cb) {
 gulp.task('serve', function() {
     runSequence(
         'clean',
-        'deps/angular2',
+		'bundle/angular2',
 		'build:tsconf',
         'typescript',
         'copy:libs',

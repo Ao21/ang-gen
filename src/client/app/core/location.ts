@@ -1,8 +1,8 @@
 import { bind } from 'angular2/angular2';
-import { routerInjectables, LocationStrategy, HashLocationStrategy } from 'angular2/router';
+import { ROUTER_BINDINGS, LocationStrategy, HashLocationStrategy, APP_BASE_HREF } from 'angular2/router';
 
 export const locationInjectables: Array<any> = [
-	routerInjectables,
+	ROUTER_BINDINGS,
 	bind(LocationStrategy).toClass(HashLocationStrategy)
 ];
 

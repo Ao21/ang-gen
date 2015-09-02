@@ -39,6 +39,7 @@ gulp.task('bundle/angular2', function () {
 	return gulp
 		.src([
 			path.scripts.bundles + '*.js',
+			path.scripts.bundles + '*.map',
       '!' + path.scripts.bundles +'**.min.js'
 		])
 		.pipe($.changed(angular2Path))

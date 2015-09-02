@@ -3,7 +3,7 @@ import {RouterOutlet, RouteConfig, RouterLink} from 'angular2/router';
 import {Dispatcher} from 'app/services/services';
 import {Logger} from '../helpers/logger';
 import {TopNav } from 'app/layout/topNav';
-import {Membership, MembershipLogin, MembershipAddons, MembershipUserDetails, MembershipPriceBreakdown} from 'app/components/membership/modules';
+import {Membership, MembershipLogin, MembershipAddons, MembershipPriceBreakdown, MembershipUserDetails} from 'app/components/membership/modules';
 import {TabsTest} from 'app/components/test/tabs';
 import {appPipes} from 'app/pipes/pipes';
 
@@ -27,8 +27,8 @@ import {appPipes} from 'app/pipes/pipes';
 		{path: '/membership',  component: Membership},
 		{path: '/membership/login', as: 'membership-login', component: MembershipLogin},
 		{path: '/membership/addons', as: 'membership-addons', component: MembershipAddons},
-		{path: '/membership/user-details', as: 'membership-user-details', component: MembershipUserDetails},
-		{path: '/membership/price-breakdown', as: 'membership-price-breakdown', component: MembershipPriceBreakdown}
+		{path: '/membership/price-breakdown', as: 'membership-price-breakdown', component: MembershipPriceBreakdown},
+		{path: '/membership/user-details', as: 'membership-user-details', component: MembershipUserDetails}
 	])
 
 
