@@ -24,10 +24,12 @@ import {ModalSlide} from 'app/directives/modal/modals.module';
 })
 
 export class MembershipUserDetails  implements OnActivate{
+	
 	horizontalScroller: HorizontalScroller;
 	horizontalRef: any;
 	horizontalRefs:  any[] = [];
 	horizontalScrollerConfig: HorizontalScrollerConfig;
+	
 	elementRef: ElementRef;
 	scrollerCount: number;
 	additionalUsers: any;
@@ -82,8 +84,8 @@ export class MembershipUserDetails  implements OnActivate{
 	}
 	checkControls = () => {
 	}
-
 	onDestroy() {
+		this.horizontalRefs.length = 0;
 		this.horizontalScroller.array.length = 0;
 	}
 }

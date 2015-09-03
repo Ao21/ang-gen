@@ -39,7 +39,7 @@ export class HorizontalScrollTest {
 		this.count = 0;
 	}
 	open() {
-		this.horizontalScroller.loadComponent(FormAdditionalUser,'Form-'+this.count)
+		this.horizontalScroller.loadComponent(SimpleDialogComponent,'Form-'+this.count)
 			.then(ref => {
 				this.horizontalRefs.push(ref);
 				ref.instance.horizontalRef = ref;

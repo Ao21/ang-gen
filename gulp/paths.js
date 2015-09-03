@@ -27,8 +27,8 @@ var paths = {
 		vendors:		'./scripts/vendors/',
 		bundles:		'node_modules/angular2/bundles/',
 		libs:			[	'node_modules/traceur/bin/traceur-runtime.js',
-							'node_modules/es6-module-loader/dist/es6-module-loader-sans-promises.js',
-      						'node_modules/es6-module-loader/dist/es6-module-loader-sans-promises.js.map',
+							'node_modules/es6-module-loader/dist/es6-module-loader.js',
+      						'node_modules/es6-module-loader/dist/es6-module-loader.js.map',
         					'node_modules/systemjs/dist/system.*',
 							'scripts/vendors/system.config.js',
         					'node_modules/reflect-metadata/Reflect.js',
@@ -43,7 +43,7 @@ var paths = {
 		ordered:		[
 						
 							'./build/libs/traceur-runtime.js',
-							'./build/libs/es6-module-loader-sans-promises.js',
+							'./build/libs/es6-module-loader.js',
 							'./build/libs/system.js',
 							'./build/libs/system.config.js',
 							'./build/libs/Reflect.js',
