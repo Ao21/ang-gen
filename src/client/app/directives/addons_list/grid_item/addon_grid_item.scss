@@ -1,26 +1,27 @@
+@import "../../../../styles/variables";
+
 :host {
 	// display: block;
 	
 	&.default {
 		.content {
-			background-color: #272821;
+			background-color: $bkSecondaryColor;
 		}
 	}
 	
 	&.rescuePlus {
 		.content {
-			border: 2px solid #8D8D8D;
+			background: $darkBlack;
 		}	
 	}
-
+	
 	.content {
 		position: absolute;
 		width: 90%;
 		height: 90%;
+		color: $invertedDefaultTextColor;
 		
 	}
-	
-	
 	
 	.grid__addon__item__icon {
 		width: 40%;

@@ -7,12 +7,14 @@
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
+
+
 import {GridAddon} from './addons_list/grid/addon_grid'
 import {GridAddonItem, GridAddonPopup} from './addons_list/addons.module'
 import {FormCustomRadio, FormAdditionalUser, FormIncrementor, Tabs, Tab} from './forms/forms.modules';
 import {BackgroundImage} from './generic/background_image';
-import {CheckboxButton} from 'app/directives/buttons/checkbox';
-
+import {CheckboxButton} from './buttons/checkbox';
+import {ActionBar} from './nav/action_bar';
 
 // global App only directives
 export var appDirectives: Array<any> = [
@@ -25,7 +27,9 @@ export var appDirectives: Array<any> = [
 	FormAdditionalUser,
 	CheckboxButton,
 	Tabs,
-	Tab
+	Tab,
+	ActionBar
+	
 
 ];
 

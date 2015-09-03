@@ -3,7 +3,6 @@
 import { Inject, Component, View, ViewEncapsulation, NgFor } from 'angular2/angular2';
 import {RouterOutlet, RouteConfig, RouterLink} from 'angular2/router';
 
-
 @Component({
 	selector: 'top-nav',
 	properties: ['title']

@@ -1,4 +1,5 @@
-:host{
-	color: white;
-	
+@import "../../../../styles/variables";
+
+tab, :host{
+	color: $defaultTextColor;
 }

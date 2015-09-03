@@ -2,17 +2,15 @@
 	width: 100%;
 	min-height: 100vh;
 
-	background-color: $black;
-	color: white;
+	background-color: $bkColor;
+	color: $defaultTextColor;
 	
-	& > .masthead-inner {
-			.row {
-				margin: 0;
-			}
-			h1,h2,h3,h4,h5 {
-				color: white;
-				margin-bottom: 20px;
-				text-align: center;
+	.masthead-inner {
+			.masthead-inner__text {
+				margin-top: 25px;
+				margin-bottom: 15px;
+				color: $defaultTextColor
+				
 			}
 		}
 	

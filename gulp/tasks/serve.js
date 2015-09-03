@@ -25,6 +25,7 @@ gulp.task('serve', function() {
 
 gulp.task('browserSync', function () {
 	browserSync.init({
+		port: 80,
 		server: {
 			baseDir: [path.build.basePath, './.tmp', './scripts']
 		},

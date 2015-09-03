@@ -1,15 +1,17 @@
 .block-input {
-    background-color: rgba(255,255,255,0.3);
+    background-color: $inputBkColor;
     padding: 5px 10px;
+	border: $inputGroupBorder;
 	
 }
 
 .block-input label {
 	text-transform: uppercase;
+	color: $inputTxtColor;
 }
 
 .block-input input {
-	color: white;
+	color: $inputTxtColor;
     background-color: rgba(0,0,0,0);
     border: none;
 	box-shadow: none;
@@ -24,10 +26,11 @@
 
 
 .form--nolabel input {
-	background-color: rgba(255,255,255,0.3);
+	background-color: $inputBkColor;
 	padding: 5px 10px;
 	border-radius: 0;
 	border: none;
 	box-shadow: none;
-	color:white;
+	color: $inputTxtColor;
+	border: $inputGroupBorder;
 }

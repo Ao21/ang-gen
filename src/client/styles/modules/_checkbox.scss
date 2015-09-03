@@ -1,23 +1,24 @@
+
+
 checkbox {
 	min-height: 50px;
 	
-	border: 2px solid white;
+	border: $borderWidth solid $borderColor;
 	border-radius: 5px;
-	
+
 	.content {
-		color:white;
+		color: $defaultTextColor;
 	}
-	
 	.checkbox {
 		margin:4%;
 		width: 14%;
 		padding-bottom: 14%;
-		border: 1px solid white;
+		border: $borderWidth solid $borderColor;
 		border-radius:10%;
 		
 		&.checked {
-			background-color:#ffcc00;
-			border: 1px solid #ffcc00;
+			background-color:$bkSecondaryColor;
+			border: 1px solid $bkSecondaryColor;
 		}
 	}
 	

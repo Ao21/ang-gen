@@ -1,13 +1,15 @@
+@import "../../../../styles/variables";
+
 :host{
 	position: relative;
 	display: flex;
-	min-height: 64px;
+	min-height: 45px;
 	
 	padding: 0;
 	
-	color: white;
+	color: $defaultTextColor;
 	
-	border: 2px solid white;
+	border: $borderWidth solid $borderColor;
 	border-radius: 5px;
 	
 	.details, .controls, .image, .index, .gap {
@@ -36,13 +38,14 @@
 	}
 	.index { 
 		h1 {
-			font-size: 30px;
+			font-size: 26px;
 			text-align: center;
-			line-height: 30px;
+			line-height: 26px;
 			user-select: none;
-			margin: 16px;
+			margin: 11px;
 		}
 	}
+	
 	.controls {
 		.plus,.minus {
 			position: absolute;

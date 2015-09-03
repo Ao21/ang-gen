@@ -3,7 +3,8 @@
 	height: 100%;
 	position: absolute;
 	padding: 25px 15px;
-	background-color: $black;
+	background-color: $modalBkColor;
+	color: $modalTxtColor;
 	
 	img {
 		display: block;
