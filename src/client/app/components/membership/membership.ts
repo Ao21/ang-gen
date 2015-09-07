@@ -1,5 +1,8 @@
-import {Component, View} from 'angular2/angular2';
+import {Component, View, EventEmitter} from 'angular2/angular2';
 import {RouteConfig, ROUTER_DIRECTIVES, RouterOutlet} from 'angular2/router';
+import {NgIf} from 'angular2/angular2'
+import {Dispatcher} from 'app/services/services';
+
 import {
 	MembershipHome,
 	MembershipLogin, 
@@ -9,6 +12,7 @@ import {
 	MembershipUserDetails, 
 	MembershipTestimonials,
 	MembershipConfirmation} from 'app/components/membership/modules';
+	
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @Component({
@@ -30,11 +34,23 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 
 @View({
-	directives: [ROUTER_DIRECTIVES, angularDirectives, appDirectives, RouterOutlet],
+	directives: [ROUTER_DIRECTIVES, angularDirectives, appDirectives, RouterOutlet, NgIf],
 	templateUrl : './app/components/membership/membership.html',
 	styleUrls:['./app/components/membership/membership.css']
 })
 
 
 export class Membership {
+	actionBarVisible: any;
+	
+	
+	constructor(public dispatcher: Dispatcher) {
+			this.dispatcher = dispatcher;
+			this.actionBarVisible = {'hidden':false};
+			this.dispatcher.subscribe('Membership','actionBar.hide',this.onShowActionBar)
+	}
+	onShowActionBar = () => {
+		this.actionBarVisible = {'hidden':true};
+	}
+	
 }

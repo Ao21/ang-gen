@@ -1,1 +1,5 @@
-<router-outlet></router-outlet>
+<action-bar [ng-class]="actionBarVisible" (toggleopenpriceestimate)="onTogglePriceEstimate()" ></action-bar>
+<modal-slide class="visible-nav" channel="Membership.Estimate">
+		<estimate-modal></estimate-modal>
+	</modal-slide>
+<router-outlet ></router-outlet>

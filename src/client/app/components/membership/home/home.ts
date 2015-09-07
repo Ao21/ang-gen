@@ -1,6 +1,6 @@
 import {Component, View} from 'angular2/angular2';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
-
+import {Dispatcher} from 'app/services/services';
 @Component({
 	selector: 'membership-home'
 })
@@ -12,4 +12,12 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 })
 
 export class MembershipHome {
+	constructor(public dispatcher: Dispatcher){
+		this.dispatcher = dispatcher;
+		this.dispatcher.publish('Membership','actionBar.hide', null);
+
+	}
+	onDestroy(){
+		this.dispatcher = null;
+	}
 }

@@ -45,12 +45,16 @@ export class ModalSlide {
 	subscribeEvents = () => {
 		this.dispatcher.subscribe(this.channel,'open.modal', this.openModal);
     	this.dispatcher.subscribe(this.channel,'close.modal', this.closeModal);
+		this.dispatcher.subscribe(this.channel,'toggle.modal', this.toggleModal);
 	};
 	openModal = (): void => {
 		this.classMap['md-show'] = true;
 	};
 	closeModal = (): void => {
 		this.classMap['md-show'] = false;
+	};
+	toggleModal = ():void => {
+		this.classMap['md-show'] = !this.classMap['md-show'];
 	};
 	close = (): void =>  {
 		this.dispatcher.publish(this.channel,'close.modal', null)

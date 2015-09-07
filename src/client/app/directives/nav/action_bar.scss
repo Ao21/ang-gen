@@ -1,3 +1,57 @@
-:host {
+@import "../../../styles/variables";
+
+:host, action-bar {
+	position: fixed;
+	top: 0;
+	overflow: hidden;
+	z-index: 1100;
 	
+	height: $navTopHeight;
+	width: 100%;
+	
+	background-color: $yellow;
+	
+	.action-bar__back {
+		box-sizing: border-box;
+		
+    	width: 50px;
+    	height: 100%;
+		
+	    
+		
+		img {
+			width: 25px;
+			margin: 12px 14px;
+		}
+	}
+	
+	
+	.action-bar__titles-container {
+		position: relative;
+		overflow: hidden;
+	}
+	
+	.action-bar__title-container{
+		width: 100%;
+		h3 {
+			margin: 17px 5px 10px;
+			text-align: center;
+  			padding: 0;	
+			line-height: 1;
+			font-size: 16px;
+		}
+	}
+	
+	
+	.action-bar__price {
+		padding: 0 10px 0 10px;
+    	border-left: 1px solid rgba(0, 0, 0, 0.05);
+	    
+		h3 {		
+  		  	margin: 12px 10px;
+  		  	padding: 0;
+		}
+	}
 }
+
+

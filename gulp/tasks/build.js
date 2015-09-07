@@ -42,8 +42,8 @@ gulp.task('copy:deps',function(){
 })
 
 gulp.task('copy:build', function(){
-  return gulp.src(path.app.templates)
-  .pipe(gulp.dest(path.build.basePath));
+  var files =  gulp.src(path.app.templates)
+  return files.pipe(gulp.dest(path.build.basePath));
 });
 
 

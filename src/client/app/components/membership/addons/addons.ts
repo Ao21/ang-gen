@@ -3,13 +3,16 @@
 /*
  *   Imports
  */
-import {Component, View} from 'angular2/angular2';
+import {Component, View, Host, EventEmitter} from 'angular2/angular2';
 import {ModalPopup, ModalSlide} from 'app/directives/modal/modals.module';
+import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 
 @Component({
-	selector: 'addons'
+	selector: 'addons',
+	host: {'actionBarVisible':'actionBarVisible'}
+
 })
 @View({
 
@@ -19,5 +22,15 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 })
 
 export class MembershipAddons {
+
+	constructor(public dispatcher: Dispatcher){
+		this.dispatcher = dispatcher;
+		//Hacky update Actionbar
+		this.dispatcher.publish('Membership','actionBar.update','Choose Your Options');
+
+	}
+	onDestroy(){
+		this.dispatcher = null;
+	}
 
 }

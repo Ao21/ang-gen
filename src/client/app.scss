@@ -6,13 +6,19 @@
 /* endinject */
 /* inject:scss */
 
+@import "styles/animations/_shift.scss";
+
 @import "styles/base/_base.scss";
 
 @import "styles/base/_button.scss";
 
+@import "styles/base/_icons.scss";
+
 @import "styles/base/_input.scss";
 
 @import "styles/base/_type.scss";
+
+@import "styles/helpers/_mixins.scss";
 
 @import "styles/helpers/_responsiveSquare.scss";
 

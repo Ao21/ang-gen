@@ -14,10 +14,14 @@ import {GridAddonItem, GridAddonPopup} from './addons_list/addons.module'
 import {FormCustomRadio, FormAdditionalUser, FormIncrementor, Tabs, Tab} from './forms/forms.modules';
 import {BackgroundImage} from './generic/background_image';
 import {CheckboxButton} from './buttons/checkbox';
-import {ActionBar} from './nav/action_bar';
+import {actionBarInjectables} from './nav/action_bar';
+import {EstimateModal} from './estimate_modal/estimate_modal';
+import {ModalPopup, ModalSlide} from './modal/modals.module';
 
 // global App only directives
 export var appDirectives: Array<any> = [
+	ModalPopup,
+	ModalSlide,
 	FormIncrementor,
 	BackgroundImage,
 	GridAddon,
@@ -28,7 +32,8 @@ export var appDirectives: Array<any> = [
 	CheckboxButton,
 	Tabs,
 	Tab,
-	ActionBar
+	actionBarInjectables,
+	EstimateModal
 	
 
 ];
