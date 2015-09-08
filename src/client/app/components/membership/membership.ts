@@ -42,16 +42,15 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 
 export class Membership {
-	actionBarVisible: any;
+	hideActionBar = true;
 	
 	
 	constructor(public dispatcher: Dispatcher) {
 			this.dispatcher = dispatcher;
-			this.actionBarVisible = {'hidden':false};
 			this.dispatcher.subscribe('Membership','actionBar.hide',this.onShowActionBar)
 	}
 	onShowActionBar = () => {
-		this.actionBarVisible = {'hidden':true};
+		this.hideActionBar = false;
 	}
 	
 }

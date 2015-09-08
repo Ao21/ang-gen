@@ -10,6 +10,7 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 @View({
 	templateUrl: 'app/components/membership/confirmation/confirmation.html',
 	styleUrls: ['app/components/membership/confirmation/confirmation.css'],
+	directives: [appDirectives]
 })
 
 export class MembershipConfirmation {

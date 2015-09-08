@@ -1,7 +1,10 @@
 .custom-navbar {
     background-color: $yellow;
     border: 0px solid $black;
-	
+	.navbar-brand>img {
+        height: 32px;
+		margin-top: -5px;
+      }
     
     @media (max-width:767px) {
       .navbar-toggle .icon-bar {
@@ -37,9 +40,6 @@
         // left: 50%;
         // transform: translateX(-50%);
       //}
-      .navbar-brand>img {
-        height: 32px;
-		margin-top: -5px;
-      }
+      
     }
 }

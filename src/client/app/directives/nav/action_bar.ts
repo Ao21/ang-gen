@@ -25,7 +25,7 @@ export var initActionBarState: ActionBarState = {
 	]
 }
 
-export var initState = {title: 'Title',image: '',bkColor: '',intervalColor: ''}
+export var initState = {title: '',image: '',bkColor: '',intervalColor: ''}
 
 @Component({
 	selector: 'action-bar',
@@ -66,8 +66,9 @@ export class ActionBar {
 	
 	
 	updateState= (title) =>{
+		console.log('hi');
 		// TODO: Connect this to a real store
-		initState=  {title: title, image: '',bkColor: '',intervalColor: ''}
+		initState.title = title;
 		
 	}
 	

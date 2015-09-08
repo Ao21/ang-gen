@@ -1,8 +1,18 @@
-import {Component, View, LifecycleEvent} from 'angular2/angular2';
+import {Component, View, LifecycleEvent, Attribute} from 'angular2/angular2';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
+import {isPresent} from 'angular2/src/facade/lang';
+import {NumberWrapper} from 'angular2/src/facade/lang';
+
 
 @Component({
 	selector: 'switch',
+	properties: ['checked', 'disabled'],
+	host: {
+		'role': 'checkbox',
+		'[attr.aria-checked]': 'checked',
+		'[attr.aria-disabled]': 'disabled_',
+		'(keydown)': 'onKeydown($event)',
+	}
 })
 
 @View({
@@ -11,8 +21,20 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 })
 
 export class Switch {
-
-	constructor() {
-			
+	checked: boolean;
+	tabindex: number;
+	disabled: boolean;
+	
+	constructor(@Attribute('tabindex') tabindex: string) {
+		this.tabindex = isPresent(tabindex) ? NumberWrapper.parseInt(tabindex, 10) : 0;
+		this.disabled = false
+	}
+	
+	 toggle(event) {
+		if (this.disabled) {
+			event.stopPropagation();
+			return;
+		}
+	this.checked = !this.checked;
 	}
 }

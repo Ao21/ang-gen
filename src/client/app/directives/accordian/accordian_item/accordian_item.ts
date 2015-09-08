@@ -5,7 +5,7 @@ import {Component, View} from 'angular2/angular2';
 })
 
 @View({
-	templateUrl: 'app/directives/accordian_item/accordian_item.html',
+	templateUrl: 'app/directives/accordian/accordian_item/accordian_item.html',
 	
 })
 export class AccordianItem {
