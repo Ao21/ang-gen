@@ -67,6 +67,7 @@ var paths = {
 	build: {
 		basePath:		'./build/',
 		client:			'./build/app/',
+		css:			'./build/**/*.css',
 		html:			'./build/**/*.html',
 		libs:			'./build/libs/',
 		js:				'./build/**/*.js',

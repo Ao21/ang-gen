@@ -1,11 +1,11 @@
 import {Component, View, LifecycleEvent, ElementRef} from 'angular2/angular2';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control} from "angular2/angular2";
 import {Dispatcher} from 'app/services/services';
-import {OnActivate} from 'angular2/router';
+import {OnActivate, OnDeactivate} from 'angular2/router';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 import {HorizontalScroller, HorizontalScrollerRef, HorizontalScrollerConfig} from 'app/directives/scroller/horizontal_scroller';
-import {DefaultUserPanel} from './panels/panels.modules'
+import {DefaultUserPanel, AdditionalUserPanel} from './panels/panels.modules'
 
 
 import {ModalSlide} from 'app/directives/modal/modals.module';
@@ -47,8 +47,7 @@ export class MembershipUserDetails  implements OnActivate{
 		this.count = 0;
 		
 		this.initialState = [
-			{name:'defaultUser',component:DefaultUserPanel},
-			{name:'defaultUser2',component:DefaultUserPanel},
+			{name:'defaultUser',component:DefaultUserPanel}
 		]
 	}
 	
@@ -68,7 +67,7 @@ export class MembershipUserDetails  implements OnActivate{
 
 
 	addAdditionalUser = () => {
-		this.horizontalScroller.loadComponent(DefaultUserPanel,'Form-'+this.count)
+		this.horizontalScroller.loadComponent(AdditionalUserPanel,'Form-'+this.count)
 		.then(ref => {
 			this.horizontalScroller.goToName('Form-'+this.count);
 			this.horizontalRefs.push(ref);
@@ -79,13 +78,16 @@ export class MembershipUserDetails  implements OnActivate{
 	}
 	
 	goTo = () => {
-		this.horizontalScroller.goToIndex(1);
+		this.horizontalScroller.goToIndex(0);
 		//this.horizontalScroller.goToEl('Form-2');
 	}
 	checkControls = () => {
 	}
-	onDestroy() {
+	onDeactivate(){
 		this.horizontalRefs.length = 0;
 		this.horizontalScroller.array.length = 0;
+	}
+	onDestroy() {
+		
 	}
 }

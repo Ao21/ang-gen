@@ -1,6 +1,6 @@
 @import "../../../../styles/variables";
 
-:host{
+:host, form-incrementor{
 	position: relative;
 	display: flex;
 	min-height: 45px;

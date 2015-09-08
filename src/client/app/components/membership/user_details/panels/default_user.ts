@@ -1,5 +1,3 @@
-/// <reference path="../../../../../../../typings/tsd.d.ts" />
-
 import {Component, View, LifecycleEvent} from 'angular2/angular2';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control} from "angular2/angular2";
 import {Dispatcher} from 'app/services/services';
@@ -16,8 +14,8 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @View({
 	directives: [ angularDirectives, appDirectives, FORM_DIRECTIVES ],
-	templateUrl : './app/components/membership/user_details/panels/defaultUser.html',
-	styleUrls: ['./app/components/membership/user_details/panels/defaultUser.css']
+	templateUrl : './app/components/membership/user_details/panels/default_user.html',
+	styleUrls: ['./app/components/membership/user_details/panels/default_user.css']
 })
 
 export class DefaultUserPanel {
@@ -25,6 +23,7 @@ export class DefaultUserPanel {
 	dispatcher: Dispatcher;
 
 	constructor(dispatcher: Dispatcher,fb: FormBuilder){
+		console.log(this);
 		this.dispatcher = dispatcher;
 		
 		
@@ -35,6 +34,10 @@ export class DefaultUserPanel {
 	}
 
 	checkControls = () => {
+	}
+	
+	onChange() {
+		console.log('hi');
 	}
 
 	onDestroy() {

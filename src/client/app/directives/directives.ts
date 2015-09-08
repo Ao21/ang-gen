@@ -11,11 +11,10 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {GridAddon} from './addons_list/grid/addon_grid'
 import {GridAddonItem, GridAddonPopup} from './addons_list/addons.module'
-import {FormCustomRadio, FormAdditionalUser, FormIncrementor, Tabs, Tab} from './forms/forms.modules';
+import {FormCustomRadio, FormIncrementor, Tabs, Tab, FormCustomRadioContainer} from './forms/forms.modules';
 import {BackgroundImage} from './generic/background_image';
 import {CheckboxButton} from './buttons/checkbox';
 import {actionBarInjectables} from './nav/action_bar';
-import {EstimateModal} from './estimate_modal/estimate_modal';
 import {ModalPopup, ModalSlide} from './modal/modals.module';
 
 // global App only directives
@@ -28,12 +27,11 @@ export var appDirectives: Array<any> = [
 	GridAddonItem,
 	GridAddonPopup,
 	FormCustomRadio,
-	FormAdditionalUser,
+	FormCustomRadioContainer,
 	CheckboxButton,
 	Tabs,
 	Tab,
 	actionBarInjectables,
-	EstimateModal
 	
 
 ];

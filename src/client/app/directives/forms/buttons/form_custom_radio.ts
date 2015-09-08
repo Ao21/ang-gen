@@ -1,15 +1,11 @@
 import { Inject, Attribute, Component, View, NgFor, ElementRef, NgClass, FORM_DIRECTIVES, EventEmitter, LifecycleEvent } from 'angular2/angular2';
-import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 
 @Component({
     selector: 'form-custom-radio',
 	properties: ['group','value','icon', 'checked', 'classMap'],
-	bindings: [
-
-	],
-	lifecycle: [LifecycleEvent.onDestroy]
+	events: ['update']
 })
 
 @View({
@@ -19,35 +15,38 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 })
 
 
+
 export class FormCustomRadio {
 	checked: string;
 	group: string;
+	active: boolean;
 	dispatcher: any;
+	update = new EventEmitter();
 
 	constructor(
+		public el: ElementRef,
 		@Attribute('checked') checked: Boolean, 
 		@Attribute('group') group: string,
-		@Attribute('class') public initialClasses: any,
-		dispatcher: Dispatcher ) {
-		this.dispatcher = dispatcher;
-		this.group = group;
-		this.dispatcher.subscribe('form.radio', this.group + '.update', this.remove);
-		if (checked) {
-			this.check();
+		@Attribute('class') public initialClasses: any ) 
+		{
+			this.group = group;
+			this.active = false;
+			
+			if (checked) {
+				this.check();
+			}
+			
 		}
-	}
 
-	check = ($event?) => {
-		this.dispatcher.publish('form.radio', this.group + '.update', null);
-		this.initialClasses = {'active': true};
-		this.checked = 'checked';
+
+	check() {
+		//Hack until they sort out querying
+		$(this.el.nativeElement).parent().find('.button__radio--div').removeClass('active')
+			
+		this.initialClasses = {'active': !this.active};
+		this.checked == 'checked' ? 'checked' : '';
+		this.update.next('updated');
+
+
 	};
-	remove = () => {
-		this.checked = '';
-		this.initialClasses = { 'active': false };
-	};
-	onDestroy() {
-		this.dispatcher.unsubscribe('form.radio', this.group + '.update');
-		this.dispatcher = null;
-	}
 }

@@ -2,6 +2,7 @@ import {Component, View, EventEmitter} from 'angular2/angular2';
 import {RouteConfig, ROUTER_DIRECTIVES, RouterOutlet} from 'angular2/router';
 import {NgIf} from 'angular2/angular2'
 import {Dispatcher} from 'app/services/services';
+import {EstimateModal} from 'app/components/membership/estimate_modal/estimate_modal';
 
 import {
 	MembershipHome,
@@ -34,7 +35,7 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 
 @View({
-	directives: [ROUTER_DIRECTIVES, angularDirectives, appDirectives, RouterOutlet, NgIf],
+	directives: [ROUTER_DIRECTIVES, angularDirectives, appDirectives, RouterOutlet, NgIf, EstimateModal],
 	templateUrl : './app/components/membership/membership.html',
 	styleUrls:['./app/components/membership/membership.css']
 })

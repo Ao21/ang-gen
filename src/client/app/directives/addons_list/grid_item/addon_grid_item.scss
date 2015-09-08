@@ -1,6 +1,6 @@
 @import "../../../../styles/variables";
 
-:host {
+:host, grid-addon-item {
 	// display: block;
 	
 	&.default {

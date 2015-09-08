@@ -8,8 +8,8 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 })
 
 @View({
-	templateUrl: 'app/components/membership/confirmation.html',
-	styleUrls: ['app/components/membership/confirmation.css'],
+	templateUrl: 'app/components/membership/confirmation/confirmation.html',
+	styleUrls: ['app/components/membership/confirmation/confirmation.css'],
 })
 
 export class MembershipConfirmation {

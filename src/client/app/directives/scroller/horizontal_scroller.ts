@@ -50,6 +50,7 @@ export class HorizontalScroller {
 				// Reset Position if already loaded
 				DOM.setStyle(DOM.query('horizontal-scroller-content'), 'transform', `translateX(0px)`);
 
+
 			})
 	}
     loadComponent = (type: Type, name?: string): any => {
@@ -64,11 +65,12 @@ export class HorizontalScroller {
 			
 			
 			// Relative Positioning Styling - Float the Elements Next to each other
-			console.log(containerEl.offsetWidth)
-			console.log(this.array.length)
 			var containerWidth = containerEl.offsetWidth * this.array.length + 1;
+			
 			DOM.setStyle(DOM.parentElement(contentEl), 'width', containerWidth + 'px');
+			DOM.setStyle(DOM.parentElement(contentEl), 'height', '');
 			DOM.setStyle(contentEl, 'width', this.containerWidth + 'px');
+			
 			// Make the Element Visible after the Container's been widened
 			DOM.setStyle(contentEl, 'display', 'block');
 			
@@ -85,14 +87,12 @@ export class HorizontalScroller {
 	}
 	
 	goToName(name:string) {
+
 		var el: any = _.find(this.array.contents,{name:name})
+
 		this.horizontalRef.containerRef.instance.move(el, this.containerWidth);
 	}
 	
-	
-	
-
-
 }
 
 
@@ -227,6 +227,8 @@ class HorizontalScrollerContainer {
 	
 	move(el:any, containerWidth:number){
 		let index = el.index * containerWidth;
+		let height = el._contentRef.location.nativeElement.offsetHeight
+		DOM.setStyle(this.contentRef.nativeElement,'height',`${height}px`);
 		DOM.setStyle(this.contentRef.nativeElement, 'transform', `translateX(-${index}px)`);
 	}
 	

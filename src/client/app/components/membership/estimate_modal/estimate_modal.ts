@@ -10,8 +10,8 @@ import {Dispatcher} from 'app/services/services';
 })
 
 @View({
-	templateUrl: 'app/directives/estimate_modal/estimate_modal.html',
-	styleUrls: ['app/directives/estimate_modal/estimate_modal.css'],
+	templateUrl: 'app/components/membership/estimate_modal/estimate_modal.html',
+	styleUrls: ['app/components/membership/estimate_modal/estimate_modal.css'],
 
 })
 

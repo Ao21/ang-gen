@@ -1,4 +1,5 @@
 import {Component, View, LifecycleEvent} from 'angular2/angular2';
+import {Router} from 'angular2/router';
 import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
@@ -13,13 +14,16 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 })
 
 export class MembershipTestimonials {
-
-	constructor(public dispatcher: Dispatcher) {
-		this.dispatcher = dispatcher;
+	timeout: any;
+	
+	constructor(router: Router) {
+		this.timeout = setTimeout(function(){
+			router.navigate('/membership/price-breakdown')
+		},5000)
 		
 	}
 
 	onDestroy(){
-		this.dispatcher = null;
+		clearTimeout(this.timeout);
 	}
 }

@@ -1,4 +1,4 @@
-:host{
+:host, horizontal-scroller {
 	width:100%;
 	overflow: hidden;
 	float: left;
@@ -8,9 +8,8 @@
 		position:relative;
 		float:left;
 		overflow: hidden;
-		
-		
 	}
+	
 	
 	horizontal-scroller-content {
 		float: left;
