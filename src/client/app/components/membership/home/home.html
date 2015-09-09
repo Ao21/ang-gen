@@ -7,19 +7,19 @@
 			</div>
 			<div class="row controls">
 				<div class="col-xs-12 col-md-3">
-					<form-incrementor min=0 max=2 image="images/icons/adult.png" ></form-incrementor>
+					<form-incrementor min=0 max=2 image="images/icons/adult.png" (update)="updateAdults($event)" ></form-incrementor>
 					</div>
 				<div class="col-xs-12 col-md-3">				
-					<form-incrementor min=0 max=6 image="images/icons/child.png"></form-incrementor>
+					<form-incrementor min=0 max=6 image="images/icons/child.png" (update)="updateChildren($event)"></form-incrementor>
 				</div>
 				<div class="col-xs-12 col-md-3">
-					<checkbox class="checkbox--header">
+					<checkbox (update)="updateRescuePlus($event)" class="checkbox--header">
 						<h3>Add Rescue Plus</h3>
 					</checkbox>
 				</div>
 				<div class="col-xs-12 col-md-3">
 					<div class="btn btn-default btn-block" [router-link]="['/membership/addons']" >
-						<h3>$8.25 per month</h3>
+						<h3>${{state.priceEstimate}} per month</h3>
 						<p><strong>Join the AA</strong></p>
 						</div>
 				</div>

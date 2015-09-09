@@ -6,7 +6,7 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 
 @Component({
-	selector: 'userDetails-defaultUser',
+	selector: 'userDetails-child-user',
 	viewBindings: [FormBuilder],
 	bindings: [],
 	lifecycle: [LifecycleEvent.onDestroy]
@@ -14,34 +14,19 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @View({
 	directives: [ angularDirectives, appDirectives, FORM_DIRECTIVES ],
-	templateUrl : './app/components/membership/user_details/panels/default_user.html',
-	styleUrls: ['./app/components/membership/user_details/panels/default_user.css']
+	templateUrl : './app/components/membership/user_details/panels/child_user.html',
+	styleUrls: ['./app/components/membership/user_details/panels/child_user.css']
 })
 
-export class DefaultUserPanel {
+export class ChildUserPanel {
 	form: ControlGroup;
 	dispatcher: Dispatcher;
 
 	constructor(dispatcher: Dispatcher,fb: FormBuilder){
-		console.log(this);
 		this.dispatcher = dispatcher;
 		
-		
-		this.form = fb.group({
-			"email": [""]
-		});
-		this.dispatcher.subscribe('form.radio', 'gender' + '.update', this.checkControls);
 	}
-
-	checkControls = () => {
-	}
-	
-	onChange() {
-		// console.log('hi');
-	}
-
 	onDestroy() {
-		this.dispatcher.unsubscribe('form.radio', 'gender' + '.update');
 	}
 
 }

@@ -1,10 +1,11 @@
-import {Component, View, Attribute} from 'angular2/angular2';
+import {Component, View, Attribute, EventEmitter} from 'angular2/angular2';
 import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @Component({
 	selector: 'form-incrementor',
-	properties: ['image','index']
+	properties: ['image','index'],
+	events: ['update']
 })
 
 @View({
@@ -15,9 +16,9 @@ export class FormIncrementor {
 	index: number;
 	min: number;
 	max: number;
+	update = new EventEmitter;
 	
 	constructor(
-		public dispatcher: Dispatcher, 
 		@Attribute('min') min: number,
 		@Attribute('max') max: number
 		)
@@ -27,13 +28,16 @@ export class FormIncrementor {
 		this.index = 0;
 	}
 	minus() {
+		
 		if(this.index > this.min){
 			this.index--;
+			this.update.next(this.index);
 		}
 	}
 	plus() {
 		if(this.index < this.max){
 			this.index++;
+			this.update.next(this.index);
 		}
 	}
 }

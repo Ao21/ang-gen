@@ -16,6 +16,6 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 export class ActionBarTest {
 	constructor(){
-		console.log('loaded')
+		//console.log('loaded')
 	}
 }

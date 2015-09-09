@@ -16,11 +16,11 @@ export class MembershipPriceBreakdown {
 
 	constructor(public dispatcher: Dispatcher) {
 		this.dispatcher = dispatcher;
-			
+		this.dispatcher.publish('Membership','actionBar.togglePriceEstimateIcon', true)
 	}
 	
 	onUpdatedPaymentFrequency() {
-		console.log('updated frequency!')
+		//console.log('updated frequency!')
 	}
 
 	onDestroy(){

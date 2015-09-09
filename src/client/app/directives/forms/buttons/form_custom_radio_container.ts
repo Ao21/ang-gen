@@ -19,6 +19,6 @@ export class FormCustomRadioContainer {
 	}
 	
 	onChange() {
-		console.log('changed');
+		//console.log('changed');
 	}
 }

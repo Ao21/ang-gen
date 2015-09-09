@@ -1,13 +1,14 @@
 :host{
 	float: left;
+	form{
+		margin-bottom: 0;
+	}
 	.gender__selector {
 		display: block;
 		form-custom-radio {
 			display: inline-block;
 			width: 49%;
 			height: 50px;
-			
-			
 		}
 	}
 }

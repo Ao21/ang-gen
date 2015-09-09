@@ -7,10 +7,10 @@
 		<div class="action-bar__title-container animation-shift-current">
 			<div class="action-bar__title animation-shift-el"><h3>{{state.title}}</h3></div>
 		</div>
-
 	</div>
-	<div class="action-bar__price l_flex_equal" (^click)="togglePriceEstimate()">
-		<h3 class="estimate icon triangle--down">$305</h3>
+	
+	<div *ng-if="priceEstimateIsVisible == true" class="action-bar__price l_flex_equal" (^click)="togglePriceEstimate()">
+		<h3 class="estimate icon triangle--down">${{mState.priceEstimate}}</h3>
 	</div>
 </div>
 

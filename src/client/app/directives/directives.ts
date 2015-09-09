@@ -14,7 +14,7 @@ import {GridAddonItem, GridAddonPopup} from './addons_list/addons.module'
 import {FormCustomRadio, FormIncrementor, Tabs, Tab, FormCustomRadioContainer, Switch} from './forms/forms.modules';
 import {BackgroundImage} from './generic/background_image';
 import {CheckboxButton} from './buttons/checkbox';
-import {actionBarInjectables} from './nav/action_bar';
+import {ActionBar} from './nav/action_bar';
 import {ModalPopup, ModalSlide} from './modal/modals.module';
 import {Accordian, AccordianItem} from './accordian/accordian.modules';
 
@@ -33,7 +33,7 @@ export var appDirectives: Array<any> = [
 	CheckboxButton,
 	Tabs,
 	Tab,
-	actionBarInjectables,
+	ActionBar,
 	Accordian,
 	AccordianItem
 	

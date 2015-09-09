@@ -37,7 +37,6 @@ export class Tabs {
 		this.tabs.forEach((tab) => {
 		tab.active = false;
 		});
-		console.log(i)
 		this.selected = i;
 		tab.active = true;
 		this.selectedTab.next(tab);

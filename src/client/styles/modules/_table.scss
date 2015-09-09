@@ -23,3 +23,15 @@ table.simple {
 		text-align: right;
 	}
 }
+
+.table__flex--simple {
+	border: $tableBorder;
+	margin-bottom: 6px;
+	.cell {
+		height: 35px;
+		padding: 7px;
+		img {
+			height: 100%;
+		}
+	}
+}

@@ -1,15 +1,20 @@
 :host {
 	.paymentFrequency{
 		width: 100%;
-		float: left;
+		
 		margin: 20px 0;	
+	}
+	
+	
+	.push--top {
+		margin-top: 12px;
 	}
 	form {
 		clear: both;
 	}
 	
 	.form--nolabel {
-		margin: 20px 0;
+		margin: 20px 0 0px;
 	}
 	
 	.credit-details {

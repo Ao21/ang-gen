@@ -14,8 +14,8 @@
   "files": [
     "src\\client\\app\\bootstrap.ts",
     "src\\client\\app\\init.ts",
-    "src\\client\\app\\components\\app.ts",
     "src\\client\\app\\common\\store.ts",
+    "src\\client\\app\\components\\app.ts",
     "src\\client\\app\\core\\core.spec.ts",
     "src\\client\\app\\core\\core.ts",
     "src\\client\\app\\core\\location.ts",
@@ -51,8 +51,8 @@
     "src\\client\\app\\components\\membership\\estimate_modal\\estimate_modal.ts",
     "src\\client\\app\\components\\membership\\home\\home.ts",
     "src\\client\\app\\components\\membership\\login\\login.ts",
-    "src\\client\\app\\components\\membership\\price_breakdown\\price_breakdown.ts",
     "src\\client\\app\\components\\membership\\payment_options\\payment_options.ts",
+    "src\\client\\app\\components\\membership\\price_breakdown\\price_breakdown.ts",
     "src\\client\\app\\components\\membership\\testimonials\\testimonials.ts",
     "src\\client\\app\\components\\membership\\user_details\\user_details.ts",
     "src\\client\\app\\components\\test\\accordian\\accordian_test.ts",
@@ -61,8 +61,8 @@
     "src\\client\\app\\components\\test\\home\\home.ts",
     "src\\client\\app\\components\\test\\incrementor\\incrementor_test.ts",
     "src\\client\\app\\components\\test\\scroller\\horizontalScroll_test.ts",
-    "src\\client\\app\\components\\test\\switcher\\switch_test.ts",
     "src\\client\\app\\components\\test\\tabs\\tabs_test.ts",
+    "src\\client\\app\\components\\test\\switcher\\switch_test.ts",
     "src\\client\\app\\directives\\accordian\\accordian_item\\accordian_item.ts",
     "src\\client\\app\\directives\\addons_list\\grid\\addon_grid.ts",
     "src\\client\\app\\directives\\addons_list\\grid_item\\addon_grid_item.ts",
@@ -75,6 +75,7 @@
     "src\\client\\app\\directives\\forms\\tabs\\form_tab.ts",
     "src\\client\\app\\directives\\forms\\tabs\\form_tabs.ts",
     "src\\client\\app\\components\\membership\\user_details\\panels\\additional_user.ts",
+    "src\\client\\app\\components\\membership\\user_details\\panels\\child_user.ts",
     "src\\client\\app\\components\\membership\\user_details\\panels\\default_user.ts",
     "src\\client\\app\\components\\membership\\user_details\\panels\\panels.modules.ts"
   ]

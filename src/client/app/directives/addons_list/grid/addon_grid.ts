@@ -1,6 +1,6 @@
-import {Inject, Component, View, ViewEncapsulation, NgFor, NgIf, ElementRef,LifecycleEvent, EventEmitter} from 'angular2/angular2';
+import {Inject, Component, View, Host, ViewEncapsulation, NgFor, NgIf, ElementRef,LifecycleEvent, EventEmitter} from 'angular2/angular2';
 import {GridAddonItem, GridAddonPopup} from 'app/directives/addons_list/addons.module';
-
+import {MembershipStore, MembershipState, MembershipService} from 'app/services/membership.service';
 import {CheckboxButton} from 'app/directives/buttons/checkbox'
 import {Dispatcher} from 'app/services/services';
 import {AddonService} from 'app/services/addon.service';
@@ -28,29 +28,32 @@ import {FilterPipe} from 'app/pipes/filter.pipe';
 
 export class GridAddon {
 	state: any;
+	membershipState: any;
 	initialState: any;
 	dispatcher: any;
 	addonService: any;
 	selectedAddon: any;
 	initialFilter: any;
+	rescueMeChecked: boolean;
 
 
 	constructor(
 		addonService: AddonService, 
-		public elRef:ElementRef,
-		dispatcher: Dispatcher
+		dispatcher: Dispatcher,
+		membershipStore: MembershipStore
 		) {
 			
 		this.addonService = addonService;
 		this.dispatcher = dispatcher;
 		
 		this.state = addonService.get('addons');
-		this.initialState = _.clone(this.state, true);
+		this.membershipState = membershipStore.get();
 		
-		this.dispatcher.subscribe('addons','group.all', this.onAddRescuePlus);
-		this.dispatcher.subscribe('addons','group.original', this.onRemoveRescuePlus);
+		this.rescueMeChecked = this.membershipState.addons;
+	
 		
 		this.initialFilter = {'default':{'pkg':'default'},'rescueMe':{'pkg':'rescuePlus'}}
+		this.onUpdateCheckbox(this.membershipState.addons);
 	}
 	
 	onAddRescuePlus = () => {
@@ -63,22 +66,16 @@ export class GridAddon {
 	
 	onUpdateCheckbox(checked){
 		if(checked) {
-			this.addRescuePlus();
+			this.onAddRescuePlus();
 		}
 		else {
-			this.removeRescuePlus();
+			this.onRemoveRescuePlus();
 		}
 	}
-	addRescuePlus = () => {
-		this.dispatcher.publish('addons','group.all', null);
-	}
-	
-	removeRescuePlus = () => {
-		this.dispatcher.publish('addons','group.original', null);
-	}
+
 	
 	onDestroy() {
-		this.dispatcher.unsubscribe('addons', 'group.all');
+
 		this.dispatcher = null;
 	}
 }

@@ -1,5 +1,6 @@
-import {Component, View, LifecycleEvent, NgIf, NgFor, NgClass, EventEmitter} from 'angular2/angular2';
+import {Component, View, LifecycleEvent, NgIf, NgFor, NgClass, EventEmitter, Host} from 'angular2/angular2';
 import {Injectable, Inject, bind} from 'angular2/angular2';
+import {MembershipStore, MembershipState} from 'app/services/membership.service';
 import {Dispatcher} from 'app/services/services';
 import {Router, Location} from 'angular2/router';
 
@@ -26,11 +27,13 @@ export var initActionBarState: ActionBarState = {
 }
 
 export var initState = {title: '',image: '',bkColor: '',intervalColor: ''}
+export var priceEstimateIsVisible = false;
 
 @Component({
 	selector: 'action-bar',
 	lifecycle: [LifecycleEvent.onDestroy],
-	events: ['toggleOpenPriceEstimate : toggleopenpriceestimate']
+	events: ['toggleOpenPriceEstimate : toggleopenpriceestimate'],
+	properties:['priceEstimateIsVisible']
 })
 
 @View({
@@ -42,34 +45,40 @@ export var initState = {title: '',image: '',bkColor: '',intervalColor: ''}
 @Injectable()
 export class ActionBar {
 	state: ActionBarItem;
-	router: Router;
-	location: Location;
 	nextStateItem: ActionBarItem;
 	toggleOpenPriceEstimate: EventEmitter;
+	priceEstimateIsVisible: boolean;
+	mState: MembershipState;
+	
 
 
 	constructor(
 		public dispatcher: Dispatcher,
-		router: Router,
-		location: Location
+		public router: Router,
+		public location: Location,
+		public store: MembershipStore
 		) {
 			this.toggleOpenPriceEstimate = new EventEmitter;
-			
-			this.dispatcher = dispatcher;
-			this.router = router;
-			this.location = location;
 			this.state = initState;
 			
+			this.priceEstimateIsVisible = priceEstimateIsVisible;
+			this.mState = store.get();
+			
 			dispatcher.subscribe('Membership','actionBar.update', this.updateState)
+			dispatcher.subscribe('Membership','actionBar.togglePriceEstimateIcon', this.togglePriceEstimateIcon)
 			
 	}
 	
 	
 	updateState= (title) =>{
-		console.log('hi');
 		// TODO: Connect this to a real store
 		initState.title = title;
-		
+	}
+	
+	togglePriceEstimateIcon = (toggle) => {
+		//hack
+		priceEstimateIsVisible = toggle ? toggle : !priceEstimateIsVisible;
+		this.priceEstimateIsVisible  = priceEstimateIsVisible;
 	}
 	
 	navigateBack(){

@@ -1,5 +1,9 @@
-.default_container{
+.container--fs{
 	background-color: $bkColor;
 	color: $defaultTextColor;
 	min-height: calc(100vh - 50px);
+}
+
+.container--default {
+	margin-bottom: 6px;
 }
