@@ -4,31 +4,6 @@ import {MembershipStore, MembershipState} from 'app/services/membership.service'
 import {Dispatcher} from 'app/services/services';
 import {Router, Location} from 'angular2/router';
 
-
-export interface ActionBarItem {
-	title: string;
-	image: string;
-	bkColor: string;
-	intervalColor: string;
-}
-
-
-
-interface ActionBarState {
-	states: Array<ActionBarItem>
-}
-
-export var initActionBarState: ActionBarState = {
-	states: [
-		{title: 'Title',image: '',bkColor: '',intervalColor: ''},
-		{title: 'Title2',image: '',bkColor: '',intervalColor: ''},
-		{title: 'Title3',image: '',bkColor: '',intervalColor: ''}
-	]
-}
-
-export var initState = {title: '',image: '',bkColor: '',intervalColor: ''}
-export var priceEstimateIsVisible = false;
-
 @Component({
 	selector: 'action-bar',
 	lifecycle: [LifecycleEvent.onDestroy],
@@ -44,13 +19,8 @@ export var priceEstimateIsVisible = false;
 
 @Injectable()
 export class ActionBar {
-	state: ActionBarItem;
-	nextStateItem: ActionBarItem;
 	toggleOpenPriceEstimate: EventEmitter;
-	priceEstimateIsVisible: boolean;
-	mState: MembershipState;
-	
-
+	state: MembershipState;
 
 	constructor(
 		public dispatcher: Dispatcher,
@@ -59,26 +29,13 @@ export class ActionBar {
 		public store: MembershipStore
 		) {
 			this.toggleOpenPriceEstimate = new EventEmitter;
-			this.state = initState;
 			
-			this.priceEstimateIsVisible = priceEstimateIsVisible;
-			this.mState = store.get();
-			
-			dispatcher.subscribe('Membership','actionBar.update', this.updateState)
-			dispatcher.subscribe('Membership','actionBar.togglePriceEstimateIcon', this.togglePriceEstimateIcon)
-			
+			this.state = store.get();
+			this.activate();
 	}
 	
-	
-	updateState= (title) =>{
-		// TODO: Connect this to a real store
-		initState.title = title;
-	}
-	
-	togglePriceEstimateIcon = (toggle) => {
-		//hack
-		priceEstimateIsVisible = toggle ? toggle : !priceEstimateIsVisible;
-		this.priceEstimateIsVisible  = priceEstimateIsVisible;
+	activate() {
+		this.dispatcher.subscribe('Membership.state','is-updated.state', (_state) => {this.state = _state})
 	}
 	
 	navigateBack(){
@@ -91,12 +48,10 @@ export class ActionBar {
 		this.dispatcher.publish('Membership.Estimate','toggle.modal',null);
 	}
 		
-	
 	onDestroy(): void{
-		//this.dispatcher = null;
+		this.dispatcher = null;
 	}
 }
-
 
 // export our injectables for this module
 export var actionBarInjectables: Array<any> = [

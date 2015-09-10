@@ -1,8 +1,9 @@
 import {Component, View, Host} from 'angular2/angular2';
+import {OnActivate} from 'angular2/router';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 import {Dispatcher} from 'app/services/services';
 
-import {MembershipStore, MembershipState, MembershipService} from 'app/services/membership.service';
+import {MembershipStore, MembershipState} from 'app/services/membership.service';
 
 
 @Component({
@@ -19,15 +20,16 @@ import {MembershipStore, MembershipState, MembershipService} from 'app/services/
 export class MembershipHome {
 	state: MembershipState;
 	config: any;
+	rescueMeChecked: boolean;
 	
-	constructor(public dispatcher: Dispatcher, public store: MembershipStore, @Host() membershipService: MembershipService){
-		this.dispatcher = dispatcher;
+	constructor(public dispatcher: Dispatcher, public store: MembershipStore){
+		this.activate();
+	}
+	
+	activate() {
 		this.state = this.store.get();
-		this.config = membershipService.get();
-		
 		this.dispatcher.publish('Membership','actionBar.hide', null);
-		
-		this.state.priceEstimate = this.config.defaultPrices.membership; 
+		this.dispatcher.subscribe('Membership.state','is-updated.state', (state) => { this.state = state });
 	}
 	
 	updateAdults(count) {
@@ -41,8 +43,7 @@ export class MembershipHome {
 	}
 	
 	updateRescuePlus(toggle){
-		var _state  = {priceEstimate : toggle ? this.config.defaultPrices.membership + this.config.defaultPrices.rescueme : this.config.defaultPrices.membership};
-		_state['addons'] = true;
+		var _state  = {addons:toggle};
 		this.dispatcher.publish('Membership.state','update.state', _state);
 	}
 	onDestroy(){

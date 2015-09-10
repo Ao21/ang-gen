@@ -28,7 +28,6 @@ export class Modal {
 
 	}
 
-
 	open(
 		type: Type,
 		elementRef: ElementRef,

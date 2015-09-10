@@ -1,6 +1,6 @@
 import {Inject, Component, View, Host, ViewEncapsulation, NgFor, NgIf, ElementRef,LifecycleEvent, EventEmitter} from 'angular2/angular2';
 import {GridAddonItem, GridAddonPopup} from 'app/directives/addons_list/addons.module';
-import {MembershipStore, MembershipState, MembershipService} from 'app/services/membership.service';
+import {MembershipStore, MembershipState} from 'app/services/membership.service';
 import {CheckboxButton} from 'app/directives/buttons/checkbox'
 import {Dispatcher} from 'app/services/services';
 import {AddonService} from 'app/services/addon.service';
@@ -10,13 +10,7 @@ import {FilterPipe} from 'app/pipes/filter.pipe';
 @Component({
 	selector: 'grid-addon',
 	properties: ['title'],
-	bindings: [
-		
-	],
 	lifecycle: [LifecycleEvent.onDestroy],
-
-	
-
 })
 
 @View({
@@ -30,52 +24,49 @@ export class GridAddon {
 	state: any;
 	membershipState: any;
 	initialState: any;
-	dispatcher: any;
-	addonService: any;
 	selectedAddon: any;
 	initialFilter: any;
 	rescueMeChecked: boolean;
 
 
 	constructor(
-		addonService: AddonService, 
-		dispatcher: Dispatcher,
-		membershipStore: MembershipStore
+		public addonService: AddonService, 
+		public dispatcher: Dispatcher,
+		private membershipStore: MembershipStore
 		) {
-			
-		this.addonService = addonService;
-		this.dispatcher = dispatcher;
-		
-		this.state = addonService.get('addons');
-		this.membershipState = membershipStore.get();
-		
-		this.rescueMeChecked = this.membershipState.addons;
+			this.state = addonService.get('addons');
+			this.membershipState = membershipStore.get();
+			this.rescueMeChecked = this.membershipState.addons;
+			this.initialFilter = {'default':{'pkg':'default'},'rescueMe':{'pkg':'rescuePlus'}}
+			this.activate();
+	}
 	
-		
-		this.initialFilter = {'default':{'pkg':'default'},'rescueMe':{'pkg':'rescuePlus'}}
+	activate() {
 		this.onUpdateCheckbox(this.membershipState.addons);
-	}
+	};
 	
-	onAddRescuePlus = () => {
+	addRescuePlus = () => {
+		var _state  = {addons:true};
+		this.dispatcher.publish('Membership.state','update.state', _state);
 		this.initialFilter = {'default':{'*':'*'},'rescueMe':{'pkg':'*'}}
-	}
+	};
 	
-	onRemoveRescuePlus = () => {
+	removeRescuePlus = () => {
+		var _state  = {addons:false};
+		this.dispatcher.publish('Membership.state','update.state', _state);
 		this.initialFilter = {'default':{'pkg':'default'},'rescueMe':{'pkg':'rescuePlus'}}
-	}
+	};
 	
 	onUpdateCheckbox(checked){
 		if(checked) {
-			this.onAddRescuePlus();
+			this.addRescuePlus();
 		}
 		else {
-			this.onRemoveRescuePlus();
+			this.removeRescuePlus();
 		}
-	}
-
+	};
 	
 	onDestroy() {
-
 		this.dispatcher = null;
-	}
+	};
 }

@@ -15,12 +15,10 @@ import {Dispatcher} from 'app/services/services';
 })
 
 export class GridAddonItem {
-	dispatcher: any;
-	constructor(dispatcher: Dispatcher){
-		this.dispatcher = dispatcher;
+	constructor(public dispatcher: Dispatcher){
 		
 	}
-	// Object Events
+
 	open(value) {
 		this.dispatcher.publish('addons', 'open.modal', value);
 	}

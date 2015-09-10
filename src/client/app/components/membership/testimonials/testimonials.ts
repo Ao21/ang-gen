@@ -16,11 +16,14 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 export class MembershipTestimonials {
 	timeout: any;
 	
-	constructor(router: Router) {
-		this.timeout = setTimeout(function(){
-			router.navigate('/membership/price-breakdown')
-		},5000)
-		
+	constructor(public router: Router) {
+		this.activate();
+	}
+	
+	activate() {
+		this.timeout = setTimeout(() => {
+			this.router.navigate('/membership/price-breakdown')
+		},2500)
 	}
 
 	onDestroy(){

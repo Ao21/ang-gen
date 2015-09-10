@@ -46,10 +46,7 @@ export class Dispatcher {
 			channel: channel,
 			topic: topic
 		});
-		
 	}
-
-
 }
 
 

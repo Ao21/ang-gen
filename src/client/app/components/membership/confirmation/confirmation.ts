@@ -16,7 +16,6 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 export class MembershipConfirmation {
 
 	constructor(public dispatcher: Dispatcher) {
-		this.dispatcher = dispatcher;
 		
 	}
 

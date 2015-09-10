@@ -2,10 +2,10 @@
 
 import {bind} from 'angular2/angular2';
 import {addonInjectables} from './addon.service';
-import {MembershipStore, MembershipService} from './membership.service';
+import {MembershipStore} from './membership.service';
 
 export {Dispatcher} from './dispatcher.service';
-export {MembershipStore, MembershipService} from './membership.service';
+export {MembershipStore} from './membership.service';
 
 import {Dispatcher} from './dispatcher.service';
 
@@ -15,7 +15,6 @@ import {Dispatcher} from './dispatcher.service';
 export var appServices: Array<any> = [
   addonInjectables,
 	MembershipStore,
-	MembershipService,
  	Dispatcher
 ];
 

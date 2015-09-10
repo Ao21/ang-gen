@@ -1,11 +1,11 @@
-import {Component, View, NgIf, Host} from 'angular2/angular2';
+import {Component, View, NgIf, Host, Attribute} from 'angular2/angular2';
 
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 import {Tabs} from './form_tabs';
 
 @Component({
 	selector: 'tab',
-	properties: ['tabTitle: tab-title']
+	properties: ['tabTitle: tab-title','tabValue: tab-value']
 })
 
 @View({
@@ -16,7 +16,9 @@ import {Tabs} from './form_tabs';
 
 export class Tab{
 	active: Boolean;
-	constructor(@Host tabs : Tabs) {
+	tabValue = String;
+	constructor(@Host tabs : Tabs, @Attribute('tab-value') tabValue) {
+		this.tabValue = tabValue;
 		tabs.addTab(this);
 	}
 

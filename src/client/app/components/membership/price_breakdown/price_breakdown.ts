@@ -1,5 +1,5 @@
 import {Component, View, LifecycleEvent} from 'angular2/angular2';
-import {Dispatcher} from 'app/services/services';
+import {Dispatcher, MembershipStore} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @Component({
@@ -13,14 +13,28 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 })
 
 export class MembershipPriceBreakdown {
-
-	constructor(public dispatcher: Dispatcher) {
-		this.dispatcher = dispatcher;
-		this.dispatcher.publish('Membership','actionBar.togglePriceEstimateIcon', true)
+	
+	state: any;
+	
+	constructor(public dispatcher: Dispatcher, public store: MembershipStore) {
+		this.activate();
 	}
 	
-	onUpdatedPaymentFrequency() {
-		//console.log('updated frequency!')
+	activate() {
+		this.state = this.store.get();
+		this.dispatcher.publish('Membership.state','update', {
+			prop: 'actionBar.priceEstimateVisible',
+			value: true
+		});
+		
+	}
+	
+	onUpdatedPaymentFrequency($event) {
+		var _state = {};
+		_state['paymentFrequency'] = $event.tabTitle== "One Payment" ? 'single' : 'monthly';
+		this.dispatcher.publish('Membership.state','update.state', _state);
+		
+
 	}
 
 	onDestroy(){

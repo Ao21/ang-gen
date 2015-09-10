@@ -1,11 +1,12 @@
-import {Component, View, NgFor, NgClass, EventEmitter} from 'angular2/angular2';
+import {Component, View, NgFor, NgClass, EventEmitter, Attribute} from 'angular2/angular2';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 import {Tab} from './form_tab';
 
 @Component({
 	selector: 'tabs',
-	events: ['selectedTab:selectedtab']
+	properties: ['selectedtab'],
+	events: ['onSelectTab:onselecttab']
 })
 
 @View({
@@ -17,20 +18,34 @@ import {Tab} from './form_tab';
 export class Tabs {
 	tabs: any;
 	selected: Number;
-	selectedTab: EventEmitter;
+	onSelectTab: EventEmitter;
+	selectedTab: String;
 
-	constructor() {
+	constructor(@Attribute('selectedtab') selectedtab) {
 		this.tabs = [];
 		this.selected = 0;
-		this.selectedTab = new EventEmitter;
+		this.selectedTab = selectedtab
+		this.onSelectTab = new EventEmitter;
+		
 		
 	}
 	
 	addTab(tab:Tab) {
-		if(this.tabs.length == 0) {
+		if(!this.selectedTab &&  this.tabs.length == 0 ) {
+			console.log('selected')
 			tab.active = true;
 		}
+		
 		this.tabs.push(tab);
+		
+		if (this.selectedTab) {	
+			this.tabs.forEach((element,i) => {
+				if(element.tabValue == this.selectedTab) {
+					element.active = true;
+					this.selected = i;
+				}
+			});
+		}
 	}
 	
 	selectTab(tab, i) {
@@ -39,7 +54,7 @@ export class Tabs {
 		});
 		this.selected = i;
 		tab.active = true;
-		this.selectedTab.next(tab);
-	}
+		this.onSelectTab.next(tab);
+	}	
 
 }

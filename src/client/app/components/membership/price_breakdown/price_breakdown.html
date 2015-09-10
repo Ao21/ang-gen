@@ -1,11 +1,11 @@
 <div class="container container--fs">
 	<h3 class="title">See Whats Included</h3>
-	<tabs class="blue paymentFrequency" (selectedTab)="onUpdatedPaymentFrequency($event)">
-		<tab tab-title="Pay Monthly">
+	<tabs class="blue paymentFrequency" selectedtab="single" (onselecttab)="onUpdatedPaymentFrequency($event)">
+		<tab tab-title="Pay Monthly" tab-value="monthly">
 			<table class="simple">
 				<tr>
 					<td>AA Family Membership</td>
-					<td>$22.50</td>
+					<td>${{state.priceEstimate.initial}}</td>
 				</tr>
 				<tr>
 					<td>Whats Included</td>
@@ -13,11 +13,11 @@
 				</tr>
 			</table>
 		</tab>
-		<tab tab-title="One Payment">
+		<tab tab-title="One Payment" tab-value="single">
 			<table class="simple">
 				<tr>
 					<td>AA Family Membership</td>
-					<td>$180.00</td>
+					<td>${{state.priceEstimate.initial * 12}}</td>
 				</tr>
 				<tr>
 					<td>Whats Included</td>

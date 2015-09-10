@@ -5,12 +5,12 @@
 	<div class="action-bar__titles-container l_flex_double ">
 
 		<div class="action-bar__title-container animation-shift-current">
-			<div class="action-bar__title animation-shift-el"><h3>{{state.title}}</h3></div>
+			<div class="action-bar__title animation-shift-el"><h3>{{state.actionBar.title}}</h3></div>
 		</div>
 	</div>
 	
-	<div *ng-if="priceEstimateIsVisible == true" class="action-bar__price l_flex_equal" (^click)="togglePriceEstimate()">
-		<h3 class="estimate icon triangle--down">${{mState.priceEstimate}}</h3>
+	<div *ng-if="state.actionBar.priceEstimateVisible == true" class="action-bar__price l_flex_equal" (^click)="togglePriceEstimate()">
+		<h3 class="estimate icon triangle--down">${{state.priceEstimate.calculated}}</h3>
 	</div>
 </div>
 

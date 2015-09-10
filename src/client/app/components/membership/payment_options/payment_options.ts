@@ -16,8 +16,6 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 export class MembershipPaymentOptions {
 
 	constructor(public dispatcher: Dispatcher) {
-		this.dispatcher = dispatcher;
-		
 	}
 
 	onDestroy(){

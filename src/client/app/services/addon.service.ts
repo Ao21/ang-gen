@@ -25,7 +25,6 @@ let initAddonState:IAddonState = {
 		{name: 'Onward Travel', icon: 'images/icons/onwardTravel.svg', pkg: 'rescuePlus', free: false, desc: ''},
 		{name: 'National Recovery', icon: 'images/icons/nationalRecover.svg', pkg: 'rescuePlus', free: false, desc: ''},
 		{name: 'Accom or Travel Expenses', icon: 'images/icons/accomodation.svg', pkg: 'rescuePlus', free: false, desc: ''},
-		
 	]
 };
 

@@ -23,7 +23,6 @@ export class DefaultUserPanel {
 	dispatcher: Dispatcher;
 
 	constructor(dispatcher: Dispatcher,fb: FormBuilder){
-		console.log(this);
 		this.dispatcher = dispatcher;
 		
 		

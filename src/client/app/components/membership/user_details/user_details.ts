@@ -43,9 +43,7 @@ export class MembershipUserDetails  implements OnActivate{
 		this.elementRef = elementRef;
 		this.horizontalScroller = hs;
 		this.horizontalScrollerConfig = new HorizontalScrollerConfig();
-		
 		this.count = 0;
-		
 		this.initialState = [
 			{name:'defaultUser',component:DefaultUserPanel}
 		]
@@ -86,16 +84,12 @@ export class MembershipUserDetails  implements OnActivate{
 				this.count++;
 			});
 		}
-		
-		
 	}
 	
 	goTo = () => {
 		this.horizontalScroller.goToIndex(0);
-		//this.horizontalScroller.goToEl('Form-2');
 	}
-	checkControls = () => {
-	}
+
 	onDeactivate(){
 		this.horizontalRefs.length = 0;
 		this.horizontalScroller.array.length = 0;
