@@ -28,7 +28,7 @@ export class ActionBar implements OnDestroy {
 		public store: MembershipStore
 		) {
 			this.toggleOpenPriceEstimate = new EventEmitter;
-			
+			this.state = store.get();
 			this.activate();
 	}
 	

@@ -1,6 +1,7 @@
 .masthead {	
 	width: 100%;
 	min-height: 100vh;
+	margin-bottom: 24px;
 
 	background-color: $bkColor;
 	color: $defaultTextColor;
@@ -12,6 +13,10 @@
 				color: $defaultTextColor
 				
 			}
+			.controls {
+				h4 {text-align: center;}
+			}
+			
 		}
 	
 }

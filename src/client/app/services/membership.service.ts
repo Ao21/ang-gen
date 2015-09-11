@@ -32,6 +32,16 @@ var defaultInitState = {
 	paymentFrequency:	'monthly'
 }
 
+
+export interface MemberShipDetails {
+	form: [{
+		index: Number,
+		type: String,
+		form? : {}
+		
+	}]
+}
+
 export interface MembershipState {
 	actionBar?:			{
 							title?: String,
@@ -52,6 +62,7 @@ export interface MembershipState {
 							adults: Number,
 							children: Number
 						},
+	userDetails?: MemberShipDetails
 }
 
 export interface MembershipConfig {
@@ -114,6 +125,7 @@ export class MembershipStore {
 	};
 	
 	emitUpdate() {
+		console.log(this.state);
 		this.dispatcher.publish(MembershipConsts.STATE, MembershipConsts.ONUPDATESTATE, this.state);
 	}
 	

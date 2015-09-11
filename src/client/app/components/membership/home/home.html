@@ -8,22 +8,50 @@
 			<div class="row controls">
 				<div class="col-xs-12 col-md-3">
 					<form-incrementor min=0 max=2 [index]="state.membersCount.adults" image="images/icons/adult.png" (update)="updateAdults($event)" ></form-incrementor>
+					<h4>Adults + 17 Years</h4>
 					</div>
 				<div class="col-xs-12 col-md-3">				
 					<form-incrementor min=0 max=6 [index]="state.membersCount.children" image="images/icons/child.png" (update)="updateChildren($event)"></form-incrementor>
+					<h4>Children - 17 Years</h4>
 				</div>
 				<div class="col-xs-12 col-md-3">
 					<checkbox [checked]="state.addons" (update)="updateRescuePlus($event)" class="checkbox--header">
 						<h3>Add Rescue Plus</h3>
+						<h5>Just €4.25 extra per month</h5>
+							
 					</checkbox>
+					<h4>Nationwide tow if needed and you’ll get a choice of hire car, accommodation or travel expenses</h4>
 				</div>
 				<div class="col-xs-12 col-md-3">
 					<div class="btn btn-default btn-block" [router-link]="['/membership/addons']" >
 						<h3>${{state.priceEstimate.initial}} per month</h3>
-						<p><strong>Join the AA</strong></p>
-						</div>
+						<p><strong>Join the AA</strong>
+						</p>
+					</div>
+					<h4>Renew Membership</h4>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
+<div class="container container--default">
+	<section>
+		<p>AA Membership covers you, whether you’re a driver or a passenger in any car. And more than 80%* of the time we fix our Member’s cars right there - on the roadside.</p>
+		<h1>Whats Offered</h1>
+	</section>
+	
+	<section class="row">
+		<div class="col-xs-12 col-md-4 border">
+			<h3>National Recovery</h3>
+			<p>80% of the time we fix our Members cars on the roadside*</p>
+		</div>
+		<div class="col-xs-12 col-md-4 border">
+			<h3><strong>FREE</strong> Homestart</h3>
+			<p>Cover at home or where your car is usually kept</p>
+		</div>
+		<div class="col-xs-12 col-md-4 border">
+			<h3>Add Rescue Plus</h3>
+			<p>Nationwide tow if needed and you’ll get a choice of hire car, accommodation or travel expenses</p>
+		</div>
+	</section>
 </div>

@@ -1,6 +1,6 @@
 import {Component, View, OnDestroy} from 'angular2/angular2';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control} from "angular2/angular2";
-import {Dispatcher} from 'app/services/services';
+import {Dispatcher, MembershipConsts} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 
@@ -18,17 +18,42 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 })
 
 export class DefaultUserPanel  implements OnDestroy{
-	form: ControlGroup;
-	dispatcher: Dispatcher;
+	defaultUserForm: ControlGroup;
+	horizontalRef: any;
+	formDetails:  {} = {};
 
-	constructor(dispatcher: Dispatcher,fb: FormBuilder){
-		this.dispatcher = dispatcher;
+	constructor(public dispatcher: Dispatcher,fb: FormBuilder){
 		
-		
-		this.form = fb.group({
-			"email": [""]
+		this.defaultUserForm = fb.group({
+			"email": [''],
+			"fname": ['']
 		});
-		this.dispatcher.subscribe('form.radio', 'gender' + '.update', this.checkControls);
+		
+		this.activate();
+		
+		
+		
+		
+
+	}
+	
+	activate() {
+		this.formDetails = {
+			
+			
+		}
+		
+		this.defaultUserForm.valueChanges.observer({
+			next: (value) => {
+				this.formDetails.form = value;
+				this.formDetails.index = this.horizontalRef.index,
+				this.dispatcher.publish(MembershipConsts.STATE, MembershipConsts.UPDATE, {
+					prop: 'userDetails',
+					value: this.formDetails
+				})
+			}
+		})
+		//this.dispatcher.subscribe('form.radio', 'gender' + '.update', this.checkControls);
 	}
 
 	checkControls = () => {
@@ -39,7 +64,7 @@ export class DefaultUserPanel  implements OnDestroy{
 	}
 
 	onDestroy() {
-		this.dispatcher.unsubscribe('form.radio', 'gender' + '.update');
+		//this.dispatcher.unsubscribe('form.radio', 'gender' + '.update');
 	}
 
 }
