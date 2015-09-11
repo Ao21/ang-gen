@@ -1,6 +1,6 @@
-import {Inject, Component, View, Host, ViewEncapsulation, NgFor, NgIf, ElementRef,LifecycleEvent, EventEmitter} from 'angular2/angular2';
+import {Inject, Component, View, Host, ViewEncapsulation, NgFor, NgIf, ElementRef,OnDestroy, EventEmitter} from 'angular2/angular2';
 import {GridAddonItem, GridAddonPopup} from 'app/directives/addons_list/addons.module';
-import {MembershipStore, MembershipState} from 'app/services/membership.service';
+import {MembershipStore, MembershipState, MembershipConsts} from 'app/services/membership.service';
 import {CheckboxButton} from 'app/directives/buttons/checkbox'
 import {Dispatcher} from 'app/services/services';
 import {AddonService} from 'app/services/addon.service';
@@ -10,7 +10,7 @@ import {FilterPipe} from 'app/pipes/filter.pipe';
 @Component({
 	selector: 'grid-addon',
 	properties: ['title'],
-	lifecycle: [LifecycleEvent.onDestroy],
+
 })
 
 @View({
@@ -20,7 +20,7 @@ import {FilterPipe} from 'app/pipes/filter.pipe';
 	pipes: [FilterPipe]
 })
 
-export class GridAddon {
+export class GridAddon implements OnDestroy {
 	state: any;
 	membershipState: any;
 	initialState: any;
@@ -47,13 +47,13 @@ export class GridAddon {
 	
 	addRescuePlus = () => {
 		var _state  = {addons:true};
-		this.dispatcher.publish('Membership.state','update.state', _state);
+		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, _state);
 		this.initialFilter = {'default':{'*':'*'},'rescueMe':{'pkg':'*'}}
 	};
 	
 	removeRescuePlus = () => {
 		var _state  = {addons:false};
-		this.dispatcher.publish('Membership.state','update.state', _state);
+		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, _state);
 		this.initialFilter = {'default':{'pkg':'default'},'rescueMe':{'pkg':'rescuePlus'}}
 	};
 	

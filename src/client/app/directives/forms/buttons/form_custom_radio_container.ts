@@ -1,4 +1,4 @@
-import { Inject, Attribute, Component, View, Query, QueryList, NgFor, ElementRef, NgClass, FORM_DIRECTIVES, EventEmitter, LifecycleEvent } from 'angular2/angular2';
+import { Inject, Attribute, Component, View, Query, QueryList, NgFor, ElementRef, NgClass, FORM_DIRECTIVES, EventEmitter, OnDestroy } from 'angular2/angular2';
 import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 

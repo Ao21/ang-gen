@@ -1,6 +1,6 @@
 import {describe, it, expect } from 'angular2/test_lib';
-import { DOM } from 'angular2/src/dom/dom_adapter';
-import { ObservableWrapper } from 'angular2/src/facade/async';
+import { DOM } from 'angular2/src/core/dom/dom_adapter';
+import { ObservableWrapper } from 'angular2/src/core/facade/async';
 import {
 	Injector,
 	bind,
@@ -11,12 +11,9 @@ import {
 
 import {
 	MockBackend,
-	MockConnection,
-	ConnectionBackend,
 	BaseRequestOptions,
-	Response,
 	Http
-} from 'http/http';
+} from 'angular2/http';
 
 export function main () {
 	describe('Core', () => {

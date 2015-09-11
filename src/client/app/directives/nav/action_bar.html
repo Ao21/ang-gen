@@ -1,5 +1,5 @@
 <div class="bar l_flex animation-shift">
-	<div class="action-bar__back" (^click)="navigateBack()">
+	<div class="action-bar__back" (click)="navigateBack()">
 		<img src="images/icons/arrow-left.svg" alt="Back Button">
 	</div>
 	<div class="action-bar__titles-container l_flex_double ">
@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	
-	<div *ng-if="state.actionBar.priceEstimateVisible == true" class="action-bar__price l_flex_equal" (^click)="togglePriceEstimate()">
+	<div *ng-if="state.actionBar.priceEstimateVisible == true" class="action-bar__price l_flex_equal" (click)="togglePriceEstimate()">
 		<h3 class="estimate icon triangle--down">${{state.priceEstimate.calculated}}</h3>
 	</div>
 </div>

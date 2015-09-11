@@ -5,7 +5,8 @@ import {
 	beforeEach
 } from 'angular2/test_lib';
 
-import {BaseException} from 'angular2/src/facade/lang';
+
+import {BaseException} from 'angular2/src/core/facade/lang';
 import { FilterPipe } from './filter.pipe';
 
 export function main() {

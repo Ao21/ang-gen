@@ -1,7 +1,7 @@
-import {Component, View, LifecycleEvent, Attribute} from 'angular2/angular2';
+import {Component, View, Attribute} from 'angular2/angular2';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
-import {isPresent} from 'angular2/src/facade/lang';
-import {NumberWrapper} from 'angular2/src/facade/lang';
+import {isPresent} from 'angular2/src/core/facade/lang';
+import {NumberWrapper} from 'angular2/src/core/facade/lang';
 
 
 @Component({

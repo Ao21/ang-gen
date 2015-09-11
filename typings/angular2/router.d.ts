@@ -1,4 +1,4 @@
-// Type definitions for Angular v2.0.0-local_sha.77ccc1c
+// Type definitions for Angular v2.0.0-local_sha.7374153
 // Project: http://angular.io/
 // Definitions by: angular team <https://github.com/angular/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -63,10 +63,33 @@ declare module ngRouter {
     
 
     /**
-     * Register an object to notify of route changes. You probably don't need to use this unless
-     * you're writing a reusable component.
+     * Constructs a child router. You probably don't need to use this unless you're writing a reusable
+     * component.
      */
-     registerOutlet(outlet: RouterOutlet): Promise<boolean>;
+     auxRouter(hostComponent: any): Router;
+    
+
+    /**
+     * Register an outlet to notified of primary route changes.
+     * 
+     * You probably don't need to use this unless you're writing a reusable component.
+     */
+     registerPrimaryOutlet(outlet: RouterOutlet): Promise<boolean>;
+    
+
+    /**
+     * Register an outlet to notified of auxiliary route changes.
+     * 
+     * You probably don't need to use this unless you're writing a reusable component.
+     */
+     registerAuxOutlet(outlet: RouterOutlet): Promise<boolean>;
+    
+
+    /**
+     * Given an instruction, returns `true` if the instruction is currently active,
+     * otherwise `false`.
+     */
+     isRouteActive(instruction: Instruction): boolean;
     
 
     /**
@@ -81,7 +104,7 @@ declare module ngRouter {
      * ]);
      * ```
      */
-     config(definitions: List<RouteDefinition>): Promise<any>;
+     config(definitions: RouteDefinition[]): Promise<any>;
     
 
     /**
@@ -135,7 +158,7 @@ declare module ngRouter {
      * Generate a URL from a component name and optional map of parameters. The URL is relative to the
      * app's base href.
      */
-     generate(linkParams: List<any>): Instruction;
+     generate(linkParams: any[]): Instruction;
   }
   
   class RootRouter extends Router {
@@ -155,29 +178,53 @@ declare module ngRouter {
    */
   class RouterOutlet {
     
-     childRouter: Router;
-    
      name: string;
     
 
     /**
-     * Given an instruction, update the contents of this outlet.
+     * Called by the Router to instantiate a new component during the commit phase of a navigation.
+     * This method in turn is responsible for calling the `onActivate` hook of its child.
      */
-     commit(instruction: Instruction): Promise<any>;
+     activate(nextInstruction: ComponentInstruction): Promise<any>;
     
 
     /**
-     * Called by Router during recognition phase
+     * Called by the {@link Router} during the commit phase of a navigation when an outlet
+     * reuses a component between different routes.
+     * This method in turn is responsible for calling the `onReuse` hook of its child.
      */
-     canDeactivate(nextInstruction: Instruction): Promise<boolean>;
+     reuse(nextInstruction: ComponentInstruction): Promise<any>;
     
 
     /**
-     * Called by Router during recognition phase
+     * Called by the {@link Router} when an outlet reuses a component across navigations.
+     * This method in turn is responsible for calling the `onReuse` hook of its child.
      */
-     canReuse(nextInstruction: Instruction): Promise<boolean>;
+     deactivate(nextInstruction: ComponentInstruction): Promise<any>;
     
-     deactivate(nextInstruction: Instruction): Promise<any>;
+
+    /**
+     * Called by the {@link Router} during recognition phase of a navigation.
+     * 
+     * If this resolves to `false`, the given navigation is cancelled.
+     * 
+     * This method delegates to the child component's `canDeactivate` hook if it exists,
+     * and otherwise resolves to true.
+     */
+     canDeactivate(nextInstruction: ComponentInstruction): Promise<boolean>;
+    
+
+    /**
+     * Called by the {@link Router} during recognition phase of a navigation.
+     * 
+     * If the new child component has a different Type than the existing child component,
+     * this will resolve to `false`. You can't reuse an old component when the new component
+     * is of a different Type.
+     * 
+     * Otherwise, this method delegates to the child component's `canReuse` hook if it exists,
+     * or resolves to true if the hook is not present.
+     */
+     canReuse(nextInstruction: ComponentInstruction): Promise<boolean>;
   }
   
 
@@ -213,6 +260,8 @@ declare module ngRouter {
   class RouterLink {
     
      visibleHref: string;
+    
+     isRouteActive: boolean;
     
      routeParams: any;
     
@@ -258,7 +307,7 @@ declare module ngRouter {
      * Given a normalized list with component names and params like: `['user', {id: 3 }]`
      * generates a url with a leading slash relative to the provided `parentComponent`.
      */
-     generate(linkParams: List<any>, parentComponent: any): Instruction;
+     generate(linkParams: any[], parentComponent: any): Instruction;
   }
   
   class LocationStrategy {
@@ -319,6 +368,8 @@ declare module ngRouter {
    */
   class Location {
     
+     platformStrategy: LocationStrategy;
+    
      path(): string;
     
      normalize(url: string): string;
@@ -343,7 +394,7 @@ declare module ngRouter {
    */
   class Pipeline {
     
-     steps: List<Function>;
+     steps: Function[];
     
      process(instruction: Instruction): Promise<any>;
   }
@@ -540,6 +591,12 @@ declare module ngRouter {
    * 
    * `ComponentInstructions` is a public API. Instances of `ComponentInstruction` are passed
    * to route lifecycle hooks, like {@link CanActivate}.
+   * 
+   * `ComponentInstruction`s are [https://en.wikipedia.org/wiki/Hash_consing](hash consed). You should
+   * never construct one yourself with "new." Instead, rely on {@link PathRecognizer} to construct
+   * `ComponentInstruction`s.
+   * 
+   * You should not modify this object. It should be treated as immutable.
    */
   class ComponentInstruction {
     
@@ -547,13 +604,13 @@ declare module ngRouter {
     
      urlPath: string;
     
-     urlParams: List<string>;
+     urlParams: string[];
     
      params: StringMap<string, any>;
     
      componentType: any;
     
-     resolveComponentType(): Promise<Type>;
+     resolveComponentType(): Promise<ng.Type>;
     
      specificity: any;
     
@@ -562,13 +619,17 @@ declare module ngRouter {
      routeData(): Object;
   }
   
+
+  /**
+   * This class represents a parsed URL
+   */
   class Url {
     
      path: string;
     
      child: Url;
     
-     auxiliary: List<Url>;
+     auxiliary: Url[];
     
      params: StringMap<string, any>;
     
@@ -582,23 +643,11 @@ declare module ngRouter {
      toString(): string;
   }
   
-
-  /**
-   * Runtime representation of a type.
-   * 
-   * In JavaScript a Type is a constructor function.
-   */
-  interface Type extends Function {
-    
-     new(args: any): any;
-  
-  }
-  
   const ROUTE_DATA : OpaqueToken ;
   
-  const ROUTER_DIRECTIVES : List<any> ;
+  const ROUTER_DIRECTIVES : any[] ;
   
-  const ROUTER_BINDINGS : List<any> ;
+  const ROUTER_BINDINGS : any[] ;
   
   class Route implements RouteDefinition {
     
@@ -606,7 +655,7 @@ declare module ngRouter {
     
      path: string;
     
-     component: Type;
+     component: ng.Type;
     
      as: string;
     
@@ -634,7 +683,7 @@ declare module ngRouter {
     
      path: string;
     
-     component: Type;
+     component: ng.Type;
     
      as: string;
     
@@ -658,7 +707,7 @@ declare module ngRouter {
     
      path: string;
     
-     component?: Type | ComponentDefinition | any;
+     component?: ng.Type | ComponentDefinition;
     
      loader?: Function;
     
@@ -669,7 +718,7 @@ declare module ngRouter {
      data?: any;
   }
   
-  var RouteConfig : (configs: List<RouteDefinition>) => ClassDecorator ;
+  var RouteConfig : (configs: RouteDefinition[]) => ClassDecorator ;
   
   interface ComponentDefinition {
     
@@ -677,7 +726,7 @@ declare module ngRouter {
     
      loader?: Function;
     
-     component?: Type;
+     component?: ng.Type;
   }
   
 }

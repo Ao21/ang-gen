@@ -1,12 +1,11 @@
-import {Attribute, Component, View, Host, LifecycleEvent} from 'angular2/angular2';
+import {Attribute, Component, View, Host, OnDestroy} from 'angular2/angular2';
 import {Dispatcher} from 'app/services/services';
 
 @Component({
 	selector: 'addon-popup',
 	properties: ['channel'],
 	bindings: [
-	],
-	lifecycle: [LifecycleEvent.onDestroy]
+	]
 })
 
 @View({
@@ -15,7 +14,7 @@ import {Dispatcher} from 'app/services/services';
 
 })
 
-export class GridAddonPopup{
+export class GridAddonPopup implements OnDestroy{
 	name: string;
 	icon: string;
 	details: string;

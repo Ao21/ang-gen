@@ -1,5 +1,5 @@
-import {Component, View, LifecycleEvent} from 'angular2/angular2';
-import {Dispatcher, MembershipStore} from 'app/services/services';
+import {Component, View, OnDestroy} from 'angular2/angular2';
+import {Dispatcher, MembershipStore, MembershipConsts} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @Component({
@@ -12,7 +12,7 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 	directives: [appDirectives, angularDirectives]
 })
 
-export class MembershipPriceBreakdown {
+export class MembershipPriceBreakdown implements OnDestroy {
 	
 	state: any;
 	
@@ -22,7 +22,7 @@ export class MembershipPriceBreakdown {
 	
 	activate() {
 		this.state = this.store.get();
-		this.dispatcher.publish('Membership.state','update', {
+		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATE, {
 			prop: 'actionBar.priceEstimateVisible',
 			value: true
 		});
@@ -32,7 +32,7 @@ export class MembershipPriceBreakdown {
 	onUpdatedPaymentFrequency($event) {
 		var _state = {};
 		_state['paymentFrequency'] = $event.tabTitle== "One Payment" ? 'single' : 'monthly';
-		this.dispatcher.publish('Membership.state','update.state', _state);
+		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, _state);
 		
 
 	}

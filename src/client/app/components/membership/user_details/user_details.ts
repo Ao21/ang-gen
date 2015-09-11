@@ -1,4 +1,4 @@
-import {Component, View, LifecycleEvent, ElementRef} from 'angular2/angular2';
+import {Component, View, OnDestroy, ElementRef} from 'angular2/angular2';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control} from "angular2/angular2";
 import {Dispatcher} from 'app/services/services';
 import {OnActivate, OnDeactivate} from 'angular2/router';
@@ -14,7 +14,6 @@ import {ModalSlide} from 'app/directives/modal/modals.module';
 	selector: 'user-details',
 	viewBindings: [FormBuilder, HorizontalScroller],
 	bindings: [],
-	lifecycle: [LifecycleEvent.onDestroy]
 })
 
 @View({
@@ -23,7 +22,7 @@ import {ModalSlide} from 'app/directives/modal/modals.module';
 	styleUrls: ['./app/components/membership/user_details/user_details.css']
 })
 
-export class MembershipUserDetails  implements OnActivate{
+export class MembershipUserDetails  implements OnActivate, OnDestroy{
 	
 	horizontalScroller: HorizontalScroller;
 	horizontalRef: any;

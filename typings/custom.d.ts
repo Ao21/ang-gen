@@ -11,6 +11,12 @@ interface Type extends Function {
 	new (...args: any[]): any;
 }
 
+declare class List<T> {
+    private items: Array<T>;
+	length: Number;
+
+}
+
 
 declare module "angular2/change_detection" {
 	interface PipeFactory { }
@@ -21,7 +27,7 @@ declare module "angular2/change_detection" {
 	}
 }
 
-declare module 'angular2/src/facade/lang' {
+declare module 'angular2/src/core/facade/lang' {
 	class BaseException {
 		message: string;
 		private _originalException;
@@ -53,7 +59,7 @@ declare module 'angular2/src/http/static_response' {
 	}
 }
 
-declare module 'angular2/src/facade/collection' {
+declare module 'angular2/src/core/facade/collection' {
 	interface Predicate<T> {
 		(value: T, index?: number, array?: T[]): boolean;
 	}
@@ -63,9 +69,9 @@ declare module 'angular2/src/core/compiler/view' {
 	class AppView { }
 }
 
-declare module 'angular2/src/debug/debug_element' {
+declare module 'angular2/src/core/debug/debug_element' {
 	import { ElementRef, Type } from 'angular2/angular2';
-	import { Predicate } from 'angular2/src/facade/collection';
+	import { Predicate } from 'angular2/src/core/facade/collection';
 	import { AppView } from 'angular2/src/core/compiler/view';
 	class DebugElement {
 		componentInstance: any;
@@ -99,7 +105,7 @@ declare module 'angular2/src/debug/debug_element' {
 
 declare module 'angular2/test_lib' {
 	import { Binding, Injector, View, ComponentRef, Type } from 'angular2/angular2';
-	import { DebugElement } from 'angular2/src/debug/debug_element';
+	import { DebugElement } from 'angular2/src/core/debug/debug_element';
 	interface NgMatchers extends jasmine.Matchers {
 		toBe(expected: any): boolean;
 		toEqual(expected: any): boolean;
@@ -184,7 +190,7 @@ declare module "angular2/test" {
 	function verifyNoBrowserErrors(): void;
 }
 
-declare module "angular2/pipes" {
+declare module "angular2/core/pipes" {
 	class ObservablePipe {
 		constructor(ref?: any)
 		_subscription: any;
@@ -238,15 +244,15 @@ declare module "angular2/src/core/life_cycle/life_cycle" {
 	}
 }
 
-declare module "angular2/src/render/dom/compiler/view_loader" {
+declare module "angular2/src/core/render/dom/compiler/view_loader" {
 	class ViewLoader { }
 }
 
-declare module "angular2/src/render/dom/compiler/style_url_resolver" {
+declare module "angular2/src/core/render/dom/compiler/style_url_resolver" {
 	class StyleUrlResolver { }
 }
 
-declare module "angular2/src/render/dom/compiler/style_inliner" {
+declare module "angular2/src/core/render/dom/compiler/style_inliner" {
 	class StyleInliner { }
 }
 
@@ -256,7 +262,7 @@ declare module "angular2/src/core/compiler/view_resolver" {
 	}
 }
 
-declare module "angular2/src/services/app_root_url" {
+declare module "angular2/src/core/services/app_root_url" {
 	class AppRootUrl { }
 }
 
@@ -268,7 +274,7 @@ declare module "angular2/src/core/compiler/view_listener" {
 	class AppViewListener { }
 }
 
-declare module "angular2/src/render/dom/compiler/template_loader" {
+declare module "angular2/src/core/render/dom/compiler/template_loader" {
 	class TemplateLoader {
 
 	}
@@ -280,23 +286,23 @@ declare module "angular2/src/core/compiler/template_resolver" {
 	}
 }
 
-declare module "angular2/src/render/xhr_impl" {
+declare module "angular2/src/core/render/xhr_impl" {
 	class XHRImpl { }
 }
 
-declare module "angular2/src/services/xhr_impl" {
+declare module "angular2/src/core/services/xhr_impl" {
 	class XHRImpl {
 
 	}
 }
 
-declare module "angular2/src/render/dom/events/key_events" {
+declare module "angular2/src/core/render/dom/events/key_events" {
 	class KeyEventsPlugin {
 		static getEventFullKey: any
 		getEventFullKey: any
 	}
 }
-declare module "angular2/src/render/dom/events/hammer_gestures" {
+declare module "angular2/src/core/render/dom/events/hammer_gestures" {
 	class HammerGesturesPlugin {
 
 	}
@@ -306,13 +312,13 @@ declare module "angular2/src/core/compiler/component_url_mapper" {
 
 	}
 }
-declare module "angular2/src/services/url_resolver" {
+declare module "angular2/src/core/services/url_resolver" {
 	class UrlResolver {
 
 	}
 
 }
-declare module "angular2/src/render/dom/shadow_dom/style_inliner" {
+declare module "angular2/src/core/render/dom/shadow_dom/style_inliner" {
 	class StyleInliner { }
 
 }
@@ -357,7 +363,7 @@ declare module "angular2/src/core/compiler/proto_view_factory" {
 
 	}
 }
-declare module "angular2/src/render/dom/compiler/compiler" {
+declare module "angular2/src/core/render/dom/compiler/compiler" {
 	class DefaultDomCompiler {
 
 	}
@@ -366,19 +372,19 @@ declare module "angular2/src/core/compiler/view_ref" {
 	var internalView: any
 }
 
-declare module "angular2/src/reflection/reflection" {
+declare module "angular2/src/core/reflection/reflection" {
 	var reflector: any
 	class Reflector {
 
 	}
 }
-declare module "angular2/src/reflection/reflection_capabilities" {
+declare module "angular2/src/core/reflection/reflection_capabilities" {
 	class ReflectionCapabilities {
 
 	}
 }
 
-declare module "angular2/src/render/dom/view/proto_view" {
+declare module "angular2/src/core/render/dom/view/proto_view" {
 	class DomProtoView {
 		rootBindingOffset: any;
 		element: any;
@@ -388,17 +394,17 @@ declare module "angular2/src/render/dom/view/proto_view" {
 
 }
 
-declare module "angular2/src/render/dom/view/view_container" {
+declare module "angular2/src/core/render/dom/view/view_container" {
 	class DomViewContainer { }
 }
 
-declare module "angular2/src/render/dom/util" {
+declare module "angular2/src/core/render/dom/util" {
 	var NG_BINDING_CLASS_SELECTOR: any;
 	var NG_BINDING_CLASS: any;
 }
 
 
-declare module "angular2/src/render/dom/dom_renderer" {
+declare module "angular2/src/core/render/dom/dom_renderer" {
 	class DomRenderer {
 		_moveViewNodesIntoParent(): any
 		_createGlobalEventListener(): any
@@ -407,7 +413,7 @@ declare module "angular2/src/render/dom/dom_renderer" {
 	var DOCUMENT_TOKEN: any;
 }
 
-declare module "angular2/src/render/api" {
+declare module "angular2/src/core/render/api" {
 	class RenderCompiler {
 
 	}
@@ -422,10 +428,10 @@ declare module "angular2/src/render/api" {
 	}
 
 }
-declare module "angular2/src/render/dom/shadow_dom/content_tag" {
+declare module "angular2/src/core/render/dom/shadow_dom/content_tag" {
 	function Content(element: any, contentTagSelector: any): void;
 }
-declare module "angular2/src/render/dom/view/view" {
+declare module "angular2/src/core/render/dom/view/view" {
 	class DomViewRef {
 
 	}
@@ -434,14 +440,14 @@ declare module "angular2/src/render/dom/view/view" {
 	}
 	function resolveInternalDomView(viewRef: any): any;
 }
-declare module "angular2/src/render/dom/shadow_dom/shadow_dom_strategy" {
+declare module "angular2/src/core/render/dom/shadow_dom/shadow_dom_strategy" {
 	class ShadowDomStrategy {
 		prepareShadowRoot(element: any): any
 		constructLightDom(lightDomView: any, el: any): any
 	}
 }
 
-declare module "angular2/src/render/dom/events/event_manager" {
+declare module "angular2/src/core/render/dom/events/event_manager" {
 	class EventManager {
 		constructor(...args)
 		addEventListener(element: any, eventName: string, handler: Function): any
@@ -475,12 +481,12 @@ declare module "angular2/directives" {
 
 }
 
-declare module "angular2/src/change_detection/pipes/pipe" {
+declare module "angular2/src/core/change_detection/pipes/pipe" {
 	class PipeFactory {
 	}
 }
 
-declare module "angular2/src/change_detection/change_detection" {
+declare module "angular2/src/core/change_detection/change_detection" {
 	var async: any;
 }
 
@@ -565,7 +571,7 @@ declare module "angular2/src/core/exception_handler" {
 	}
 }
 
-declare module "angular2/src/render/xhr" {
+declare module "angular2/src/core/render/xhr" {
 	class XHR {
 
 	}
@@ -640,7 +646,7 @@ declare module "angular2/forms" {
 
 }
 
-declare module "angular2/src/render/dom/shadow_dom/emulated_unscoped_shadow_dom_strategy" {
+declare module "angular2/src/core/render/dom/shadow_dom/emulated_unscoped_shadow_dom_strategy" {
 	class EmulatedUnscopedShadowDomStrategy {
 		styleHost: any;
 		constructor(styleHost: any);
@@ -774,13 +780,13 @@ declare module "angular2/render" {
 	}
 }
 
-declare module "angular2/src/render/dom/shadow_dom/style_url_resolver" {
+declare module "angular2/src/core/render/dom/shadow_dom/style_url_resolver" {
 	class StyleUrlResolver {
 
 	}
 }
 
-declare module "angular2/src/facade/async" {
+declare module "angular2/src/core/facade/async" {
 	class ObservableWrapper {
 		static callNext(next: any): any;
 		static subscribe(observer: any): any;
@@ -797,7 +803,7 @@ declare module "angular2/src/facade/async" {
 	}
 }
 
-declare module "angular2/src/facade/collection" {
+declare module "angular2/src/core/facade/collection" {
 	var List: Array<any>;
 	var Map: any;
 	var ListWrapper: any;
@@ -805,7 +811,7 @@ declare module "angular2/src/facade/collection" {
 	var StringMapWrapper: any;
 }
 
-declare module "angular2/src/facade/browser" {
+declare module "angular2/src/core/facade/browser" {
 	var __esModule: boolean;
 	var win: any;
 	var window: any;
@@ -817,7 +823,7 @@ declare module "angular2/src/facade/browser" {
 	var KeyboardEvent: any;
 }
 
-declare module "angular2/src/facade/lang" {
+declare module "angular2/src/core/facade/lang" {
 	var int: any;
 	var Type: Function;
 	var assertionsEnabled: any;
@@ -829,6 +835,7 @@ declare module "angular2/src/facade/lang" {
 
 	}
 	class NumberWrapper {
+		static parseInt(str: string, base: number):any;
 
 	}
 	class StringWrapper {
@@ -850,24 +857,8 @@ declare module "angular2/src/core/compiler/directive_resolver" {
 	}
 }
 
-declare module "angular2/src/router/route_registry" {
-	class RouteRegistry { }
-}
 
-declare module "angular2/src/router/pipeline" {
-	class Pipeline { }
-}
-
-declare module "angular2/src/router/instruction" {
-	class Instruction {
-		component: any;
-		params: any;
-		reuse: any;
-		child: any;
-	}
-}
-
-declare module "angular2/src/dom/browser_adapter" {
+declare module "angular2/src/core/dom/browser_adapter" {
 	class BrowserDomAdapter {
 		static makeCurrent(): void;
 		logError(error: any): void;
@@ -958,7 +949,7 @@ declare module "angular2/src/dom/browser_adapter" {
 	}
 }
 
-declare module "angular2/src/dom/dom_adapter" {
+declare module "angular2/src/core/dom/dom_adapter" {
 	class DomAdapter {
 		static makeCurrent(): void;
 		logError(error: any): void;
@@ -1049,7 +1040,7 @@ declare module "angular2/src/dom/dom_adapter" {
 	}
 	var DOM: DomAdapter;
 }
-declare module "angular2/src/dom/parse5_adapter" {
+declare module "angular2/src/core/dom/parse5_adapter" {
 	class Parse5DomAdapter {
 		static makeCurrent(): void;
 		logError(error: any): void;
@@ -1142,7 +1133,7 @@ declare module "angular2/src/dom/parse5_adapter" {
 
 
 
-declare module "angular2/src/di/binding" {
+declare module "angular2/src/core/di/binding" {
 	class Binding {
 
 	}

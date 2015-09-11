@@ -7,7 +7,7 @@ import {
   StringWrapper,
   BaseException,
   CONST
-} from 'angular2/src/facade/lang';
+} from 'angular2/src/core/facade/lang';
 
 import {Pipe} from 'angular2/angular2';
 

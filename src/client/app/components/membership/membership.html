@@ -1,5 +1,6 @@
-<action-bar *ng-if="hideActionBar == true" (toggleopenpriceestimate)="onTogglePriceEstimate()" ></action-bar>
+<action-bar *ng-if="state.actionBar.visible == true" (toggleopenpriceestimate)="onTogglePriceEstimate()" ></action-bar>
 <modal-slide class="visible-nav" channel="Membership.Estimate">
 		<estimate-modal></estimate-modal>
 	</modal-slide>
 <router-outlet ></router-outlet>
+

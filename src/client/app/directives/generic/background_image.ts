@@ -1,19 +1,17 @@
-import { Directive, Attribute, Renderer, ElementRef, LifecycleEvent } from 'angular2/angular2';
-import {isPresent, isBlank, print, Json } from 'angular2/src/facade/lang';
+import { Directive, Attribute, Renderer, ElementRef, OnInit } from 'angular2/angular2';
+import {isPresent, isBlank, print, Json } from 'angular2/src/core/facade/lang';
 import { KeyValueDiffer, KeyValueDiffers} from 'angular2/angular2';
-import {StringMapWrapper} from 'angular2/src/facade/collection'
+import {StringMapWrapper} from 'angular2/src/core/facade/collection'
 
 @Directive({
 	selector: '[background-image]',
-	lifecycle: [LifecycleEvent.onCheck],
 	properties: ['backgroundImage: background-image']
 })
-export class BackgroundImage {
+export class BackgroundImage implements OnInit {
 	_backgroundImage;
 	_differ: KeyValueDiffer;
 	constructor(private _renderer: Renderer, private _ngEl: ElementRef, private _differs: KeyValueDiffers){
 	}
-	
 	set backgroundImage(v){
 		v = v.replace(/'/g, '"');
 
@@ -24,7 +22,7 @@ export class BackgroundImage {
 		}
 	}
 	
-	onCheck() {
+	onInit() {
 		if (isPresent(this._differ)) {
 			var changes = this._differ.diff(this._backgroundImage);
 			if (isPresent(changes)) {

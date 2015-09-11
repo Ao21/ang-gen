@@ -1,12 +1,11 @@
-import {Component, View, LifecycleEvent, NgIf, NgFor, NgClass, EventEmitter, Host} from 'angular2/angular2';
+import {Component, View, OnDestroy, NgIf, NgFor, NgClass, EventEmitter, Host} from 'angular2/angular2';
 import {Injectable, Inject, bind} from 'angular2/angular2';
-import {MembershipStore, MembershipState} from 'app/services/membership.service';
+import {MembershipStore, MembershipState, MembershipConsts} from 'app/services/membership.service';
 import {Dispatcher} from 'app/services/services';
 import {Router, Location} from 'angular2/router';
 
 @Component({
 	selector: 'action-bar',
-	lifecycle: [LifecycleEvent.onDestroy],
 	events: ['toggleOpenPriceEstimate : toggleopenpriceestimate'],
 	properties:['priceEstimateIsVisible']
 })
@@ -18,7 +17,7 @@ import {Router, Location} from 'angular2/router';
 })
 
 @Injectable()
-export class ActionBar {
+export class ActionBar implements OnDestroy {
 	toggleOpenPriceEstimate: EventEmitter;
 	state: MembershipState;
 
@@ -30,12 +29,15 @@ export class ActionBar {
 		) {
 			this.toggleOpenPriceEstimate = new EventEmitter;
 			
-			this.state = store.get();
 			this.activate();
 	}
 	
 	activate() {
-		this.dispatcher.subscribe('Membership.state','is-updated.state', (_state) => {this.state = _state})
+		this.dispatcher.subscribe(MembershipConsts.STATE,MembershipConsts.ONUPDATESTATE, (_state) => 
+		{
+			console.log(_state)
+			this.state = _state
+		})
 	}
 	
 	navigateBack(){

@@ -1,7 +1,7 @@
 import {Component, View, EventEmitter, Inject} from 'angular2/angular2';
 import {RouteConfig, ROUTER_DIRECTIVES, RouterOutlet} from 'angular2/router';
 import {NgIf} from 'angular2/angular2'
-import {Dispatcher, MembershipStore} from 'app/services/services';
+import {Dispatcher, MembershipStore, MembershipConsts} from 'app/services/services';
 import {EstimateModal} from 'app/components/membership/estimate_modal/estimate_modal';
 
 
@@ -44,17 +44,19 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 
 export class Membership {
-	hideActionBar = true;
+	state: any;
 	
-	constructor(public dispatcher: Dispatcher) {
+	constructor(public dispatcher: Dispatcher, public store: MembershipStore) {
+		this.state = this.store.get();
 		this.activate();
 	}
 	
 	activate() {
-		this.dispatcher.subscribe('Membership','actionBar.hide',this.onShowActionBar);
+		this.dispatcher.subscribe(
+			MembershipConsts.STATE, 
+			MembershipConsts.ONUPDATESTATE, 
+			(state) => 
+				{ this.state = state }
+		);
 	}
-	onShowActionBar = () => {
-		this.hideActionBar = false;
-	}
-	
 }

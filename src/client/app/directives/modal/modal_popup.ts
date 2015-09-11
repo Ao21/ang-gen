@@ -1,4 +1,4 @@
-import { Inject, Attribute, Component, View, ViewEncapsulation, NgFor, ElementRef, NgClass, LifecycleEvent} from 'angular2/angular2';
+import { Inject, Attribute, Component, View, ViewEncapsulation, NgFor, ElementRef, NgClass, OnDestroy} from 'angular2/angular2';
 import {Dispatcher} from 'app/services/services';
 
 
@@ -9,7 +9,6 @@ import {Dispatcher} from 'app/services/services';
 	bindings: [
 
 	],
-	lifecycle: [LifecycleEvent.onDestroy]
 })
 
 @View({
@@ -18,7 +17,7 @@ import {Dispatcher} from 'app/services/services';
 	styleUrls: ['app/directives/modal/modal_popup.css'],
 })
 
-export class ModalPopup {
+export class ModalPopup implements OnDestroy {
 	data: any;
 	dispatcher: any;
 	channel: string;

@@ -1,10 +1,9 @@
-import {Component, View, LifecycleEvent} from 'angular2/angular2';
+import {Component, View, OnDestroy} from 'angular2/angular2';
 import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @Component({
 	selector: 'confirmation',
-	lifecycle: [LifecycleEvent.onDestroy]
 })
 
 @View({
@@ -13,7 +12,7 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 	directives: [appDirectives]
 })
 
-export class MembershipConfirmation {
+export class MembershipConfirmation implements OnDestroy {
 
 	constructor(public dispatcher: Dispatcher) {
 		

@@ -1,4 +1,4 @@
-import { Inject, Attribute, Component, View, ViewEncapsulation, NgFor, ElementRef, NgClass, LifecycleEvent } from 'angular2/angular2';
+import { Inject, Attribute, Component, View, ViewEncapsulation, NgFor, ElementRef, NgClass, OnDestroy } from 'angular2/angular2';
 import {Dispatcher} from 'app/services/services';
 
 
@@ -9,7 +9,6 @@ import {Dispatcher} from 'app/services/services';
 	bindings: [
 		
 	],
-	lifecycle: [LifecycleEvent.onDestroy]
 })
 
 @View({
@@ -19,7 +18,7 @@ import {Dispatcher} from 'app/services/services';
 
 })
 
-export class ModalSlide {
+export class ModalSlide implements OnDestroy {
 	data: any;
 	dispatcher: any;
 	channel: string;

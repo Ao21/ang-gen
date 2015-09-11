@@ -1,10 +1,9 @@
-import {Component, View, LifecycleEvent} from 'angular2/angular2';
+import {Component, View, OnDestroy  } from 'angular2/angular2';
 import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @Component({
-	selector: 'payment-options',
-	lifecycle: [LifecycleEvent.onDestroy]
+	selector: 'payment-options'
 })
 
 @View({
@@ -13,7 +12,7 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 	directives: [appDirectives, angularDirectives]
 })
 
-export class MembershipPaymentOptions {
+export class MembershipPaymentOptions implements OnDestroy  {
 
 	constructor(public dispatcher: Dispatcher) {
 	}

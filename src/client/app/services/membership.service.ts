@@ -85,8 +85,8 @@ export class MembershipStore {
 	};
 	
 	activate() {
-		this.dispatcher.subscribe('Membership.state','update.state', this.updateState);
-		this.dispatcher.subscribe('Membership.state','update', this.update);
+		this.dispatcher.subscribe(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, this.updateState);
+		this.dispatcher.subscribe(MembershipConsts.STATE,MembershipConsts.UPDATE, this.update);
 		this.state = defaultInitState;
 	};
 	
@@ -106,8 +106,6 @@ export class MembershipStore {
 	
 	update = (obj:any) => {
 		_.set(this.state, obj.prop, obj.value);
-		console.log(this.state);	
-		
 		this.emitUpdate();
 	}
 	
@@ -116,8 +114,19 @@ export class MembershipStore {
 	};
 	
 	emitUpdate() {
-		this.dispatcher.publish('Membership.state','is-updated.state',this.state);
+		this.dispatcher.publish(MembershipConsts.STATE, MembershipConsts.ONUPDATESTATE, this.state);
 	}
 	
 
 };
+
+
+export class MembershipConsts {
+	public static CHANNEL: string = 'Membership';
+	public static STATE: string = 'Membership.state';
+	public static UPDATE: string = 'update';
+	public static UPDATESTATE: string = 'update.state';
+	public static ONUPDATE: string = 'is-updated';
+	public static ONUPDATESTATE: string = 'is-updated.state';
+	
+}

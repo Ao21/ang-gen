@@ -6,7 +6,7 @@ import {
 } from 'angular2/test_lib';
 
 import {Dispatcher} from 'app/services/services';
-import {BaseException} from 'angular2/src/facade/lang';
+import {BaseException} from 'angular2/src/core/facade/lang';
 import {FormIncrementor} from 'app/directives/forms/incrementor/form_incrementor';
 
 export function main(){
@@ -18,11 +18,11 @@ export function main(){
 		let index;
 		
 		beforeEach(() => {
-			dispatcherMock = new Dispatcher()
+			//dispatcherMock = new Dispatcher()
 			min = 0;
 			max = 3;
 			index = 0;
-			formIn = new FormIncrementor(dispatcherMock, min, max);
+			formIn = new FormIncrementor( min, max);
 		})
 		
 		describe('minus', () => {
