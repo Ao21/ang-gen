@@ -1,6 +1,15 @@
 <ul class="tabs">
 	<li *ng-for="#tab of tabs;#i = index" (click)="selectTab(tab, i)" [ng-class]="{selected: selected == i}">
+		<!-- Not Implemented Yet -->
+		<!-- <template ng-outlet="tab.labelTemplate"/> -->
 		<p>{{tab.tabTitle}}</p>
+
 	</li>
 </ul>
-<ng-content></ng-content>
+<div class="content">
+	<ng-content></ng-content>
+	<!-- <template ng-outlet="selected.bodyTemplate"/> -->
+</div>
+
+
+

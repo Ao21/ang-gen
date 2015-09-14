@@ -4,12 +4,12 @@ import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @Component({
-	selector: 'testimonials',
+	selector: 'testimonials'
 })
 
 @View({
 	templateUrl: 'app/components/membership/testimonials/testimonials.html',
-	styleUrls: ['app/components/membership/testimonials/testimonials.css'],
+	styleUrls: ['app/components/membership/testimonials/testimonials.css']
 })
 
 export class MembershipTestimonials  implements OnDestroy{
@@ -24,7 +24,6 @@ export class MembershipTestimonials  implements OnDestroy{
 			this.router.navigate('/membership/price-breakdown')
 		},2500)
 	}
-
 	onDestroy(){
 		clearTimeout(this.timeout);
 	}

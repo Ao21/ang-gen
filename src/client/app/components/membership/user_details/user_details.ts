@@ -5,7 +5,7 @@ import {OnActivate, OnDeactivate} from 'angular2/router';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 import {HorizontalScroller, HorizontalScrollerRef, HorizontalScrollerConfig} from 'app/directives/scroller/horizontal_scroller';
-import {DefaultUserPanel, AdditionalUserPanel, ChildUserPanel} from './panels/panels.modules'
+import {DefaultUserPanel, AdditionalUserPanel, ChildUserPanel, SummaryUserPanel} from './panels/panels.modules'
 
 
 import {ModalSlide} from 'app/directives/modal/modals.module';
@@ -76,6 +76,15 @@ export class MembershipUserDetails  implements OnActivate, OnDestroy{
 		}
 		else if (this.count == 1){
 			this.horizontalScroller.loadComponent(ChildUserPanel,'Form-'+this.count)
+			.then(ref => {
+				this.horizontalScroller.goToName('Form-'+this.count);
+				this.horizontalRefs.push(ref);
+				ref.instance.horizontalRef = ref;
+				this.count++;
+			});
+		}
+		else if (this.count == 2){
+			this.horizontalScroller.loadComponent(SummaryUserPanel,'Form-'+this.count)
 			.then(ref => {
 				this.horizontalScroller.goToName('Form-'+this.count);
 				this.horizontalRefs.push(ref);

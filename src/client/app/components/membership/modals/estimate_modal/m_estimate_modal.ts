@@ -9,8 +9,8 @@ import {Dispatcher} from 'app/services/services';
 })
 
 @View({
-	templateUrl: 'app/components/membership/estimate_modal/estimate_modal.html',
-	styleUrls: ['app/components/membership/estimate_modal/estimate_modal.css'],
+	templateUrl: 'app/components/membership/modals/estimate_modal/m_estimate_modal.html',
+	styleUrls: ['app/components/membership/modals/estimate_modal/m_estimate_modal.css'],
 
 })
 

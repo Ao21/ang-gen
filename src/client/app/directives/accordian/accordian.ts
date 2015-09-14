@@ -1,4 +1,6 @@
-import {Component, View} from 'angular2/angular2';
+import {Component, View, EventEmitter} from 'angular2/angular2';
+
+import {AccordianItem} from './accordian_item/accordian_item';
 
 @Component({
 	selector: 'accordian'
@@ -12,5 +14,22 @@ import {Component, View} from 'angular2/angular2';
 })
 
 export class Accordian {
+	panels: any;
+	selected: Number;
+	onSelectPanel: EventEmitter;
 	
+	constructor(){
+		this.panels = [];
+		this.selected = 0;
+		this.onSelectPanel = new EventEmitter;
+	}
+	
+	addPanel(panel:AccordianItem){
+		this.panels.push(panel);
+		console.log(this.panels);
+	}
+	
+	selectPanel(panel, i) {
+		
+	}
 }

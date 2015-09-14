@@ -1,4 +1,12 @@
 tabs {
+	li {
+		border: $tabGoldBorder;
+		color: $tabGoldText;
+	}
+	li.selected {
+		background-color: $tabGoldBkColor;
+		color: $tabGoldInvertedText;
+	}
 	&.blue {
 		.tabs {
 			li {

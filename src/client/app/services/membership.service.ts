@@ -125,7 +125,6 @@ export class MembershipStore {
 	};
 	
 	emitUpdate() {
-		console.log(this.state);
 		this.dispatcher.publish(MembershipConsts.STATE, MembershipConsts.ONUPDATESTATE, this.state);
 	}
 	

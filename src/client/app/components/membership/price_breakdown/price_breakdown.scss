@@ -1,20 +1,21 @@
-:host {
-	.paymentFrequency{
-		width: 100%;
-		
-		margin: 20px 0;	
+:host, payment-options {
+	.tabs {
+		margin-bottom: 24px;
 	}
-	
-	
-	.push--top {
-		margin-top: 12px;
+	.payments{
+		width: 100%;
+		float: left;
 	}
 	form {
 		clear: both;
 	}
 	
 	.form--nolabel {
-		margin: 20px 0 0px;
+		margin: 20px 0;
+	}
+	
+	.btn {
+		float: left;
 	}
 	
 	.credit-details {

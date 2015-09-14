@@ -1,7 +1,9 @@
-import {Component, View} from 'angular2/angular2';
+import {Component, View, Host} from 'angular2/angular2';
+import {Accordian} from './../accordian';
 
 @Component({
-	selector: 'accordian-item'
+	selector: 'accordian-item',
+	properties: ['panelTitle']
 })
 
 @View({
@@ -9,5 +11,9 @@ import {Component, View} from 'angular2/angular2';
 	
 })
 export class AccordianItem {
+	isOpen: Boolean;
 	
+	constructor(@Host accordian: Accordian){
+		accordian.addPanel(this)
+	}
 }

@@ -35,7 +35,6 @@ export class ActionBar implements OnDestroy {
 	activate() {
 		this.dispatcher.subscribe(MembershipConsts.STATE,MembershipConsts.ONUPDATESTATE, (_state) => 
 		{
-			console.log(_state)
 			this.state = _state
 		})
 	}

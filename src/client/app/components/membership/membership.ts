@@ -2,7 +2,7 @@ import {Component, View, EventEmitter, Inject} from 'angular2/angular2';
 import {RouteConfig, ROUTER_DIRECTIVES, RouterOutlet} from 'angular2/router';
 import {NgIf} from 'angular2/angular2'
 import {Dispatcher, MembershipStore, MembershipConsts} from 'app/services/services';
-import {EstimateModal} from 'app/components/membership/estimate_modal/estimate_modal';
+import {EstimateModal} from './modals/estimate_modal/m_estimate_modal';
 
 
 import {

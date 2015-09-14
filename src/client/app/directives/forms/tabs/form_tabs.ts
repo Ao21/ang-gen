@@ -1,6 +1,5 @@
-import {Component, View, NgFor, NgClass, EventEmitter, Attribute} from 'angular2/angular2';
+import {Component, View, NgFor, NgClass, Query, OnInit, EventEmitter, Attribute, QueryList, forwardRef, ViewQuery} from 'angular2/angular2';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
-
 import {Tab} from './form_tab';
 
 @Component({
@@ -15,19 +14,24 @@ import {Tab} from './form_tab';
 	directives: [NgFor, NgClass]
 })
 
-export class Tabs {
-	tabs: any;
+export class Tabs implements OnInit {
 	selected: Number;
 	onSelectTab: EventEmitter;
 	selectedTab: String;
-
-	constructor(@Attribute('selectedtab') selectedtab) {
+	protected tabs: QueryList<Tab>;
+	
+	
+	constructor(@Attribute('selectedtab') selectedtab,  
+	 @Query(Tab) items :QueryList<Tab>
+	 ) {
 		this.tabs = [];
 		this.selected = 0;
 		this.selectedTab = selectedtab
 		this.onSelectTab = new EventEmitter;
-		
-		
+	}
+	
+	onInit(){
+		this.tabs[0].active = true;
 	}
 	
 	addTab(tab:Tab) {
@@ -50,7 +54,7 @@ export class Tabs {
 	
 	selectTab(tab, i) {
 		this.tabs.forEach((tab) => {
-		tab.active = false;
+			tab.active = false;
 		});
 		this.selected = i;
 		tab.active = true;
