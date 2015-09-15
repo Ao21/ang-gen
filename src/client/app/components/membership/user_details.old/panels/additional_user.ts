@@ -3,8 +3,7 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control} from "angular2/angu
 import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
-import {Router} from 'angular2/router';
-import {MembershipStore, MembershipConsts, MembershipState} from 'app/services/services';
+
 
 @Component({
 	selector: 'userDetails-additional-user',
@@ -21,25 +20,18 @@ import {MembershipStore, MembershipConsts, MembershipState} from 'app/services/s
 export class AdditionalUserPanel  implements OnDestroy{
 	form: ControlGroup;
 	dispatcher: Dispatcher;
-	initialState: MembershipState;
 
-	constructor(dispatcher: Dispatcher,fb: FormBuilder, public membershipStore: MembershipStore, public router: Router){
+	constructor(dispatcher: Dispatcher,fb: FormBuilder){
 		this.dispatcher = dispatcher;
-		this.initialState = membershipStore.get();
+		
 		
 		this.form = fb.group({
 			"email": [""]
 		});
+		this.dispatcher.subscribe('form.radio', 'gender' + '.update', this.checkControls);
 	}
 
-	continue(){
-
-		if (this.initialState.membersCount.children > 0) {
-			this.router.navigate('/membership/user-details/child-user')
-		}
-		else {
-			this.router.navigate('/membership/user-details/user-summary')
-		}
+	checkControls = () => {
 	}
 
 	onDestroy() {

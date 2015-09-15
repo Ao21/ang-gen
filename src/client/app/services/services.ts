@@ -5,7 +5,7 @@ import {addonInjectables} from './addon.service';
 import {MembershipStore} from './membership.service';
 
 export {Dispatcher} from './dispatcher.service';
-export {MembershipStore, MembershipConsts} from './membership.service';
+export {MembershipStore, MembershipConsts, MembershipState, MembershipForm, MembershipFormDefault} from './membership.service';
 
 import {Dispatcher} from './dispatcher.service';
 

@@ -1,18 +1,13 @@
-:host, userdetails{
-	
-	form{
-		margin-bottom: 0;
-	}
+:host{
+	float: left;
 	.gender__selector {
 		display: block;
 		form-custom-radio {
 			display: inline-block;
 			width: 49%;
 			height: 50px;
+			
+			
 		}
 	}
-	.btn{
-		float: left;
-	}
-	
 }

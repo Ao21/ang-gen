@@ -19,9 +19,9 @@
     "src\\client\\app\\core\\core.spec.ts",
     "src\\client\\app\\core\\core.ts",
     "src\\client\\app\\core\\location.ts",
-    "src\\client\\app\\directives\\directives.ts",
     "src\\client\\app\\helpers\\helpers.ts",
     "src\\client\\app\\helpers\\logger.ts",
+    "src\\client\\app\\directives\\directives.ts",
     "src\\client\\app\\layout\\topNav.ts",
     "src\\client\\app\\pipes\\filter.pipe.spec.ts",
     "src\\client\\app\\pipes\\filter.pipe.ts",
@@ -62,6 +62,7 @@
     "src\\client\\app\\components\\membership\\price_breakdown\\price_breakdown.ts",
     "src\\client\\app\\components\\membership\\testimonials\\testimonials.ts",
     "src\\client\\app\\components\\membership\\user_details\\user_details.ts",
+    "src\\client\\app\\components\\membership\\user_details.old\\user_details.ts",
     "src\\client\\app\\directives\\accordian\\accordian_item\\accordian_item.ts",
     "src\\client\\app\\directives\\addons_list\\grid\\addon_grid.ts",
     "src\\client\\app\\directives\\addons_list\\grid_item\\addon_grid_item.ts",
@@ -79,6 +80,11 @@
     "src\\client\\app\\components\\membership\\user_details\\panels\\child_user.ts",
     "src\\client\\app\\components\\membership\\user_details\\panels\\default_user.ts",
     "src\\client\\app\\components\\membership\\user_details\\panels\\panels.modules.ts",
-    "src\\client\\app\\components\\membership\\user_details\\panels\\summary.ts"
+    "src\\client\\app\\components\\membership\\user_details\\panels\\summary.ts",
+    "src\\client\\app\\components\\membership\\user_details.old\\panels\\additional_user.ts",
+    "src\\client\\app\\components\\membership\\user_details.old\\panels\\child_user.ts",
+    "src\\client\\app\\components\\membership\\user_details.old\\panels\\default_user.ts",
+    "src\\client\\app\\components\\membership\\user_details.old\\panels\\panels.modules.ts",
+    "src\\client\\app\\components\\membership\\user_details.old\\panels\\summary.ts"
   ]
 }

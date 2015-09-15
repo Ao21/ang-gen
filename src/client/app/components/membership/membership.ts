@@ -4,6 +4,7 @@ import {NgIf} from 'angular2/angular2'
 import {Dispatcher, MembershipStore, MembershipConsts} from 'app/services/services';
 import {EstimateModal} from './modals/estimate_modal/m_estimate_modal';
 
+import {DefaultUserPanel} from 'app/components/membership/user_details/panels/default_user';
 
 import {
 	MembershipHome,
@@ -13,7 +14,12 @@ import {
 	MembershipPaymentOptions,  
 	MembershipUserDetails, 
 	MembershipTestimonials,
-	MembershipConfirmation} from 'app/components/membership/modules';
+	MembershipConfirmation,
+	
+	AdditionalUserPanel,
+	ChildUserPanel,
+	SummaryUserPanel
+	} from 'app/components/membership/modules';
 	
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
@@ -24,6 +30,7 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @RouteConfig([
 	{ path: '/', redirectTo: '/home' },
+	
 	{path: '/home', as: 'home', component: MembershipHome},
 	{path: '/login', as: 'login', component: MembershipLogin},
 	{path: '/addons', as: 'addons', component: MembershipAddons},
@@ -31,7 +38,12 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 	{path: '/payment-options', as: 'payment-options', component:MembershipPaymentOptions},
 	{path: '/user-details', as: 'user-details', component: MembershipUserDetails},
 	{path: '/testimonials', as: 'testimonials', component: MembershipTestimonials},
-	{path: '/confirmation', as: 'confirmation', component: MembershipConfirmation}
+	{path: '/confirmation', as: 'confirmation', component: MembershipConfirmation},
+	
+	{path: '/user-details/def-user', as: 'def-user', component: DefaultUserPanel},
+	{path: '/user-details/additional-user', as: 'additional-user', component: AdditionalUserPanel},
+	{path: '/user-details/child-user', as: 'child-user', component: ChildUserPanel},
+	{path: '/user-details/user-summary', as: 'user-summary', component: SummaryUserPanel}
 ])
 
 

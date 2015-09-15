@@ -1,9 +1,10 @@
 import {Component, View, OnDestroy} from 'angular2/angular2';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control} from "angular2/angular2";
-import {Dispatcher, MembershipConsts} from 'app/services/services';
+import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
-
+import {Router, OnActivate} from 'angular2/router';
+import {MembershipStore, MembershipConsts, MembershipState, MembershipForm, MembershipFormDefault} from 'app/services/services';
 
 @Component({
 	selector: 'userDetails-defaultUser',
@@ -17,51 +18,28 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 	styleUrls: ['./app/components/membership/user_details/panels/default_user.css']
 })
 
-export class DefaultUserPanel  implements OnDestroy{
-	defaultUserForm: ControlGroup;
-	horizontalRef: any;
-	formDetails:  {} = {};
+export class DefaultUserPanel  implements OnActivate{
+	defaultUserForm: ControlGroup;	
+	count: number;
+	initialState: MembershipState;
 
-	constructor(public dispatcher: Dispatcher,fb: FormBuilder){
+	constructor(
+		public router: Router,
+		public dispatcher: Dispatcher,
+		public membershipStore: MembershipStore,
+		public fb: FormBuilder){
+			this.initialState = this.membershipStore.get();
 		
-		this.defaultUserForm = fb.group({
-			"email": [''],
-			"fname": ['']
-		});
-		
-		this.activate();
-		
-		
-		
-		
-
 	}
 	
-	activate() {
-		this.formDetails = {
-			
-			
-		}
+	onActivate(){
 		
-		this.defaultUserForm.valueChanges.observer({
-			next: (value) => {
-				this.formDetails.form = value;
-				this.formDetails.index = this.horizontalRef.index,
-				this.dispatcher.publish(MembershipConsts.STATE, MembershipConsts.UPDATE, {
-					prop: 'userDetails',
-					value: this.formDetails
-				})
-			}
-		})
-		//this.dispatcher.subscribe('form.radio', 'gender' + '.update', this.checkControls);
-	}
-
-	checkControls = () => {
 	}
 	
-	onChange() {
-		// console.log('hi');
+	onInit(){
+		this.defaultUserForm = this.initialState.forms['defaultUser'].form;
 	}
+
 
 	onDestroy() {
 		//this.dispatcher.unsubscribe('form.radio', 'gender' + '.update');

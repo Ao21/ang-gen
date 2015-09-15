@@ -29,18 +29,32 @@ var defaultInitState = {
 							adults: 1,
 							children: 0
 						},
-	paymentFrequency:	'monthly'
+	paymentFrequency:	'monthly',
+	forms: 				[]
 }
 
 
-export interface MemberShipDetails {
-	form: [{
-		index: Number,
-		type: String,
-		form? : {}
-		
-	}]
+
+export class MembershipForm {
+    type		: String;
+	index		: Number;
+	form		: any;
 }
+
+
+export class MembershipFormDefault {
+	email = [''];
+	fName = [''];
+	lName = [''];
+	dob = [''];
+	pNumber = [''];
+	address1 = [''];
+	address2 = [''];
+	town = [''];
+	county = [''];
+	
+}
+
 
 export interface MembershipState {
 	actionBar?:			{
@@ -62,7 +76,7 @@ export interface MembershipState {
 							adults: Number,
 							children: Number
 						},
-	userDetails?: MemberShipDetails
+	forms?: [MembershipForm]
 }
 
 export interface MembershipConfig {
