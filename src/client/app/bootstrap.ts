@@ -18,7 +18,6 @@ import {appDirectives, angularDirectives} from './directives/directives';
 
 var universalInjectables = [
   locationInjectables,
-  angularDirectives,
   helperInjectables,
   appServices
 ]

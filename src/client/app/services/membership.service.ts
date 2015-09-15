@@ -26,7 +26,7 @@ var defaultInitState = {
 						},
 	config: 			defaultMembershipConfig,
 	membersCount: 		{
-							adults: 0,
+							adults: 1,
 							children: 0
 						},
 	paymentFrequency:	'monthly'
