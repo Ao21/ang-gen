@@ -18,7 +18,8 @@ export class Tabs implements OnInit {
 	selected: Number;
 	onSelectTab: EventEmitter;
 	selectedTab: String;
-	protected tabs: QueryList<Tab>;
+	tabs;
+
 	
 	
 	constructor(@Attribute('selectedtab') selectedtab,  

@@ -42,9 +42,8 @@ gulp.task('browserSync', function () {
 
 	$.watch(path.app.templates, function () {
 		runSequence(
-			'clean:html',
-			'copy:build',
-			browserSync.reload
+			'rebuild:html',
+			'reload'
 			);
 	});
 
@@ -52,7 +51,7 @@ gulp.task('browserSync', function () {
 		runSequence(
 			'styles',
 			'copy:build',
-			browserSync.reload
+			'reload'
 			);
 	});
 
@@ -60,17 +59,23 @@ gulp.task('browserSync', function () {
 		runSequence(
 			'build:tsconf',
 			'typescript',
-			browserSync.reload
+			'reload'
 			);
 	});
 	$.watch(path.app.images, function () {
 		runSequence(
 			'images',
-			browserSync.reload
+			'reload'
 			);
 	});
 });
 
+gulp.task('reload', function(){
+	// Delay Browser Reload to Allow Things to finish copying
+	setTimeout(function(){
+		browserSync.reload()
+	},500)
+})
 
 gulp.task('api', function () {
     $.nodemon({

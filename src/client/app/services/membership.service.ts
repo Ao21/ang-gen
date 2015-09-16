@@ -35,7 +35,7 @@ var defaultInitState = {
 
 
 
-export class MembershipForm {
+export interface MembershipForm {
     type		: String;
 	index		: Number;
 	form		: any;
@@ -76,7 +76,7 @@ export interface MembershipState {
 							adults: Number,
 							children: Number
 						},
-	forms?: [MembershipForm]
+	forms?: [any] []
 }
 
 export interface MembershipConfig {
@@ -104,19 +104,22 @@ interface ActionBarStates {
 export class MembershipStore {
 	
 	state: MembershipState;
+	lastObj;
 	
 	constructor(public dispatcher: Dispatcher){
 		this.activate();
+		
+	
 	};
 	
 	activate() {
 		this.dispatcher.subscribe(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, this.updateState);
 		this.dispatcher.subscribe(MembershipConsts.STATE,MembershipConsts.UPDATE, this.update);
-		this.state = defaultInitState;
+		this.state = Immutable(defaultInitState);
 	};
 	
 	updateState = (data: MembershipState) => {
-		this.state = _.merge(this.state, data);
+		this.state = Immutable(this.state).merge(data);
 		this.calculatePriceEstimate();
 		this.emitUpdate();
 	};
@@ -129,9 +132,18 @@ export class MembershipStore {
 		this.state.priceEstimate.calculated = price; 
 	}
 	
+	add = (obj:any) => {
+		
+	}
+	
 	update = (obj:any) => {
-		_.set(this.state, obj.prop, obj.value);
-		this.emitUpdate();
+		
+		var tmpObj = {}
+		_.set(tmpObj, obj.prop, obj.value);
+		
+		this.state = tmpObj;
+		//this.emitUpdate();
+	
 	}
 	
 	get(type?: string) {

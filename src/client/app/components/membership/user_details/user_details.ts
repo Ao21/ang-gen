@@ -24,7 +24,7 @@ import {MembershipStore, MembershipConsts, MembershipState, MembershipForm, Memb
 export class MembershipUserDetails  implements OnInit, OnActivate{
 	defaultUserForm: ControlGroup;	
 	count: number;
-	initialState: MembershipState;
+	state: MembershipState;
 
 	constructor(
 		public router: Router,
@@ -35,13 +35,13 @@ export class MembershipUserDetails  implements OnInit, OnActivate{
 	}
 	
 	onActivate(){
-		this.initialState = this.membershipStore.get();
+		this.state = this.membershipStore.get();
 	}
 	
 	onInit(){
 		
-		if (this.initialState.forms['defaultUser']) {
-			this.defaultUserForm = this.initialState.forms['defaultUser'].form;
+		if (this.state.forms['defaultUser']) {
+			this.defaultUserForm = this.state.forms['defaultUser'].form;
 		}
 		else {
 			this.defaultUserForm = this.fb.group(new MembershipFormDefault());
@@ -49,21 +49,23 @@ export class MembershipUserDetails  implements OnInit, OnActivate{
 		
 		this.defaultUserForm.valueChanges.observer({
 			next: (value) => {
-				this.initialState.forms['defaultUser']= _.extend({type: 'defaultUser', index: 0}, value)
-				this.initialState.forms['defaultUser'].form = this.defaultUserForm;
-				this.dispatcher.publish(MembershipConsts.STATE, MembershipConsts.UPDATESTATE, this.initialState)
+				let defaultForm: any = _.extend({type: 'defaultUser', index: 0}, value);
+				defaultForm.form = this.defaultUserForm;
+				this.dispatcher.publish(MembershipConsts.STATE, MembershipConsts.UPDATE, {
+					prop: 'forms',
+					value: [defaultForm]
+				})
 			}
 		})
 		
 	}
-	
 	continue() {
-		if(this.initialState.membersCount.adults > 1) {
+		if(this.state.membersCount.adults > 1) {
 			this.router.navigate('/membership/user-details/additional-user')
 		}
 		else if (
-			this.initialState.membersCount.adults < 2 &&
-			this.initialState.membersCount.children > 0) 
+			this.state.membersCount.adults < 2 &&
+			this.state.membersCount.children > 0) 
 		{
 			this.router.navigate('/membership/user-details/child-user')
 		}

@@ -35,8 +35,8 @@ export class Tab implements OnInit{
 	}
 	
 	onInit() {
-		this.labelTemplate = this.templates._results[0];
-    	this.bodyTemplate = this.templates._results[1];
+		// this.labelTemplate = this.templates._results[0];
+    	// this.bodyTemplate = this.templates._results[1];
 
 		
 	}

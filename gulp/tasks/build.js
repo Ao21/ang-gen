@@ -6,27 +6,28 @@ var gulp          = require('gulp'),
 
 
 gulp.task('clean', function(cb) {
-  return del(['./.tmp', 'build/*','dist/*', 'ui-docs', '!build/.git','!dist/.git'], {
-      dot: true
-  }, cb)
+  del(['./.tmp', 'build/*','dist/*', 'ui-docs', '!build/.git','!dist/.git']).then(function(){
+	  cb()
+  })
+ 
 });
 
 gulp.task('clean:images', function(cb) {
-  del([path.build.images,'!build/.git'], {
-      dot: true
-  }, cb)
+  del([path.build.images,'!build/.git']).then(function(){
+	  cb()
+  })
 });
 
 gulp.task('clean:html', function(cb) {
-  del(['build/**/*.html','!build/.git'], {
-      dot: true
-  }, cb)
+  del(['build/**/*.html','!build/.git']).then(function(){
+	  cb()
+	})
 });
 
 gulp.task('clean:css', function(cb) {
-  del(['build/**/*.css','!build/.git'], {
-      dot: true
-  }, cb)
+  del(['build/**/*.css','!build/.git']).then(function(){
+	  cb()
+	})
 });
 
 
@@ -42,9 +43,16 @@ gulp.task('copy:deps',function(){
 })
 
 gulp.task('copy:build', function(){
-  var files =  gulp.src(path.app.templates)
-  return files.pipe(gulp.dest(path.build.basePath));
+  return gulp.src(path.app.templates).pipe(gulp.dest(path.build.basePath));
 });
+
+
+gulp.task('rebuild:html', function(cb){
+	del(['build/**/*.html','!build/.git']).then(function(){
+		gulp.src(path.app.templates).pipe(gulp.dest(path.build.basePath));
+	  	cb()
+	})
+})
 
 
 gulp.task('concat', function() {

@@ -12,9 +12,9 @@
   ],
   "dependencies": {
     "bootstrap-sass": "~3.3.5",
-    "toastr": "~2.1.2",
+    "lodash": "~3.10.1",
     "seamless-immutable": "~3.0.0",
-    "lodash": "~3.10.1"
+    "toastr": "~2.1.2"
   },
   "devDependencies": {
     "systemjs": "*",
