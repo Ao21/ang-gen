@@ -7,15 +7,15 @@
 			</div>
 			<div class="row controls">
 				<div class="col-xs-12 col-md-3">
-					<form-incrementor min=1 max=2 [index]="state.membersCount.adults" image="images/icons/adult.png" (update)="updateAdults($event)" ></form-incrementor>
+					<form-incrementor min=1 max=2 [index]="_state.membersCount.adults" image="images/icons/adult.png" (update)="updateAdults($event)" ></form-incrementor>
 					<h4>Adults + 17 Years</h4>
 					</div>
 				<div class="col-xs-12 col-md-3">				
-					<form-incrementor min=0 max=6 [index]="state.membersCount.children" image="images/icons/child.png" (update)="updateChildren($event)"></form-incrementor>
+					<form-incrementor min=0 max=6 [index]="_state.membersCount.children" image="images/icons/child.png" (update)="updateChildren($event)"></form-incrementor>
 					<h4>Children - 17 Years</h4>
 				</div>
 				<div class="col-xs-12 col-md-3">
-					<checkbox [checked]="state.addons" (update)="updateRescuePlus($event)" class="checkbox--header">
+					<checkbox [checked]="_state.addons" (update)="updateRescuePlus($event)" class="checkbox--header">
 						<h3>Add Rescue Plus</h3>
 						<h5>Just €4.25 extra per month</h5>
 							
@@ -24,7 +24,7 @@
 				</div>
 				<div class="col-xs-12 col-md-3">
 					<div class="btn btn-default btn-block" [router-link]="['/membership/addons']" >
-						<!--<h3>${{state.priceEstimate.initial}} per month</h3>-->
+						<h3>${{_state.priceEstimate.initial}} per month</h3>
 						<h3><strong>Join the AA</strong></h3						</h3>
 					</div>
 					<h4>Renew Membership</h4>

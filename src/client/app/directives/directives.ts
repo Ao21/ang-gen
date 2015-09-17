@@ -10,13 +10,13 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 
 import {GridAddon} from './addons_list/grid/addon_grid'
-import {GridAddonItem, GridAddonPopup} from './addons_list/addons.module'
-import {FormCustomRadio, FormIncrementor, Tabs, Tab, FormCustomRadioContainer, Switch} from './forms/forms.modules';
+import {GridAddonItem, GridAddonPopup} from './addons_list/addons_modules'
+import {FormCustomRadio, FormIncrementor, Tabs, Tab, FormCustomRadioContainer, Switch} from './forms/forms_modules';
 import {BackgroundImage} from './generic/background_image';
 import {CheckboxButton} from './buttons/checkbox';
 import {ActionBar} from './nav/action_bar';
-import {ModalPopup, ModalSlide} from './modal/modals.module';
-import {Accordian, AccordianItem} from './accordian/accordian.modules';
+import {ModalPopup, ModalSlide} from './modal/modals_modules';
+import {Accordian, AccordianItem} from './accordian/accordian_modules';
 
 // global App only directives
 export var appDirectives: Array<any> = [

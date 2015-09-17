@@ -11,7 +11,7 @@ import {IncrementorTest} from './incrementor/incrementor_test';
 import {HorizontalScrollTest} from './scroller/horizontalScroll_test'
 import {ActionBarTest} from './actionbar/actionbar_test';
 import {AccordianTest} from './accordian/accordian_test';
-import {SwitchTest} from './switcher/switch_test';
+
  
 @Component({
 	selector: 'tests'
@@ -26,7 +26,7 @@ import {SwitchTest} from './switcher/switch_test';
 	{ path: '/scroller', as: 'scroller', component: HorizontalScrollTest},
 	{ path: '/actionbar', as: 'actionbar', component: ActionBarTest},
 	{ path: '/accordian', as: 'accordian', component: AccordianTest},
-	{ path: '/switch', as: 'switch', component: SwitchTest}
+
 ])
 
 

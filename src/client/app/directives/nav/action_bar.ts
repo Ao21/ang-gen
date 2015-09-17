@@ -1,6 +1,6 @@
 import {Component, View, OnDestroy, NgIf, NgFor, NgClass, EventEmitter, Host} from 'angular2/angular2';
 import {Injectable, Inject, bind} from 'angular2/angular2';
-import {MembershipStore, MembershipState, MembershipConsts} from 'app/services/membership.service';
+import {MembershipStore, MembershipState, MembershipConsts} from 'app/services/membership_service';
 import {Dispatcher} from 'app/services/services';
 import {Router, Location} from 'angular2/router';
 

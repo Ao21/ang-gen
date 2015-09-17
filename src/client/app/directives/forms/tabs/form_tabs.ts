@@ -37,7 +37,6 @@ export class Tabs implements OnInit {
 	
 	addTab(tab:Tab) {
 		if(!this.selectedTab &&  this.tabs.length == 0 ) {
-			console.log('selected')
 			tab.active = true;
 		}
 		

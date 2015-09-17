@@ -37,6 +37,7 @@ var paths = {
         					'node_modules/zone.js/dist/long-stack-trace-zone.js',
         					'node_modules/rx/dist/rx.js',
         					'node_modules/flux/dist/Flux.js',
+        					'node_modules/lodash/dist/lodash.min.js',
         					'node_modules/postal/lib/postal.min.js'
 						],
 		ordered:		[
@@ -46,6 +47,7 @@ var paths = {
 							'./build/libs/system.js',
 							'./build/libs/system.config.js',
 							'./build/libs/Reflect.js',
+							'./build/libs/lodash.min.js',
 							'./build/libs/postal.min.js',
 							'./build/libs/angular2.js',
 							'./build/libs/router.dev.js',
@@ -65,7 +67,6 @@ var paths = {
 	build: {
 		basePath:		'./build/',
 		client:			'./build/app/',
-		css:			'./build/**/*.css',
 		html:			'./build/**/*.html',
 		libs:			'./build/libs/',
 		js:				'./build/**/*.js',

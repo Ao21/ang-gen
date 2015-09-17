@@ -2,6 +2,7 @@ var gulp          = require('gulp'),
     del           = require('del'),
     path          = require('../paths'),
     runSequence   = require('run-sequence'),
+    mainBowerFiles    = require('main-bower-files'),
     $             = require('gulp-load-plugins')({lazy: true});
 
 
@@ -24,6 +25,7 @@ gulp.task('clean:html', function(cb) {
 	})
 });
 
+
 gulp.task('clean:css', function(cb) {
   del(['build/**/*.css','!build/.git']).then(function(){
 	  cb()
@@ -31,6 +33,10 @@ gulp.task('clean:css', function(cb) {
 });
 
 
+gulp.task('copy:bower', function(){
+  return gulp.src(mainBowerFiles(), {base: './scripts'}).pipe(gulp.dest('./build/libs/vendors'));
+  
+})
 
 gulp.task('copy:libs',function(){
   var libsStream = gulp.src(path.scripts.libs);
@@ -85,9 +91,3 @@ gulp.task('optimize', function(cb) {
     )
 });
 
-gulp.task('build', function() {
-    runSequence(
-        'optimize',
-        'concat'
-    )
-})

@@ -26,6 +26,7 @@ export class MembershipUserDetails  implements OnInit, OnActivate{
 	count: number;
 	state: MembershipState;
 
+
 	constructor(
 		public router: Router,
 		public dispatcher: Dispatcher,
@@ -41,7 +42,7 @@ export class MembershipUserDetails  implements OnInit, OnActivate{
 	onInit(){
 		
 		if (this.state.forms['defaultUser']) {
-			this.defaultUserForm = this.state.forms['defaultUser'].form;
+			this.defaultUserForm = this.fb.group(this.state.forms.defaultUser); 
 		}
 		else {
 			this.defaultUserForm = this.fb.group(new MembershipFormDefault());
@@ -49,12 +50,11 @@ export class MembershipUserDetails  implements OnInit, OnActivate{
 		
 		this.defaultUserForm.valueChanges.observer({
 			next: (value) => {
-				let defaultForm: any = _.extend({type: 'defaultUser', index: 0}, value);
-				defaultForm.form = this.defaultUserForm;
 				this.dispatcher.publish(MembershipConsts.STATE, MembershipConsts.UPDATE, {
-					prop: 'forms',
-					value: [defaultForm]
+					prop: 'forms.defaultUser',
+					value: value
 				})
+				
 			}
 		})
 		

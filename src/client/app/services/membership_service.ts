@@ -1,5 +1,6 @@
 import { Inject, Injectable, bind} from 'angular2/angular2';
-import {Dispatcher} from 'app/services/dispatcher.service';
+import {Dispatcher} from 'app/services/dispatcher_service';
+
 
 var defaultMembershipConfig = {
 	defaultPrices: 		{
@@ -102,56 +103,66 @@ interface ActionBarStates {
 
 @Injectable()
 export class MembershipStore {
-	
-	state: MembershipState;
+	tmp;
+	private _state;
 	lastObj;
 	
+	
+	
 	constructor(public dispatcher: Dispatcher){
+		this._state = new Baobab(defaultInitState);
 		this.activate();
 		
-	
 	};
 	
 	activate() {
 		this.dispatcher.subscribe(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, this.updateState);
 		this.dispatcher.subscribe(MembershipConsts.STATE,MembershipConsts.UPDATE, this.update);
-		this.state = Immutable(defaultInitState);
+		this._state.on('update',() => {
+			var a = this._state.get();
+
+			this.emitUpdate()
+				
+			
+			}
+		)
+		
 	};
 	
 	updateState = (data: MembershipState) => {
-		this.state = Immutable(this.state).merge(data);
+		this._state.deepMerge(data)
 		this.calculatePriceEstimate();
-		this.emitUpdate();
+
 	};
 	
 	calculatePriceEstimate() {
 		let price = 0;
-		price = this.state.addons == true ? defaultMembershipConfig.defaultPrices.combo : 9.99;
-		this.state.priceEstimate.initial = price;
-		price = this.state.paymentFrequency == 'monthly' ? price : price * 12;
-		this.state.priceEstimate.calculated = price; 
+		price = this._state.get().addons == true ? defaultMembershipConfig.defaultPrices.combo : 9.99;
+		this._state.set(['priceEstimate','initial'], price)
+		price = this._state.get().paymentFrequency == 'monthly' ? price : price * 12;
+		this._state.set(['priceEstimate','calculated'], price)
 	}
 	
 	add = (obj:any) => {
 		
 	}
 	
-	update = (obj:any) => {
-		
-		var tmpObj = {}
-		_.set(tmpObj, obj.prop, obj.value);
-		
-		this.state = tmpObj;
-		//this.emitUpdate();
-	
+	update = (obj:any) => {	
+		var path = obj.prop.split('.');
+
+		this._state.set(path, obj.value);
 	}
 	
-	get(type?: string) {
-		return (type) ? this.state[type] : this.state;
-	};
+	get(type?) {
+		return this._state.get();
+	}
+	
+	get state() {
+        return this._state.get();
+    }
 	
 	emitUpdate() {
-		this.dispatcher.publish(MembershipConsts.STATE, MembershipConsts.ONUPDATESTATE, this.state);
+		this.dispatcher.publish(MembershipConsts.STATE, MembershipConsts.ONUPDATESTATE, this._state.get());
 	}
 	
 

@@ -1,13 +1,13 @@
 /// <reference path="../../../../typings/tsd.d.ts" />
 
 import {bind} from 'angular2/angular2';
-import {addonInjectables} from './addon.service';
-import {MembershipStore} from './membership.service';
+import {addonInjectables} from './addon_service';
+import {MembershipStore} from './membership_service';
 
-export {Dispatcher} from './dispatcher.service';
-export {MembershipStore, MembershipConsts, MembershipState, MembershipForm, MembershipFormDefault} from './membership.service';
+export {Dispatcher} from './dispatcher_service';
+export {MembershipStore, MembershipConsts, MembershipState, MembershipForm, MembershipFormDefault} from './membership_service';
 
-import {Dispatcher} from './dispatcher.service';
+import {Dispatcher} from './dispatcher_service';
 
 
 

@@ -11,9 +11,9 @@
     "tests"
   ],
   "dependencies": {
+    "baobab": "v2",
     "bootstrap-sass": "~3.3.5",
     "lodash": "~3.10.1",
-    "seamless-immutable": "~3.0.0",
     "toastr": "~2.1.2"
   },
   "devDependencies": {

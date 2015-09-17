@@ -1,9 +1,9 @@
 import {Component, View, Host, EventEmitter, OnDestroy} from 'angular2/angular2';
-import {ModalPopup, ModalSlide} from 'app/directives/modal/modals.module';
+import {ModalPopup, ModalSlide} from 'app/directives/modal/modals_modules';
 import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
-import {MembershipStore, MembershipState, MembershipConsts} from 'app/services/membership.service';
+import {MembershipStore, MembershipState, MembershipConsts} from 'app/services/membership_service';
 
 @Component({
 	selector: 'addons',

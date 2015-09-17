@@ -1,10 +1,10 @@
 import {Inject, Component, View, Host, ViewEncapsulation, NgFor, NgIf, ElementRef,OnDestroy, EventEmitter} from 'angular2/angular2';
-import {GridAddonItem, GridAddonPopup} from 'app/directives/addons_list/addons.module';
-import {MembershipStore, MembershipState, MembershipConsts} from 'app/services/membership.service';
+import {GridAddonItem, GridAddonPopup} from 'app/directives/addons_list/addons_modules';
+import {MembershipStore, MembershipState, MembershipConsts} from 'app/services/membership_service';
 import {CheckboxButton} from 'app/directives/buttons/checkbox'
 import {Dispatcher} from 'app/services/services';
-import {AddonService} from 'app/services/addon.service';
-import {FilterPipe} from 'app/pipes/filter.pipe';
+import {AddonService} from 'app/services/addon_service';
+import {FilterPipe} from 'app/pipes/filter_pipe';
 
 
 @Component({

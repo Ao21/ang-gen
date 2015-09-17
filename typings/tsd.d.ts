@@ -1,4 +1,5 @@
 /// <reference path="angular2/angular2.d.ts" />
+/// <reference path="angular2/http.d.ts" />
 /// <reference path="angular2/router.d.ts" />
 /// <reference path="jquery/jquery.d.ts" />
 /// <reference path="toastr/toastr.d.ts" />
@@ -9,6 +10,5 @@
 /// <reference path="angular-protractor/angular-protractor.d.ts" />
 /// <reference path="selenium-webdriver/selenium-webdriver.d.ts" />
 /// <reference path="lodash/lodash.d.ts" />
-/// <reference path="seamless-immutable/immutable.d.ts" />
-
+/// <reference path="immutable/baobab.d.ts" />
 

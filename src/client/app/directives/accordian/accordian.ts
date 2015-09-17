@@ -26,7 +26,6 @@ export class Accordian {
 	
 	addPanel(panel:AccordianItem){
 		this.panels.push(panel);
-		console.log(this.panels);
 	}
 	
 	selectPanel(panel, i) {

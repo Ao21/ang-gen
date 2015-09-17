@@ -5,10 +5,10 @@ import {OnActivate, OnDeactivate} from 'angular2/router';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 import {HorizontalScroller, HorizontalScrollerRef, HorizontalScrollerConfig} from 'app/directives/scroller/horizontal_scroller';
-import {DefaultUserPanel, AdditionalUserPanel, ChildUserPanel, SummaryUserPanel} from './panels/panels.modules'
+import {DefaultUserPanel, AdditionalUserPanel, ChildUserPanel, SummaryUserPanel} from './panels/panels_modules'
 
 
-import {ModalSlide} from 'app/directives/modal/modals.module';
+import {ModalSlide} from 'app/directives/modal/modals_module';
 
 @Component({
 	selector: 'user-details',

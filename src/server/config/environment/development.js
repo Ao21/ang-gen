@@ -8,5 +8,7 @@ module.exports = {
     uri: 'mongodb://localhost/dss-dev'
   },
 
-  seedDB: true
+  seedDB: true,
+  
+  client: '/client/'
 };

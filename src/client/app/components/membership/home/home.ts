@@ -3,7 +3,7 @@ import {OnActivate} from 'angular2/router';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 import {Dispatcher} from 'app/services/services';
 
-import {MembershipStore, MembershipState, MembershipConsts} from 'app/services/membership.service';
+import {MembershipStore, MembershipState, MembershipConsts} from 'app/services/membership_service';
 
 
 @Component({
@@ -18,36 +18,33 @@ import {MembershipStore, MembershipState, MembershipConsts} from 'app/services/m
 })
 
 export class MembershipHome {
-	state: MembershipState;
+	_state: MembershipState;
 	config: any;
 	rescueMeChecked: boolean;
 	
 	constructor(public dispatcher: Dispatcher, public store: MembershipStore){
+		this._state = this.store.state;
 		this.activate();
 	}
 	
 	activate() {
-		this.state = this.store.get();
 		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATE, {
 			prop: 'actionBar.visible',
 			value: false
 		});
-		this.dispatcher.subscribe(MembershipConsts.STATE,MembershipConsts.ONUPDATESTATE, (state) => { this.state = state });
+		this.dispatcher.subscribe(MembershipConsts.STATE,MembershipConsts.ONUPDATESTATE, (state) => { this._state = state });
 	}
 	
 	updateAdults(count) {
-		var _state = {membersCount: {adults:count}};
-		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, _state);
+		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, {membersCount: {adults:count}});
 	}
 	
 	updateChildren(count) {
-		var _state = {membersCount: {children:count}};
-		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, _state);
+		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, {membersCount: {children:count}});
 	}
 	
 	updateRescuePlus(toggle){
-		var _state  = {addons:toggle};
-		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, _state);
+		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, {addons:toggle});
 	}
 	onDestroy(){
 		this.dispatcher = null;

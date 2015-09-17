@@ -13,11 +13,28 @@ gulp.task('serve', function() {
 		'build:tsconf',
         'typescript',
         'copy:libs',
+		'copy:bower',
         'inject:all',
         'styles',
         'images',
         'copy:build',
         'browserSync'
+    )
+});
+
+gulp.task('build', function() {
+    runSequence(
+        'clean',
+		'bundle/angular2',
+		'build:tsconf',
+        'typescript',
+        'copy:libs',
+        'copy:bower',
+        'inject:all',
+        'styles',
+        'images',
+        'copy:build',
+		'browserSyncApi'
     )
 });
 
@@ -42,7 +59,8 @@ gulp.task('browserSync', function () {
 
 	$.watch(path.app.templates, function () {
 		runSequence(
-			'rebuild:html',
+			'clean:html',
+			'copy:build',
 			'reload'
 			);
 	});
@@ -70,19 +88,60 @@ gulp.task('browserSync', function () {
 	});
 });
 
-gulp.task('reload', function(){
-	// Delay Browser Reload to Allow Things to finish copying
-	setTimeout(function(){
-		browserSync.reload()
-	},500)
-})
 
 gulp.task('api', function () {
     $.nodemon({
         script: path.server,
+		"ignore": ["build/**",'gulp/**','node_modules/**','scripts/**','src/client/**','tests/**'],
         ext: 'js html',
         env: {
             'NODE_ENV': 'development'
         }
     })
+
+});
+
+
+
+gulp.task('reload', function(){
+	setTimeout(function(){
+		browserSync.reload()
+	},500)
+})
+gulp.task('browserSyncApi', ['api'], function() {
+	browserSync.init({
+		proxy:  "http://localhost:9000",
+		logLevel: 'debug',
+		port: 80,
+    	logConnections: true
+	});
+	$.watch(path.app.templates, function () {
+		runSequence(
+			'clean:html',
+			'copy:build',
+			browserSync.reload
+			);
+	});
+
+	$.watch(path.app.scss, function () {
+		runSequence(
+			'styles',
+			'copy:build',
+			browserSync.reload
+			);
+	});
+
+	$.watch(path.app.ts, function () {
+		runSequence(
+			'build:tsconf',
+			'typescript',
+			browserSync.reload
+			);
+	});
+	$.watch(path.app.images, function () {
+		runSequence(
+			'images',
+			browserSync.reload
+			);
+	});
 });

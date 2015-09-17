@@ -59,7 +59,7 @@ export class Membership {
 	state: any;
 	
 	constructor(public dispatcher: Dispatcher, public store: MembershipStore) {
-		this.state = this.store.get();
+		this.state = this.store.state;
 		this.activate();
 	}
 	
