@@ -14,11 +14,11 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 export class MembershipConfirmation implements OnDestroy {
 
-	constructor(public dispatcher: Dispatcher) {
+	constructor() {
 		
 	}
 
 	onDestroy(){
-		this.dispatcher = null;
+		
 	}
 }

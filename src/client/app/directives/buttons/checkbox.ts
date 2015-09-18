@@ -1,12 +1,13 @@
-import {Component, View, Inject, NgClass, EventEmitter, Attribute} from 'angular2/angular2';
+import {Component, View, Inject, NgClass, EventEmitter, Attribute, OnInit} from 'angular2/angular2';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 @Component({
 	selector: 'checkbox',
-	properties: ['checked'],
+	properties: ['init'],
 	events: ['update']
 
 })
+
 
 @View({
 	templateUrl: 'app/directives/buttons/checkbox.html',
@@ -14,12 +15,17 @@ import {appDirectives, angularDirectives} from 'app/directives/directives';
 	directives: [NgClass]
 })
 
-export class CheckboxButton {
-	checked: boolean;
+export class CheckboxButton implements OnInit{
 	update: EventEmitter;
+	checked: Boolean;
+	init: Boolean;
 	
-	constructor(@Attribute('checked') checked: boolean) {
+	constructor() {
 		this.update = new EventEmitter();
+	}
+	
+	onInit(){
+		this.checked = this.init;
 	}
 	
 	check = () => {

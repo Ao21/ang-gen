@@ -1,6 +1,6 @@
 import {Inject, Component, View, Host, ViewEncapsulation, NgFor, NgIf, ElementRef,OnDestroy, EventEmitter} from 'angular2/angular2';
 import {GridAddonItem, GridAddonPopup} from 'app/directives/addons_list/addons_modules';
-import {MembershipStore, MembershipState, MembershipConsts} from 'app/services/membership_service';
+import {MembershipStore, MembershipState, MembershipConsts, MembershipStoreActions} from 'app/services/membership_service';
 import {CheckboxButton} from 'app/directives/buttons/checkbox'
 import {Dispatcher} from 'app/services/services';
 import {AddonService} from 'app/services/addon_service';
@@ -32,7 +32,8 @@ export class GridAddon implements OnDestroy {
 	constructor(
 		public addonService: AddonService, 
 		public dispatcher: Dispatcher,
-		private membershipStore: MembershipStore
+		private membershipStore: MembershipStore,
+		public membershipStoreActions: MembershipStoreActions
 		) {
 			this.state = addonService.get('addons');
 			this.membershipState = membershipStore.get();
@@ -46,14 +47,12 @@ export class GridAddon implements OnDestroy {
 	};
 	
 	addRescuePlus = () => {
-		var _state  = {addons:true};
-		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, _state);
+		this.membershipStoreActions.update('addons',true);
 		this.initialFilter = {'default':{'*':'*'},'rescueMe':{'pkg':'*'}}
 	};
 	
 	removeRescuePlus = () => {
-		var _state  = {addons:false};
-		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, _state);
+		this.membershipStoreActions.update('addons',true);
 		this.initialFilter = {'default':{'pkg':'default'},'rescueMe':{'pkg':'rescuePlus'}}
 	};
 	

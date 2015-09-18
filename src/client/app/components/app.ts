@@ -30,11 +30,8 @@ import {appPipes} from 'app/pipes/pipes';
 
 export class App {
 
-	votes: number;
-
 	constructor(public logger: Logger) {
-		this.votes = 10;
+		
 	}
-	voteUp(): void {
-	}
+	
 }

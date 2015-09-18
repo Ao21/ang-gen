@@ -28,16 +28,31 @@ export class FormIncrementor {
 		this.index = 0;
 	}
 	minus() {
-		
 		if(this.index > this.min){
 			this.index--;
-			this.update.next(this.index);
+			debounce(this.update.next(this.index),250, false);
 		}
 	}
 	plus() {
 		if(this.index < this.max){
 			this.index++;
+			debounce(this.update.next(this.index),250, false);
 			this.update.next(this.index);
 		}
 	}
 }
+
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};

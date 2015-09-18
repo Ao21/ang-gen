@@ -15,16 +15,15 @@
 					<h4>Children - 17 Years</h4>
 				</div>
 				<div class="col-xs-12 col-md-3">
-					<checkbox [checked]="_state.addons" (update)="updateRescuePlus($event)" class="checkbox--header">
+					<checkbox [init]="_state.addons" (update)="updateRescuePlus($event)" class="checkbox--header">
 						<h3>Add Rescue Plus</h3>
 						<h5>Just €4.25 extra per month</h5>
-							
 					</checkbox>
 					<h4>Nationwide tow if needed and you’ll get a choice of hire car, accommodation or travel expenses</h4>
 				</div>
 				<div class="col-xs-12 col-md-3">
 					<div class="btn btn-default btn-block" [router-link]="['/membership/addons']" >
-						<h3>${{_state.priceEstimate.initial}} per month</h3>
+						<h3>${{_state.priceEstimate.calculated}} per month</h3>
 						<h3><strong>Join the AA</strong></h3						</h3>
 					</div>
 					<h4>Renew Membership</h4>

@@ -1,5 +1,8 @@
 import { Inject, Injectable, bind} from 'angular2/angular2';
-import {Dispatcher} from 'app/services/dispatcher_service';
+import {Dispatcher, StoreActions} from 'app/services/dispatcher_service';
+
+
+var monkey = Baobab.monkey;
 
 
 var defaultMembershipConfig = {
@@ -23,7 +26,25 @@ var defaultInitState = {
 						},
 	addons: 			false,
 	priceEstimate: 		{
-							initial: defaultMembershipConfig.defaultPrices.membership
+							initial: defaultMembershipConfig.defaultPrices.membership,
+							calculated: monkey(
+								['priceEstimate','initial'],
+								['paymentFrequency'],
+								['addons'],
+								['membersCount','adults'],
+								['membersCount','children'],
+								function(price, frequency, addons, adults, children) {
+									if(addons) {
+										price = defaultMembershipConfig.defaultPrices.combo;
+									}
+									if (frequency == 'monthly') {
+										return price
+									}
+									else {
+										return price * 12
+									}
+								}
+							)
 						},
 	config: 			defaultMembershipConfig,
 	membersCount: 		{
@@ -56,7 +77,6 @@ export class MembershipFormDefault {
 	
 }
 
-
 export interface MembershipState {
 	actionBar?:			{
 							title?: String,
@@ -88,6 +108,7 @@ export interface MembershipConfig {
 					}
 }
 
+
 export interface ActionBarItem {
 	title?: string;
 	image?: string;
@@ -100,14 +121,22 @@ interface ActionBarStates {
 }
 
 
+@Injectable()
+export class MembershipStoreActions extends StoreActions {
+	channel: string;
+	
+	constructor(dispatcher: Dispatcher) {
+		super(dispatcher);
+		this.channel = 'Membership';
+	}
+	
+}
 
 @Injectable()
 export class MembershipStore {
 	tmp;
 	private _state;
 	lastObj;
-	
-	
 	
 	constructor(public dispatcher: Dispatcher){
 		this._state = new Baobab(defaultInitState);
@@ -116,42 +145,22 @@ export class MembershipStore {
 	};
 	
 	activate() {
-		this.dispatcher.subscribe(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, this.updateState);
-		this.dispatcher.subscribe(MembershipConsts.STATE,MembershipConsts.UPDATE, this.update);
-		this._state.on('update',() => {
-			var a = this._state.get();
-
-			this.emitUpdate()
-				
-			
-			}
-		)
+		this.dispatcher.subscribe(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, this.onUpdateState);
+		this.dispatcher.subscribe(MembershipConsts.STATE,MembershipConsts.UPDATE, this.onUpdate);
 		
+		//this._state.on('update', () => this.emitUpdate());
 	};
 	
-	updateState = (data: MembershipState) => {
-		this._state.deepMerge(data)
-		this.calculatePriceEstimate();
-
-	};
 	
-	calculatePriceEstimate() {
-		let price = 0;
-		price = this._state.get().addons == true ? defaultMembershipConfig.defaultPrices.combo : 9.99;
-		this._state.set(['priceEstimate','initial'], price)
-		price = this._state.get().paymentFrequency == 'monthly' ? price : price * 12;
-		this._state.set(['priceEstimate','calculated'], price)
-	}
-	
-	add = (obj:any) => {
-		
-	}
-	
-	update = (obj:any) => {	
+	onUpdate = (obj:any) => {	
 		var path = obj.prop.split('.');
-
 		this._state.set(path, obj.value);
+		this.emitUpdate();
 	}
+	
+	onUpdateState = (data: MembershipState) => {
+		this._state.deepMerge(data);
+	};
 	
 	get(type?) {
 		return this._state.get();
@@ -171,7 +180,7 @@ export class MembershipStore {
 
 export class MembershipConsts {
 	public static CHANNEL: string = 'Membership';
-	public static STATE: string = 'Membership.state';
+	public static STATE: string = 'Membership.store';
 	public static UPDATE: string = 'update';
 	public static UPDATESTATE: string = 'update.state';
 	public static ONUPDATE: string = 'is-updated';

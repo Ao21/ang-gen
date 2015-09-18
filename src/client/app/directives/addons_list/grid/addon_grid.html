@@ -2,6 +2,6 @@
 	<grid-addon-item *ng-for="#addon of state | filter: initialFilter.default " [addon]="addon" class="col-xs-6 col-md-3 res-square default"></grid-addon-item>
 	<grid-addon-item *ng-for="#rescueAddons of state | filter: initialFilter.rescueMe  " [addon]="rescueAddons" class="col-xs-6 col-md-3 res-square rescuePlus"</grid-addon-item>
 </div>
-<checkbox [checked]="rescueMeChecked" class="checkbox--header" (update)="onUpdateCheckbox($event)"">
+<checkbox [init]="rescueMeChecked" class="checkbox--header" (update)="onUpdateCheckbox($event)"">
 	<h3>Add Rescue Plus</h3>
 </checkbox>

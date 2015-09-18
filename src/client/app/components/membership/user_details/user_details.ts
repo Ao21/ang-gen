@@ -6,7 +6,7 @@ import {Router, OnActivate} from 'angular2/router';
 
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
-import {MembershipStore, MembershipConsts, MembershipState, MembershipForm, MembershipFormDefault} from 'app/services/services';
+import {MembershipStore, MembershipConsts, MembershipState, MembershipForm, MembershipFormDefault, MembershipStoreActions} from 'app/services/services';
 
 
 @Component({
@@ -23,49 +23,40 @@ import {MembershipStore, MembershipConsts, MembershipState, MembershipForm, Memb
 
 export class MembershipUserDetails  implements OnInit, OnActivate{
 	defaultUserForm: ControlGroup;	
-	count: number;
-	state: MembershipState;
-
+	_state: MembershipState;
 
 	constructor(
 		public router: Router,
-		public dispatcher: Dispatcher,
 		public membershipStore: MembershipStore,
+		public mbStoreActions: MembershipStoreActions,
 		public fb: FormBuilder){
 		
 	}
 	
 	onActivate(){
-		this.state = this.membershipStore.get();
+		this._state = this.membershipStore.get();
 	}
 	
 	onInit(){
 		
-		if (this.state.forms['defaultUser']) {
-			this.defaultUserForm = this.fb.group(this.state.forms.defaultUser); 
-		}
-		else {
-			this.defaultUserForm = this.fb.group(new MembershipFormDefault());
-		}
+		let formControls = this._state.forms['defaultUser'] ? this._state.forms.defaultUser : new MembershipFormDefault();
+		
+		this.defaultUserForm = this.fb.group(formControls);
 		
 		this.defaultUserForm.valueChanges.observer({
 			next: (value) => {
-				this.dispatcher.publish(MembershipConsts.STATE, MembershipConsts.UPDATE, {
-					prop: 'forms.defaultUser',
-					value: value
-				})
-				
+				this.mbStoreActions.update('forms.defaultUser', value);
 			}
 		})
-		
 	}
+	
 	continue() {
-		if(this.state.membersCount.adults > 1) {
+		if(this._state.membersCount.adults > 1) {
 			this.router.navigate('/membership/user-details/additional-user')
 		}
 		else if (
-			this.state.membersCount.adults < 2 &&
-			this.state.membersCount.children > 0) 
+			this._state.membersCount.adults < 2 &&
+			this._state.membersCount.children > 0) 
 		{
 			this.router.navigate('/membership/user-details/child-user')
 		}

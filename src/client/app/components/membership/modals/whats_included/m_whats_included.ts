@@ -26,12 +26,9 @@ export class WhatsIncludedModal implements OnDestroy{
 	};
 	
 	activate() {
-		this.dispatcher.subscribe(this.channel, 'open.modal', this.setModal);
 	}
 	
-	setModal = (data: any, msg: any): void => {
-		
-	};
+	
 	
 	onDestroy() {
 		this.dispatcher.unsubscribe(this.channel, 'open.modal');

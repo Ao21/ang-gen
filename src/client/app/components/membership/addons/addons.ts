@@ -3,7 +3,7 @@ import {ModalPopup, ModalSlide} from 'app/directives/modal/modals_modules';
 import {Dispatcher} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
-import {MembershipStore, MembershipState, MembershipConsts} from 'app/services/membership_service';
+import {MembershipStoreActions} from 'app/services/membership_service';
 
 @Component({
 	selector: 'addons',
@@ -17,28 +17,17 @@ import {MembershipStore, MembershipState, MembershipConsts} from 'app/services/m
 })
 
 export class MembershipAddons implements OnDestroy {
-	state: MembershipState;
-	constructor(public dispatcher: Dispatcher, public store: MembershipStore){
+	constructor(public mbStoreActions: MembershipStoreActions){
 		this.activate();
 	}
 	
 	activate() {
-		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATE, {
-			prop: 'actionBar.title',
-			value: 'Choose Your Options'
-		})
-		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATE, {
-			prop: 'actionBar.visible',
-			value: true
-		});
+		this.mbStoreActions.update('actionBar.title', 'Choose Your Options')
+		this.mbStoreActions.update('actionBar.visible', true)
 	}
 	
 	onDestroy(){
-		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATE, {
-			prop: 'actionBar.title',
-			value: ''
-		})
-		this.dispatcher = null;
+		this.mbStoreActions.update('actionBar.title', '')
 	}
 
 }

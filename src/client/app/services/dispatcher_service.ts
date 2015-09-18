@@ -49,4 +49,34 @@ export class Dispatcher {
 	}
 }
 
+export class StoreActions {
+	channel: string;
+	updateStr: string;
+	updateStateStr: string;
+	
+	
+	
+	constructor(public dispatcher: Dispatcher){
+		this.dispatcher = dispatcher;
+	}
+	
+	onUpdateState(cb) {
+		this.dispatcher.subscribe(this.channel + '.store', 'is-updated.state', (state) => {
+			cb(state) 
+		});
+	}
+	
+
+	update(path,value) {
+		this.dispatcher.publish(this.channel + '.store', 'update', {
+			prop: path,
+			value: value
+		})
+	}
+	
+	updateState(state) {
+		this.dispatcher.publish(this.channel + '.state', 'update.state', state)
+	}
+	
+}
 

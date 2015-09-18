@@ -1,5 +1,5 @@
 import {Component, View, OnDestroy} from 'angular2/angular2';
-import {Dispatcher, MembershipStore, MembershipConsts} from 'app/services/services';
+import {Dispatcher, MembershipStore, MembershipConsts, MembershipStoreActions} from 'app/services/services';
 import {appDirectives, angularDirectives} from 'app/directives/directives';
 
 import {WhatsIncludedModal} from 'app/components/membership/modals/whats_included/m_whats_included';
@@ -15,35 +15,28 @@ import {WhatsIncludedModal} from 'app/components/membership/modals/whats_include
 })
 
 export class MembershipPriceBreakdown implements OnDestroy {
-	
+
 	state: any;
-	
-	constructor(public dispatcher: Dispatcher, public store: MembershipStore) {
+
+	constructor(public dispatcher: Dispatcher, public store: MembershipStore, public actions: MembershipStoreActions) {
 		this.activate();
 	}
-	
+
 	activate() {
 		this.state = this.store.get();
-		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATE, {
-			prop: 'actionBar.priceEstimateVisible',
-			value: true
-		});
-		
+		this.actions.update('actionBar.priceEstimateVisible', true);
+
 	}
-	
-	onOpenModal(){
-		this.dispatcher.publish('whats_included','open.modal',true)
+
+	onOpenModal() {
+		this.dispatcher.publish('whats_included', 'open.modal', true)
 	}
-	
+
 	onUpdatedPaymentFrequency($event) {
-		var _state = {};
-		_state['paymentFrequency'] = $event.tabTitle== "One Payment" ? 'single' : 'monthly';
-		this.dispatcher.publish(MembershipConsts.STATE,MembershipConsts.UPDATESTATE, _state);
-		
-
+		this.actions.update('paymentFrequency', $event.tabTitle == "One Payment" ? 'single' : 'monthly' );
 	}
 
-	onDestroy(){
-		this.dispatcher = null;
+	onDestroy() {
+
 	}
 }
